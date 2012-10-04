@@ -1,0 +1,15 @@
+id: b43ce470-f069-012f-8264-1231381359d0
+setup:
+  commands:
+  - bundle install --without production
+  - bundle exec rake db:migrate --trace
+test:
+  commands:
+  - bundle exec rake
+deploy:
+  heroku:
+    production:
+      name: glacial-lowlands-8263
+      backup: false
+ruby_versions:
+- 1.9.3
