@@ -5,7 +5,9 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+group :development do
+  gem 'sqlite3'
+end
 
 
 # Gems used only for assets and not required
@@ -49,3 +51,9 @@ gem "bootstrap-sass", ">= 2.1.0.0"
 gem "devise", ">= 2.1.2"
 gem "cancan", ">= 1.6.8"
 gem "rolify", ">= 3.2.0"
+gem "therubyracer", ">= 0.10.2", :group => :assets, :platform => :ruby
+gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
+
+group :production do
+  gem "pg"
+end
