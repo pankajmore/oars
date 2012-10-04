@@ -7,6 +7,7 @@ test:
   commands:
   - bundle exec rake
 deploy:
+  branch: master
   heroku:
     production:
       name: glacial-lowlands-8263
