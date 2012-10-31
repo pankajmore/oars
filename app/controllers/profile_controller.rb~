@@ -2,10 +2,6 @@ class ProfileController < ApplicationController
   def login
   end
 
-  def student_home
+  def home
   end
-
-	def instructor_home
-	end
-
 end
