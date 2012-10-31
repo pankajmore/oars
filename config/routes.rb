@@ -1,18 +1,25 @@
 Oars::Application.routes.draw do
 
   devise_for :faculties,
-             :controllers => { :registrations => "faculty/registrations" }
+             :controllers => { :registrations => "faculty/registrations" } do 
+      get '/faculties/sign_up', :to => 'faculty/registrations#new', :as => :faculty_sign_up
+      get '/faculties/sign_in', :to => 'faculty/sessions#new', :as => :faculty_sign_in
+             end 
 
   devise_for :students,
-             :controllers => { :registrations => "student/registrations" }
+             :controllers => { :registrations => "student/registrations" } do 
+      get '/students/sign_up', :to => 'student/registrations#new', :as => :student_sign_up
+      get '/students/sign_in', :to => 'student/sessions#new', :as => :student_sign_in
+     end
 
-  root :to => "home#index"
+
+  root :to => "profile#login"
 
   get "profile/login"
 
   get "profile/student_home"
 	
-	get "profile/instructor_home"
+  get "profile/instructor_home"
 	
   # The priority is based upon order of creation:
   # first created -> highest priority.
