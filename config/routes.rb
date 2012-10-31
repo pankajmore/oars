@@ -1,9 +1,15 @@
 Oars::Application.routes.draw do
+
   devise_for :faculties
 
   devise_for :students
 
   root :to => "home#index"
+
+  get "profile/login"
+
+  get "profile/home"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
