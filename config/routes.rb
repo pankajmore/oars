@@ -1,7 +1,9 @@
 Oars::Application.routes.draw do
-  devise_for :faculties
+  devise_for :faculties,
+             :controllers => { :registrations => "faculty/registrations" }
 
-  devise_for :students
+  devise_for :students,
+             :controllers => { :registrations => "student/registrations" }
 
   root :to => "home#index"
   # The priority is based upon order of creation:
