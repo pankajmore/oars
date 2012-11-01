@@ -5,5 +5,6 @@ class StudentController < ApplicationController
         
         def student_home
         end
+
         
 end

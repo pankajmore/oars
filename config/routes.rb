@@ -1,28 +1,34 @@
 Oars::Application.routes.draw do
 
+  root :to => "profile#login"
+
   devise_for :faculties,
-             :controllers => { :registrations => "faculty/registrations", :sessions => "faculty/sessions"} do 
+             :controllers => { :registrations => "faculty/registrations",
+                             :sessions => "faculty/sessions" 
+                             } do 
         get '/faculties/sign_up', :to => 'faculty/registrations#new', :as => :faculty_sign_up
         get '/faculties/sign_in', :to => 'faculty/sessions#new', :as => :faculty_sign_in
         get '/faculties/instructor_home', :to => 'faculty#instructor_home', :as => :instructor_home
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
+  end 
 
-             end 
 
   devise_for :students,
-             :controllers => { :registrations => "student/registrations", :sessions => "student/sessions"} do 
+             :controllers => { :registrations => "student/registrations",
+                             :sessions => "student/sessions"
+                             } do 
         get '/students/sign_up', :to => 'student/registrations#new', :as => :student_sign_up
         get '/students/sign_in', :to => 'student/sessions#new', :as => :student_sign_in
         get '/students/sign_out', :to => 'student/sessions#destroy', :as => :student_sign_out
         get '/students/student_home', :to => 'student#student_home', :as => :student_home
         get '/students/welcome_student', :to => 'student#welcome_student', :as => :welc_student
       
-     end
+  end
 
 
-  root :to => "profile#login"
 
-        get "profile/login" 
+
+  get "profile/login" 
                 
   # The priority is based upon order of creation:
   # first created -> highest priority.
