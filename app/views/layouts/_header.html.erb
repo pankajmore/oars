@@ -4,9 +4,7 @@
           <%= link_to "oars", root_path , id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-             <% if request.fullpath.match(/^\/students/)%>
-                        <% if student_signed_in? %>
-                                <li><%= link_to "Personal Information",    '#'%></li>
+            		<li><%= link_to "Personal Information", student_personal_info_path(current_student.id)   %></li>
                                 <li><%= link_to "Course",    '#'%></li>
                                 <li><%= link_to "Registration",    '#' %></li>
                                 <li><%= link_to "Time-Table",    '#'%></li>
@@ -18,9 +16,7 @@
                         		<li><%= link_to "Student Signup",   student_sign_up_path %></li>
                                 
                         <% end %>
-				<%end%>
-                <% if request.fullpath.match(/^\/faculties/)%>
-                		<% if faculty_signed_in? %>
+						<% if faculty_signed_in? %>
                 				<li><%= link_to "Personal Information",    '#'%></li>
                                 <li><%= link_to "Course",    '#'%></li>
                                 <li><%= link_to "Current-Sem Registration",    '#' %></li>
@@ -31,9 +27,7 @@
                         <li><%= link_to "Faculty Login",    faculty_sign_in_path %></li>
                         <li><%= link_to "Faculty Signup",    faculty_sign_up_path %></li>
                         <% end %>
-                <% end %>
-          
-                
+                               
              </ul>
           </nav>
         </div>
