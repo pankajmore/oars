@@ -4,8 +4,8 @@
           <%= link_to "oars", root_path , id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-                        <% if student_signed_in? %>
-                                <li><%= link_to "Personal Information",    '#'%></li>
+                <% if student_signed_in? %>
+                                <li><%= link_to "Personal Information", student_personal_info_path(current_student.id)   %></li>
                                 <li><%= link_to "Course",    '#'%></li>
                                 <li><%= link_to "Registration",    '#' %></li>
                                 <li><%= link_to "Time-Table",    '#'%></li>
