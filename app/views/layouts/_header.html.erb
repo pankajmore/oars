@@ -4,10 +4,25 @@
           <%= link_to "oars", root_path , id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Student Login",    student_sign_in_path %></li>
-              <li><%= link_to "Student Signup",    student_sign_up_path %></li>
-              <li><%= link_to "Faculty Login",    faculty_sign_in_path %></li>
-              <li><%= link_to "Faculty Signup",    faculty_sign_up_path %></li>
+                <% if request.fullpath.match(/^\/students/)%>
+                        <% if student_signed_in? %>
+                                <li><%= link_to "Personal Information",    '#'%></li>
+                                <li><%= link_to "Course",    '#'%></li>
+                                <li><%= link_to "Current-Sem Registration",    '#' %></li>
+                                <li><%= link_to "Pre-Registration",    '#'%></li>
+                                <li><%= link_to "Add-Drop",    '#'%></li>
+                                <li><%= link_to "Log Out",    student_sign_out_path %></li>
+                        <% else %>
+                                <li><%= link_to "Student Login",    student_sign_in_path %></li>
+                                <li><%= link_to "Student Signup",    student_sign_up_path %></li>
+                        <% end %>
+                <% end %>
+                <% if request.fullpath.match(/^\/faculties/)%>
+                        <li><%= link_to "Faculty Login",    faculty_sign_in_path %></li>
+                        <li><%= link_to "Faculty Signup",    faculty_sign_up_path %></li>
+                <% end %>
+                
+                
              </ul>
           </nav>
         </div>

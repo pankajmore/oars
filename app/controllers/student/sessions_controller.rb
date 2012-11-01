@@ -9,5 +9,9 @@ class Student::SessionsController < Devise::SessionsController
     super
   end
 
+  def destroy
+    super
+  end
+  
 end
 
