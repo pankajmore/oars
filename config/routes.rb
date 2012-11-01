@@ -27,8 +27,6 @@ Oars::Application.routes.draw do
   end
 
 
-
-
   get "profile/login" 
                 
   # The priority is based upon order of creation:
