@@ -6,6 +6,9 @@ class ProfileController < ApplicationController
   end
 
 	def instructor_home
+			respond_to do |format|
+      format.html # student_home.html.erb
+      end
 	end
 
 end
