@@ -17,7 +17,7 @@ class Student::RegistrationsController < Devise::RegistrationsController
     welc_student_path
   end
 
-  def after_update_up_path_for(resource)
+  def after_update_path_for(resource)
     student_personal_info_path
   end
 end

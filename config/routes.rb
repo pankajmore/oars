@@ -2,7 +2,6 @@ Oars::Application.routes.draw do
 
   resources :courses
 
-  root :to => "profile#login"
   
   devise_for :faculties,
              :controllers => { :registrations => "faculty/registrations",
@@ -10,7 +9,7 @@ Oars::Application.routes.draw do
                              } do 
         get '/faculties/sign_up', :to => 'faculty/registrations#new', :as => :faculty_sign_up
         get '/faculties/sign_in', :to => 'faculty/sessions#new', :as => :faculty_sign_in
-        get '/faculties/sign_out', :to => 'faculty/session#destroy', :as => :faculty_sign_out
+        get '/faculties/sign_out', :to => 'faculty/sessions#destroy', :as => :faculty_sign_out
         get '/faculties/instructor_home', :to => 'faculty#instructor_home', :as => :instructor_home
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
         get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
@@ -30,12 +29,13 @@ Oars::Application.routes.draw do
         get '/students/student_home', :to => 'student#student_home', :as => :student_home
         get '/students/welcome_student', :to => 'student#welcome_student', :as => :welc_student
         get '/students/personal_info', :to => 'student#personal_info', :as => :student_personal_info
-        get '/students/registration', :to => 'student#registration', :as => :registration
+        get '/students/current_registration', :to => 'student#current_registration', :as => :student_current_registration
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
       
   end
 
+  root :to => "profile#login"
 
   get "profile/login" 
                 
