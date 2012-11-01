@@ -1,7 +1,7 @@
 Oars::Application.routes.draw do
 
   devise_for :faculties,
-             :controllers => { :registrations => "faculty/registrations" } do 
+             :controllers => { :registrations => "faculty/registrations", :sessions => "faculty/sessions"} do 
         get '/faculties/sign_up', :to => 'faculty/registrations#new', :as => :faculty_sign_up
         get '/faculties/sign_in', :to => 'faculty/sessions#new', :as => :faculty_sign_in
         get '/faculties/instructor_home', :to => 'faculty#instructor_home', :as => :instructor_home
@@ -10,7 +10,7 @@ Oars::Application.routes.draw do
              end 
 
   devise_for :students,
-             :controllers => { :registrations => "student/registrations" } do 
+             :controllers => { :registrations => "student/registrations", :sessions => "student/sessions"} do 
         get '/students/sign_up', :to => 'student/registrations#new', :as => :student_sign_up
         get '/students/sign_in', :to => 'student/sessions#new', :as => :student_sign_in
         get '/students/sign_out', :to => 'student/sessions#destroy', :as => :student_sign_out
