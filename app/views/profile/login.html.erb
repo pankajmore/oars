@@ -1,13 +1,14 @@
 <div class="center hero-unit">
-  <h1>Welcome to OARS</h1>
+  <h3>Welcome to the<br />ONLINE ACADEMIC REGISTRATION SYSTEM</h3>
 
-  <h2>
-    This is the login page for the
-    <a href="http://172.26.142.75:4040">ONLINE ACADEMIC REGISTRATION SYSTEM</a>
-    Check it.
-  </h2>
+  <h4>
+      <%= link_to "You are a Student!", student_sign_in_path, class: "btn btn-large btn-primary" %>
+      <%= link_to "You are an Instructor!", faculty_sign_in_path, class: "btn btn-large btn-primary" %>
+  </h4>
 
-  <%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+  <h5>
+    Please select the respective links.
+  </h5>
 </div>
 	
 
