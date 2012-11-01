@@ -12,7 +12,7 @@
                                 <li><%= link_to "Add-Drop",    '#'%></li>
                                 <li><%= link_to "Account",    '#'%></li>
                                 <li><%= link_to "Log Out",    student_sign_out_path %></li>
-                <% else %>
+                <% end %>
 				<% if faculty_signed_in? %>
                 				<li><%= link_to "Personal Information",    '#'%></li>
                                 <li><%= link_to "Course",    courses_path %></li>
