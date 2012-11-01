@@ -22,7 +22,7 @@ Oars::Application.routes.draw do
 
   root :to => "profile#login"
 
-        get "profile/login" # profile name is hardcoded in _header.html.erb file
+        get "profile/login" 
                 
   # The priority is based upon order of creation:
   # first created -> highest priority.
