@@ -17,5 +17,10 @@ class Faculty::RegistrationsController < Devise::RegistrationsController
     welc_instructor_path
   end
 
+  def after_update_up_path_for(resource)
+    instructor_personal_info_path
+  end
+
+
 end
 
