@@ -12,15 +12,15 @@
                                 <li><%= link_to "Add-Drop",    '#'%></li>
                                 <li><%= link_to "Account",    '#'%></li>
                                 <li><%= link_to "Log Out",    student_sign_out_path %></li>
-                        <% end %>
-						<% if faculty_signed_in? %>
+                <% else %>
+				<% if faculty_signed_in? %>
                 				<li><%= link_to "Personal Information",    '#'%></li>
-                                <li><%= link_to "Course",    '#'%></li>
+                                <li><%= link_to "Course",    courses_path %></li>
                                 <li><%= link_to "Current-Sem Registration",    '#' %></li>
                                 <li><%= link_to "Pre-Registration",    '#'%></li>
                                 <li><%= link_to "Add-Drop",    '#'%></li>
                                 <li><%= link_to "Log Out",    faculty_sign_out_path %></li>
-                        <% end %>
+                <% end %>
                                
              </ul>
           </nav>
