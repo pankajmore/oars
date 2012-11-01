@@ -55,6 +55,6 @@ gem "therubyracer", ">= 0.10.2", :group => :assets, :platform => :ruby
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 
 
-# group :production do
-#   gem "pg"
-# end
+group :production do
+   gem "pg"
+end
