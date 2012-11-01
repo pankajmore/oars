@@ -1,6 +1,6 @@
 <div class="center hero-unit">
-        <h3>Always keep your Personal Information Updated! :)</h3>
-<div class="center btn-group">
+        
+        <div class="center btn-group">
                 <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">Academic Information
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
@@ -9,21 +9,13 @@
                         <li class="divider"></li>
                         <li><%= link_to "Student Information", student_personal_info_path(current_student.id)   %></li>
                 </ul>
-              </div>
-
-        <p>
-        <table align="center">
-            <tr><td width="200">Roll Number :</td><td width="300"><%= @student.roll %></td></tr>
-                <tr><td>Name :</td><td><%= @student.name %></td></tr>
-                <tr><td>Email :</td><td><%= @student.email %></td></tr>
-                <tr><td>Telephone :</td><td><%= @student.phone %></td></tr>
-        </table>
-        </p>
+        </div>
+        
+        <h4>Your Transcript</h4>
         
         <p>
-                <button class="btn btn-link btn-large btn-danger"><%= link_to "Update Info", edit_student_registration_path   %></button>
+                //Insert the transcript//
         </p>
-        
 </div>
 
 

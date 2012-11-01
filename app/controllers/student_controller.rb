@@ -11,4 +11,9 @@ class StudentController < ApplicationController
             @student = Student.find(params[:id])
         end
         
+        def backlog_list
+        end
+        
+        def transcript
+        end
 end
