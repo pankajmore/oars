@@ -13,13 +13,8 @@ Oars::Application.routes.draw do
         get '/faculties/sign_out', :to => 'faculty/session#destroy', :as => :faculty_sign_out
         get '/faculties/instructor_home', :to => 'faculty#instructor_home', :as => :instructor_home
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
-<<<<<<< HEAD
-		get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
-		get '/faculties/registration_instructor', :to => 'faculty#registration_instructor' , :as => :faculty_registrations
-=======
         get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
-        get '/faculties/registration_instructor', :to => 'faculty#registration_instructor' , :as => :faculty_registrationss
->>>>>>> aef42ac86821391f8e3db2cf3ab3d152b8b8ca9b
+        get '/faculties/registration_instructor', :to => 'faculty#registration_instructor' , :as => :faculty_registrations
   end 
 
   
@@ -34,12 +29,9 @@ Oars::Application.routes.draw do
         get '/students/student_home', :to => 'student#student_home', :as => :student_home
         get '/students/welcome_student', :to => 'student#welcome_student', :as => :welc_student
         get '/students/personal_info/:id', :to => 'student#personal_info', :as => :student_personal_info
-<<<<<<< HEAD
         get '/students/registration', :to => 'student#registration', :as => :registration
-=======
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
->>>>>>> aef42ac86821391f8e3db2cf3ab3d152b8b8ca9b
       
   end
 
