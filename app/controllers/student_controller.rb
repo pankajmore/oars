@@ -11,4 +11,8 @@ class StudentController < ApplicationController
             @student = Student.find(params[:id])
         end
         
+        def registration
+        	#@courses = @student.
+        end
+        
 end
