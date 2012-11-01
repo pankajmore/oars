@@ -6,4 +6,9 @@ class FacultyController < ApplicationController
         def welcome_instructor
         end
         
+        def faculty_personal_info
+        end
+        
+        def faculty_registration
+        end
 end
