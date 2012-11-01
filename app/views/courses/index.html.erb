@@ -1,0 +1,19 @@
+<div class="search">
+  <form>
+    <input type="text" class="search-query" placeholder="Search for Courses">
+  </form>
+</div>
+
+<h1>All Courses</h1>
+<div class="courses">
+  <ul class="courses">
+    <% @courses.each do |course| %>
+    <li>
+      <div class="course"> 
+        <%= link_to course.number, course %>
+        <%= link_to course.name, course %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
