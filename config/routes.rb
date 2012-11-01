@@ -1,7 +1,9 @@
 Oars::Application.routes.draw do
 
-  root :to => "profile#login"
+  resources :courses
 
+  root :to => "profile#login"
+  
   devise_for :faculties,
              :controllers => { :registrations => "faculty/registrations",
                              :sessions => "faculty/sessions" 
