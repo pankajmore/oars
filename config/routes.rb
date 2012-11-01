@@ -10,10 +10,14 @@ Oars::Application.routes.draw do
                              } do 
         get '/faculties/sign_up', :to => 'faculty/registrations#new', :as => :faculty_sign_up
         get '/faculties/sign_in', :to => 'faculty/sessions#new', :as => :faculty_sign_in
+        get '/faculties/sign_out', :to => 'faculty/session#destroy', :as => :faculty_sign_out
         get '/faculties/instructor_home', :to => 'faculty#instructor_home', :as => :instructor_home
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
+        get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
+        get '/faculties/registration_instructor', :to => 'faculty#registration_instructor' , :as => :faculty_registrationss
   end 
 
+  
 
   devise_for :students,
              :controllers => { :registrations => "student/registrations",

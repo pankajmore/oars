@@ -3,8 +3,8 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <%= f.password_field :current_password %></div>
 
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
@@ -12,10 +12,19 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <div><%= f.label :name %><br />
+    <%= f.text_field :name %></div>
 
-  <div><%= f.submit "Update", student_personalinfo_path %></div>
+  <div><%= f.label :phone %><br />
+    <%= f.text_field :phone %></div>
+
+  <div><%= f.label :roll_no %><br />
+    <%= f.text_field :roll %></div>
+
+
+  <div><%= f.submit "Update", class: "btn btn-large btn-primary", student_personalinfo_path %></div>
+
+
 <% end %>
 
 <h3>Cancel my account</h3>
