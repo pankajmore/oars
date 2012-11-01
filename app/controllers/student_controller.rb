@@ -10,4 +10,13 @@ class StudentController < ApplicationController
         def personal_info
         end
         
+        def registration
+        	#@courses = @student.
+        end
+        
+        def backlog_list
+        end
+        
+        def transcript
+        end
 end
