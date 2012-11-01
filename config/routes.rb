@@ -28,7 +28,7 @@ Oars::Application.routes.draw do
         get '/students/sign_out', :to => 'student/sessions#destroy', :as => :student_sign_out
         get '/students/student_home', :to => 'student#student_home', :as => :student_home
         get '/students/welcome_student', :to => 'student#welcome_student', :as => :welc_student
-        get '/students/personal_info/:id', :to => 'student#personal_info', :as => :student_personal_info
+        get '/students/personal_info', :to => 'student#personal_info', :as => :student_personal_info
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
       
