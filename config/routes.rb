@@ -1,5 +1,7 @@
 Oars::Application.routes.draw do
 
+  resources :courses
+  
   devise_for :faculties,
              :controllers => { :registrations => "faculty/registrations" } do 
       get '/faculties/sign_up', :to => 'faculty/registrations#new', :as => :faculty_sign_up
