@@ -1,16 +1,5 @@
 class ProfileController < ApplicationController
-  def index
-  end
-  def login
-  end
-
-  def student_home
-  end
-
-	def instructor_home
-			respond_to do |format|
-      format.html # student_home.html.erb
-      end
-	end
+        def login
+        end
 
 end
