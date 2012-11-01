@@ -14,6 +14,7 @@ Oars::Application.routes.draw do
         get '/faculties/instructor_home', :to => 'faculty#instructor_home', :as => :instructor_home
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
 		get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
+		get '/faculties/registration_instructor', :to => 'faculty#registration_instructor' , :as => :faculty_registrationss
   end 
 
   
