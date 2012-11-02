@@ -16,6 +16,7 @@ class StudentController < ApplicationController
         end
         
         def transcript
+          
         end
         
         def add_drop
