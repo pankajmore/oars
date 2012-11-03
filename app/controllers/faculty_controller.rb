@@ -11,4 +11,7 @@ class FacultyController < ApplicationController
         
         def faculty_registration
         end
+        
+        def pre_registration
+        end
 end
