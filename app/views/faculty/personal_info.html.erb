@@ -1,4 +1,21 @@
-<div class="left hero-unit">
-<h4>Personal Information<h4><br>
+<div class="center hero-unit">
+        <h3>Always keep your Personal Information Updated! :)</h3>
+        <p>
+        <table class = "center table">
+            <tr><td width="200">Pf Number :</td><td width="300"><%= current_faculty.pfno %></td></tr>
+                <tr><td>Name :</td><td><%= current_faculty.name %></td></tr>
+                <tr><td>Email :</td><td><%= current_faculty.email %></td></tr>
+                <tr><td>Telephone :</td><td><%= current_faculty.phone %></td></tr>
+        </table>
+        </p>
+        
+        <p>
+                <button class="btn btn-link btn-large btn-danger"><%= link_to "Update Info", edit_faculty_registration_path %></button>
+        </p>
+        
+</div>
 
+
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
 
