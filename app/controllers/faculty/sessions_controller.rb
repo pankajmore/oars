@@ -1,5 +1,7 @@
 # app/controllers/faculty/sessions_controller.rb
-class Faculty::SessionController < Devise::SessionsController
+class Faculty::SessionsController < Devise::SessionsController
+  before_filter :student_out
+  
   def new
     super
   end
@@ -20,4 +22,12 @@ class Faculty::SessionController < Devise::SessionsController
 
 
 end
+
+def student_out
+    if student_signed_in?
+        reset_session
+    end
+end
+
+
 
