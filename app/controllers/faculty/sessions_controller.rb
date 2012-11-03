@@ -1,7 +1,6 @@
 # app/controllers/faculty/sessions_controller.rb
 class Faculty::SessionsController < Devise::SessionsController
   before_filter :student_out
-  
   def new
     super
   end

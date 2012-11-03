@@ -1,15 +1,17 @@
 <div class="center hero-unit">
-        <h3>Here is your current Semester!!</h3>
+        <h3>Current-Semester</h3>
+        <h5>Here is your current Semester!</h5>
 
+        <p>
         <div align="right" class="btn-group">
-			<button class="btn btn-large btn-primary">Pre Registration </button>
-		</div>
+                <%= link_to "Pre Registration", student_pre_registration_path, class: "btn btn-large btn-warning"  %>
+        </div>
         <table class="center table">
-			<tr class="info"><td>Course :</td><td>Title</td><td>Units</td><td>Section</td><td>R/S</td><td>R/S Course </td></tr>
-       
-      
-       			<tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td><td>-</td><td>-</td><td>-</td></tr>
-      
+                <tr class="info"><td>Course :</td><td>Title</td><td>Units</td><td>Section</td><td>R/S</td><td>R/S Course </td></tr>
+
+                <!-- loop over courses <%  %> -->      
+                <tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td><td>-</td><td>-</td><td>-</td></tr>
+                <!-- <% %> -->
         </table>
         </p>
         
