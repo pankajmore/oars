@@ -4,14 +4,14 @@
 
         <p>
         <div align="right" class="btn-group">
-                <button class="btn btn-large btn-warning"><%= link_to "Current Registration", student_current_registration_path %></button>
+                <%= link_to "Current Registration", student_current_registration_path, class: "btn btn-large btn-warning" %>
         </div>
         <table class="center table">
                 <tr class="info"><td>Course</td><td>Title</td><td>Units</td><td>Status</td><td>Course-Type</td><td></td></tr>
 
-                <tr><td>cs455</td><td>Introduction to Software Engineering</td><td>4</td><td>Waiting</td><td>Compulsory</td><td><button class="btn btn-small btn-danger"><%= link_to "Delete", "#" %></button></td></tr>
+                <tr><td>cs455</td><td>Introduction to Software Engineering</td><td>4</td><td>Waiting</td><td>Compulsory</td><td><%= link_to "Delete", "#", class: "btn btn-small btn-danger" %></td></tr>
                 <tr><td>cs455</td><td>Applied Stochastic</td><td>4</td><td>Rejected</td><td>SE</td><td><button class="btn btn-small btn-danger" disabled="disabled">Delete</button></td></tr>
-                <tr><td>cs455</td><td>Artificial Intelligence</td><td>4</td><td>Accepted</td><td>SE</td><td><button class="btn btn-small btn-danger"><%= link_to "Delete", "#" %></button></td></tr>
+                <tr><td>cs455</td><td>Artificial Intelligence</td><td>4</td><td>Accepted</td><td>SE</td><td><%= link_to "Delete", "#", class: "btn btn-small btn-danger" %></td></tr>
         </table>
         </p>
         
