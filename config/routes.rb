@@ -14,7 +14,7 @@ Oars::Application.routes.draw do
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
         get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
         get '/faculties/faculty_registration', :to => 'faculty#faculty_registration' , :as => :faculty_registration
-		get 'faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
+        get 'faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
   end 
 
   
@@ -29,7 +29,6 @@ Oars::Application.routes.draw do
         get '/students/student_home', :to => 'student#student_home', :as => :student_home
         get '/students/welcome_student', :to => 'student#welcome_student', :as => :welc_student
         get '/students/personal_info', :to => 'student#personal_info', :as => :student_personal_info
-
         get '/students/current_registration', :to => 'student#current_registration', :as => :student_current_registration
         get '/students/pre_registration', :to => 'student#pre_registration', :as => :student_pre_registration
         get '/students/add_drop', :to => 'student#add_drop', :as => :student_add_drop
