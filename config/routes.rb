@@ -14,7 +14,7 @@ Oars::Application.routes.draw do
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
         get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
         get '/faculties/registration_instructor', :to => 'faculty#registration_instructor' , :as => :faculty_registrations
-
+		get 'faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
   end 
 
   
@@ -33,7 +33,7 @@ Oars::Application.routes.draw do
         get '/students/current_registration', :to => 'student#current_registration', :as => :student_current_registration
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
-      
+      	get '/students/time-table', :to => 'student#time-table', :as => :student_time_table
   end
 
   root :to => "profile#login"

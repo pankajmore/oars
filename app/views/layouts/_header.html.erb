@@ -8,13 +8,13 @@
                                 <li><%= link_to "Personal Information", student_personal_info_path %></li>
                                 <li><%= link_to "Course",    courses_path %></li>
                                 <li><%= link_to "Registration",student_current_registration_path %></li>
-                                <li><%= link_to "Time-Table",    '#'%></li>
+                                <li><%= link_to "Time-Table",student_time_table_path%></li>
                                 <li><%= link_to "Add-Drop",    '#'%></li>
                                 <li><%= link_to "Account",    '#'%></li>
                                 <li><%= link_to "Log Out",    student_sign_out_path %></li>
                 <% end %>
 				<% if faculty_signed_in? %>
-                                <li><%= link_to "Log Out",    faculty_sign_out_path %></li>
+								<li><%=link_to "Pre-Registration", faculty_pre_registration_path %></li>                                <li><%= link_to "Log Out",    faculty_sign_out_path %></li>
                 <% end %>
              </ul>
           </nav>

@@ -1,5 +1,5 @@
 # app/controllers/faculty/sessions_controller.rb
-class Faculty::SessionController < Devise::SessionsController
+class Faculty::SessionsController < Devise::SessionsController
   def new
     super
   end
