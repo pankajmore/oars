@@ -10,8 +10,7 @@ class StudentController < ApplicationController
         def personal_info
         end
         
-        def registration
-        	#@courses = @student.
+        def current_registration
         end
         
         def backlog_list
