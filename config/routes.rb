@@ -13,7 +13,7 @@ Oars::Application.routes.draw do
         get '/faculties/instructor_home', :to => 'faculty#instructor_home', :as => :instructor_home
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
         get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
-        get '/faculties/registration_instructor', :to => 'faculty#registration_instructor' , :as => :faculty_registrations
+        get '/faculties/faculty_registration', :to => 'faculty#faculty_registration' , :as => :faculty_registration
 		get 'faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
   end 
 
