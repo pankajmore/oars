@@ -1,0 +1,33 @@
+<div class="center hero-unit">
+        <h3>Add-Drop</h3>
+        <h5>Please Drop a Course before you Add one. You can add courses from Offered Courses page!</h5>
+        
+        <p>
+        <div align="center">
+<!--                 <SPAN style="BACKGROUND-COLOR: #aaffbb">List of Currently Registered Courses</SPAN> -->
+                <p class="text-warning" style="color:#eecc00"><em>List of Currently Registered Courses</em></p>
+        </div>
+        <table class="center table">
+                <tr class="info"><td>Course</td><td>Title</td><td>Units</td><td>Section</td><td>R/S</td><td>R/S Course </td><td></td></tr>
+                
+                <tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td><td>-</td><td>-</td><td>-</td><td><button class="btn btn-small btn-danger"><%= link_to "Drop", "#" %></button></td></tr>
+        </table>
+        
+        
+        <div align="center">
+                <p class="text-warning" style="color:#eecc00"><em>List of Requested Courses</em></p>
+        </div>
+        <table class="center table">
+                <tr class="info"><td>Course</td><td>Title</td><td>Units</td><td>Status</td><td>Course-Type</td><td></td></tr>
+
+                <tr><td>cs455</td><td>Introduction to Software Engineering</td><td>4</td><td>Waiting</td><td>Compulsory</td><td><button class="btn btn-small btn-danger"><%= link_to "Delete", "#" %></button></td></tr>
+                <tr><td>cs455</td><td>Applied Stochastic</td><td>4</td><td>Rejected</td><td>SE</td><td><button class="btn btn-small btn-danger" disabled="disabled">Delete</button></td></tr>
+                <!--<tr><td>cs455</td><td>Artificial Intelligence</td><td>4</td><td>Accepted</td><td>SE</td><td><button class="btn btn-small btn-danger"><%= link_to "Delete", "#" %></button></td></tr>-->
+        </table>
+        </p>
+        
+</div>
+
+
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>

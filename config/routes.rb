@@ -30,6 +30,8 @@ Oars::Application.routes.draw do
         get '/students/welcome_student', :to => 'student#welcome_student', :as => :welc_student
         get '/students/personal_info', :to => 'student#personal_info', :as => :student_personal_info
         get '/students/current_registration', :to => 'student#current_registration', :as => :student_current_registration
+        get '/students/pre_registration', :to => 'student#pre_registration', :as => :student_pre_registration
+        get '/students/add_drop', :to => 'student#add_drop', :as => :student_add_drop
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
       
