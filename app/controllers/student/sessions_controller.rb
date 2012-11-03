@@ -16,7 +16,7 @@ class Student::SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || welc_student_path
+    stored_location_for(resource) || student_personal_info
   end
   
 end
