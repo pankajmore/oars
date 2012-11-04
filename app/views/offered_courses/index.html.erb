@@ -1,0 +1,20 @@
+<%= form_tag("/offered_courses/search", :method => "get") do %>
+  <%= label_tag(:q, "Search Course:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h1>Offered Courses</h1>
+<div class="courses">
+  <ul class="courses">
+    <% @courses.each do |course| %>
+    <li>
+      <div class="course"> 
+        <%= link_to course.course.number, course %>
+        <%= link_to course.course.name, course %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
