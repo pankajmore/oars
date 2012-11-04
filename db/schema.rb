@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030141132) do
+ActiveRecord::Schema.define(:version => 20121104144724) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(:version => 20121030141132) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "registration_forms", :force => true do |t|
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "students", :force => true do |t|
     t.string   "roll"
     t.string   "username"
@@ -69,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20121030141132) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "registration_form_id"
   end
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true
