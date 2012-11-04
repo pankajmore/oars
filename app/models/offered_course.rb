@@ -18,4 +18,5 @@ class OfferedCourse < ActiveRecord::Base
   belongs_to :course, :class_name => 'Course'
   has_many :course_prereq, :class_name => 'Course'
   serialize :accept_requests, :drop_requests
+  has_and_belongs_to_many :faculties
 end
