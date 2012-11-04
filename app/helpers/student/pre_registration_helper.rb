@@ -1,0 +1,2 @@
+module Student::PreRegistrationHelper
+end
