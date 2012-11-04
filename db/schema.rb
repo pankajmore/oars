@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20121104163033) do
+ActiveRecord::Schema.define(:version => 20121104192320) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -43,6 +42,11 @@ ActiveRecord::Schema.define(:version => 20121104163033) do
 
   add_index "faculties", ["email"], :name => "index_faculties_on_email", :unique => true
   add_index "faculties", ["reset_password_token"], :name => "index_faculties_on_reset_password_token", :unique => true
+
+  create_table "faculties_offered_courses", :id => false, :force => true do |t|
+    t.integer "faculty_id"
+    t.integer "offered_course_id"
+  end
 
   create_table "offered_courses", :force => true do |t|
     t.string   "description"
