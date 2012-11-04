@@ -16,7 +16,7 @@ class Faculty::SessionsController < Devise::SessionsController
 
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || faculty_personal_info
+    stored_location_for(resource) || faculty_personal_info_path
   end
 
 
