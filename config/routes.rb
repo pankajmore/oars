@@ -1,6 +1,7 @@
 Oars::Application.routes.draw do
 
   resources :courses
+  resources :offered_courses
 
   
   devise_for :faculties,
@@ -14,7 +15,7 @@ Oars::Application.routes.draw do
         get '/faculties/welcome_instructor', :to => 'faculty#welcome_instructor', :as => :welc_instructor
         get '/faculties/personal_info', :to => 'faculty#personal_info' , :as => :faculty_personal_info
         get '/faculties/faculty_registration', :to => 'faculty#faculty_registration' , :as => :faculty_registration
-        get 'faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
+        get '/faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
   end 
 
   
@@ -39,8 +40,9 @@ Oars::Application.routes.draw do
 
   root :to => "profile#login"
 
-  get "profile/login" 
-                
+  get 'profile/login'
+  get 'profile/contact', :to => 'profile#contact', :as => :contact
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
