@@ -10,9 +10,12 @@
 #  pre_reqs        :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  course_id       :integer
 #
 
 class OfferedCourse < ActiveRecord::Base
   attr_accessible :accept_requests, :credit, :description, :drop_requests, :pre_reqs
-  has_one :course
+  belongs_to :course, :class_name => 'Course'
+  has_many :course_prereq, :class_name => 'Course'
+  serialize :accept_requests, :drop_requests
 end
