@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104142111) do
+ActiveRecord::Schema.define(:version => 20121104154158) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "number"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.string   "offered_course_id"
+    t.integer  "offered_course_id"
   end
 
   create_table "faculties", :force => true do |t|
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20121104142111) do
     t.text     "pre_reqs"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "course_id"
+    t.integer  "course_id"
   end
 
   create_table "students", :force => true do |t|
