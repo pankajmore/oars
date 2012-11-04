@@ -31,4 +31,5 @@ class Student < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :name, :phone, :roll, :username
+  has_many :registration_forms, :dependent => :destroy
 end
