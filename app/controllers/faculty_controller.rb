@@ -9,7 +9,7 @@ class FacultyController < ApplicationController
         def faculty_personal_info
         end
         
-        def faculty_registration
+        def current_registration
         end
         
         def pre_registration
