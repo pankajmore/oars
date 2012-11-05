@@ -20,6 +20,7 @@ Oars::Application.routes.draw do
   end 
 
   post '/offered_courses/add', :to => 'offered_courses#add'
+  post '/offered_courses/delete', :to => 'offered_courses#delete'
 
   devise_for :students,
              :controllers => { :registrations => "student/registrations",

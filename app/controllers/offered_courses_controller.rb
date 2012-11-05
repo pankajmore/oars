@@ -1,4 +1,5 @@
 class OfferedCoursesController < ApplicationController
+  before_filter :authenticate_student! 
   def index
     @courses = OfferedCourse.all
   end
@@ -13,6 +14,14 @@ class OfferedCoursesController < ApplicationController
     @offeredCourse.accept_requests << current_student.id
     @offeredCourse.save
     flash[:success] = "Hold tight, Request Sent!"
+    redirect_to :action => 'index'
+  end
+  def delete
+    id = params[:id]
+    @offeredCourse = OfferedCourse.find(params[:id])
+    @offeredCourse.accept_requests.delete(current_student.id)
+    @offeredCourse.save
+    flash[:success] = "Deleted your request!"
     redirect_to :action => 'index'
   end
   
