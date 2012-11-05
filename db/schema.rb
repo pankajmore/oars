@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105163033) do
+ActiveRecord::Schema.define(:version => 20121105163939) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20121105163033) do
     t.string   "grate"
     t.string   "semester"
     t.string   "year"
+    t.integer  "course_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "academic_information_id"
@@ -72,6 +73,15 @@ ActiveRecord::Schema.define(:version => 20121105163033) do
     t.integer "offered_course_id"
   end
 
+  create_table "lecture_times", :force => true do |t|
+    t.string   "day"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "offered_course_id"
+  end
+
   create_table "offered_courses", :force => true do |t|
     t.string   "description"
     t.text     "accept_requests"
@@ -82,6 +92,11 @@ ActiveRecord::Schema.define(:version => 20121105163033) do
     t.datetime "updated_at",           :null => false
     t.integer  "course_id"
     t.integer  "registration_form_id"
+  end
+
+  create_table "offered_courses_faculties", :id => false, :force => true do |t|
+    t.integer "offered_course_id"
+    t.integer "faculty_id"
   end
 
   create_table "registration_forms", :force => true do |t|
