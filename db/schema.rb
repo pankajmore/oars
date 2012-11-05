@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105161823) do
+ActiveRecord::Schema.define(:version => 20121105163033) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
@@ -78,9 +78,10 @@ ActiveRecord::Schema.define(:version => 20121105161823) do
     t.text     "drop_requests"
     t.integer  "credit"
     t.text     "pre_reqs"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "course_id"
+    t.integer  "registration_form_id"
   end
 
   create_table "registration_forms", :force => true do |t|
