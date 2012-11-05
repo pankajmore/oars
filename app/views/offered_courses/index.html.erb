@@ -12,6 +12,7 @@
       <div class="course"> 
         <%= link_to course.course.number, course %>
         <%= link_to course.course.name, course %>
+        <%= button_to "Send Request", :action => "add", :id => course.id %> 
       </div>
     </li>
     <% end %>
