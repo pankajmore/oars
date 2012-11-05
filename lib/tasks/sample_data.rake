@@ -14,6 +14,7 @@ namespace :db do
       offset = rand(Faculty.count)
       rand_faculty = Faculty.first(:offset => offset)
       y = OfferedCourse.create()
+      y.credit = 4
       y.course = x
       y.faculties.push(rand_faculty)
       y.save!() 
