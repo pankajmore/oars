@@ -1,16 +1,16 @@
 # == Schema Information
 #
-# Table name: registration_forms
+# Table name: academic_informations
 #
 #  id         :integer          not null, primary key
-#  form_type  :string(255)
+#  cpi        :float
+#  student_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  student_id :integer
 #
 
-class RegistrationForm < ActiveRecord::Base
-  attr_accessible :type
+class AcademicInformation < ActiveRecord::Base
+  attr_accessible :cpi, :student_id
   belongs_to :student
-  has_many :offered_courses
+  has_many :course_takens
 end
