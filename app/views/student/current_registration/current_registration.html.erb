@@ -9,10 +9,10 @@
         <table class="center table">
                 <tr class="info"><td>Course</td><td>Title</td><td>Units</td><td>Section</td><td>R/S</td><td>R/S Course </td></tr>
 
-                <% @currentRegistration.courses.each do |course| %>      
+                <!--<% @currentRegistration %> -->     
                 <tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td><td>-</td><td>-</td><td>-</td></tr>
-                <tr><td><%=course.course.number%></td><td><%=course.course.name%></td><td><%=course.credit%></td><td><%=%>-</td><td><%=%>-</td><td><%=%>-</td></tr>
-                 <% end %>
+                <tr><td><%=@currentRegistration.form_type%></td><td><%=%></td><td><%=%></td><td><%=%>-</td><td><%=%>-</td><td><%=%>-</td></tr>
+              <!--   <% %> -->
         </table>
         </p>
         
