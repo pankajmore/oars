@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105160632) do
+ActiveRecord::Schema.define(:version => 20121105161823) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(:version => 20121105160632) do
     t.integer  "offered_course_id"
   end
 
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "faculties", :force => true do |t|
     t.string   "pfno"
     t.string   "username"
@@ -55,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20121105160632) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "department_id"
   end
 
   add_index "faculties", ["email"], :name => "index_faculties_on_email", :unique => true
@@ -100,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20121105160632) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "department_id"
   end
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true

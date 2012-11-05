@@ -19,6 +19,7 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  department_id          :integer
 #
 
 class Faculty < ActiveRecord::Base
@@ -32,4 +33,5 @@ class Faculty < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :name, :pfno, :phone, :username
   has_and_belongs_to_many :offered_courses
+  belongs_to :department
 end
