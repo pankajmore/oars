@@ -1,5 +1,10 @@
 # app/controllers/student/registrations_controller.rb
 class Student::RegistrationsController < Devise::RegistrationsController
+  def index
+  @currentRegistration=RegistrationForm.find(:type =>"current")
+  @courses=@currentRegistration.offered_courses
+  end
+  
   def new
     super
   end
