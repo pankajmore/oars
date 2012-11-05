@@ -14,7 +14,7 @@
 #
 
 class OfferedCourse < ActiveRecord::Base
-  attr_accessible :accept_requests, :credit, :description, :drop_requests, :pre_reqs
+  attr_accessible :accept_requests, :credit, :description, :drop_requests, :course
   belongs_to :course 
   has_many :course_prereq, :class_name => 'Course'
   serialize :accept_requests
