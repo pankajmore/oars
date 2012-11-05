@@ -1,14 +1,8 @@
 # == Schema Information
 #
-# Table name: students
+# Table name: users
 #
 #  id                     :integer          not null, primary key
-#  roll                   :string(255)
-#  username               :string(255)
-#  name                   :string(255)
-#  phone                  :string(255)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  reset_password_token   :string(255)
@@ -19,10 +13,12 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  department_id          :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  type                   :string(255)
 #
 
-class Student < ActiveRecord::Base
+class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -31,7 +27,5 @@ class Student < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name, :phone, :roll, :username
-  belongs_to :department
-  has_many :registration_forms, :dependent => :destroy
+  # attr_accessible :title, :body
 end

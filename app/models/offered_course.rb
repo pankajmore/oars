@@ -20,4 +20,5 @@ class OfferedCourse < ActiveRecord::Base
   serialize :accept_requests
   serialize :drop_requests
   has_and_belongs_to_many :faculties
+  has_many :lecture_times
 end

@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105153931) do
+ActiveRecord::Schema.define(:version => 20121105163033) do
+
+  create_table "academic_informations", :force => true do |t|
+    t.float    "cpi"
+    t.integer  "student_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "course_takens", :force => true do |t|
+    t.integer  "credits"
+    t.string   "grate"
+    t.string   "semester"
+    t.string   "year"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "academic_information_id"
+  end
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -19,6 +36,12 @@ ActiveRecord::Schema.define(:version => 20121105153931) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "offered_course_id"
+  end
+
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "faculties", :force => true do |t|
@@ -38,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20121105153931) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "department_id"
   end
 
   add_index "faculties", ["email"], :name => "index_faculties_on_email", :unique => true
@@ -54,9 +78,10 @@ ActiveRecord::Schema.define(:version => 20121105153931) do
     t.text     "drop_requests"
     t.integer  "credit"
     t.text     "pre_reqs"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "course_id"
+    t.integer  "registration_form_id"
   end
 
   create_table "registration_forms", :force => true do |t|
@@ -83,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20121105153931) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "department_id"
   end
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true
