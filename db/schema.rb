@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20121105185328) do
     t.string   "grade"
     t.string   "semester"
     t.string   "year"
+    t.integer  "course_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "academic_information_id"
@@ -91,11 +92,6 @@ ActiveRecord::Schema.define(:version => 20121105185328) do
     t.datetime "updated_at",           :null => false
     t.integer  "course_id"
     t.integer  "registration_form_id"
-  end
-
-  create_table "offered_courses_faculties", :id => false, :force => true do |t|
-    t.integer "offered_course_id"
-    t.integer "faculty_id"
   end
 
   create_table "registration_forms", :force => true do |t|
