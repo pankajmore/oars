@@ -13,7 +13,7 @@
 #
 
 class CourseTaken < ActiveRecord::Base
-  attr_accessible :credits, :grate, :semester, :year
+  attr_accessible :credits, :grade, :semester, :year
   belongs_to :academic_information
   belongs_to :course
 end

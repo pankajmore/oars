@@ -19,7 +19,8 @@ Oars::Application.routes.draw do
         get '/faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
   end 
 
-  
+  post '/offered_courses/add', :to => 'offered_courses#add'
+  post '/offered_courses/delete', :to => 'offered_courses#delete'
 
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
