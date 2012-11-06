@@ -3,18 +3,30 @@
         <h5>Here is your current Semester!</h5>
 
         <p>
+        Offered course is empty here and when offered course is added to registration form its type changes to pre correct it.<br>
         <div align="right" class="btn-group">
                 <%= link_to "Pre Registration", student_pre_registration_path, class: "btn btn-large btn-success"  %>
         </div>
+        <%if(!@currentRegistration.nil? ) %>
+        <%if !@currentRegistration.offered_courses.empty?%>
         <table class="center table">
                 <tr class="info"><td>Course</td><td>Title</td><td>Units</td><td>Section</td><td>R/S</td><td>R/S Course </td></tr>
-
-                <!--<% @currentRegistration %> -->     
+				
+               <% @currentRegistration.offered_courses.each do |course| %>      
                 <tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td><td>-</td><td>-</td><td>-</td></tr>
-                <tr><td><%=@currentRegistration.form_type%></td><td><%=%></td><td><%=%></td><td><%=%>-</td><td><%=%>-</td><td><%=%>-</td></tr>
-              <!--   <% %> -->
+                <tr><td><%=course.course.number%></td><td><%=course.course.name%></td><td><%=course.credit%></td><td><%=%>-</td><td><%=%>-</td><td><%=%>-</td></tr>
+                 <% end %>
+                
         </table>
-        </p>
+        <% else %>
+			you are not registered for any courses.
+			
+       	 <% end %>
+         <% else %>
+           Opps!! Your registration form for current semester is missing.
+       	 <% end %>
+       	 <br> your student id is <%=current_student.id%>
+       	 </p>
         
 </div>
 

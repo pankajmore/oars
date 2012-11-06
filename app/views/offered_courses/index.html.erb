@@ -12,6 +12,11 @@
       <div class="course"> 
         <%= link_to course.course.number, course %>
         <%= link_to course.course.name, course %>
+        <%= if course.accept_requests.include?(current_student.id) 
+            button_to "Delete Request", :action => "delete", :id => course.id 
+        else 
+            button_to "Send Request", :action => "add", :id => course.id 
+        end %> 
       </div>
     </li>
     <% end %>

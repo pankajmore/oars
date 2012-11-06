@@ -1,0 +1,22 @@
+<div class="center hero-unit">
+        <%if !@courses_taken.empty?%>
+        <h3>Your Courses this semester </h3>
+		<p>
+		
+        <table class="center table">
+			<tr class="info"><td>Course</td><td>Title</td><td>Credit</td><td>Get Student List</td></tr>
+       		<% @courses_taken.each do |course| %>      
+   			<tr><td><%=link_to course.course.number,course_list_path,class: "btn btn-mini btn-primary" %></td><td><%=course.course.name%></td><td><%=course.credit%></td><td><%=button_to "Get List", :action => "course_requests", :id => course.id%></td></tr>
+      		<% end %>
+      	</table>
+      	</p> 
+        <%else%>
+      	<p>	Hurray!! you don't have any course this semester<br></p>
+      	<%end%>
+               
+</div>
+
+
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
+

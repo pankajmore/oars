@@ -1,0 +1,24 @@
+<div class="center hero-unit">
+        <h3>Current-Semester</h3>
+        <h5>Here is your current Semester!</h5>
+
+        <p>
+        <div align="right" class="btn-group">
+                <%= link_to "Pre Registration", student_pre_registration_path, class: "btn btn-large btn-success"  %>
+        </div>
+        <table class="center table">
+                <tr class="info"><td>Course</td><td>Title</td><td>Units</td><td>Section</td><td>R/S</td><td>R/S Course </td></tr>
+
+                <!--<% @currentRegistration %> -->     
+                <tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td><td>-</td><td>-</td><td>-</td></tr>
+                <tr><td><%=@currentRegistration.form_type%></td><td><%=%></td><td><%=%></td><td><%=%>-</td><td><%=%>-</td><td><%=%>-</td></tr>
+              <!--   <% %> -->
+        </table>
+        </p>
+        
+</div>
+
+
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
+
