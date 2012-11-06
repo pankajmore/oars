@@ -1,0 +1,12 @@
+var body = "Instructors : " 
+$(".modal-header h3").html("<%= @course.course.number + " : " + @course.course.name %>")
+$(".modal-body").html(body)
+<% if @course.accept_requests.include?(current_student.id) %>
+    $(".modal-footer .request").html("Send Request")
+    $(".modal-footer .requesst").removeClass("btn-danger").addClass("btn-primary")
+<% else %>
+    $(".modal-footer .request").html("Delete Request")
+    $(".modal-footer .request").removeClass("btn-primary").addClass("btn-danger") 
+<% end %>
+
+$("#courseModal").modal()

@@ -75,3 +75,15 @@ footer ul li {
   margin-left: 10px;
 }
 
+.table th, .table td {
+    text-align: center;
+    vertical-align: center;
+}
+
+.modal.fade{
+-webkit-transition:opacity .1s linear;
+-moz-transition:opacity .3s linear;
+-ms-transition:opacity .3s linear;
+-o-transition:opacity .3s linear;
+transition:opacity .3s linear;
+top:-25%;}

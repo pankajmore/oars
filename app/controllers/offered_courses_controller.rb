@@ -3,10 +3,16 @@ class OfferedCoursesController < ApplicationController
   def index
     @courses = OfferedCourse.all
   end
-  def show
+  def show()
+    @course = OfferedCourse.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+  def search
     search = params[:q]
     search_condition = "%" + search + "%"
-    @courses = OfferedCourse.find(:all, :conditions => ['name LIKE ? or number LIKE ?', search_condition, search_condition]) 
+    @courses = OfferedCourse.joins(:course).find(:all, :conditions => ['name LIKE ? or number LIKE ?', search_condition, search_condition])   
   end
   def add
     id = params[:id]

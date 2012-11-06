@@ -5,15 +5,20 @@
 <% end %>
 
 <h1>Matched Courses</h1>
-<div class="courses">
-  <ul class="courses">
-    <% @courses.each do |course| %>
-    <li>
-      <div class="course"> 
-        <%= link_to course.number, course %>
-        <%= link_to course.name, course %>
-      </div>
-    </li>
-    <% end %>
-  </ul>
-</div>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Course Number</th>
+      <th>Course Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course| %>
+    <tr>
+      <th><%= link_to course.number, course %></th>
+      <th><%= link_to course.name, course %></th>
+    <tr>
+  <% end %>
+  </tbody>
+</table>
+

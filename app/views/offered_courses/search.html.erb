@@ -1,0 +1,34 @@
+<%= form_tag("/offered_courses/search", :method => "get") do %>
+  <%= label_tag(:q, "Search Course:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h1>Matched Offered Courses</h1>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Course Number</th>
+      <th>Course Name</th>
+      <th>Request Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course| %>
+    <tr>
+      <th><%= link_to course.course.number, course %></th>
+      <th><%= link_to course.course.name, course %></th>
+      <th>
+        <%= if course.accept_requests.include?(current_student.id) 
+            button_to "Delete Request", {:action => "delete", :id =>
+        course.id} , {:class => "btn btn-danger"} 
+        else 
+            button_to "Send Request", {:action => "add", :id =>
+            course.id} , {:class => "btn "} 
+        end %>
+      </th>
+    <tr>
+  <% end %>
+  </tbody>
+</table>
+
