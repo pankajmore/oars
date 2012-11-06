@@ -23,4 +23,13 @@ class FacultyController < ApplicationController
         		end
         	end
         end
+        def course_requests
+                
+        @student_list=[]
+        request_set=OfferedCourse.find(params[:id]).accept_requests.to_a()
+        	request_set.each do |id|
+               	@student_list<<Student.find(id)
+            end
+        
+        end
 end
