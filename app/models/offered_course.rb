@@ -17,11 +17,11 @@ class OfferedCourse < ActiveRecord::Base
   attr_accessible :accept_requests, :credit, :description, :drop_requests, :course
   after_initialize :init
   belongs_to :course 
-  belongs_to :registration_form
   has_many :course_prereq, :class_name => 'Course'
   serialize :accept_requests
   serialize :drop_requests
   has_and_belongs_to_many :faculties
+  has_and_belongs_to_many :registration_forms
   has_many :lecture_times
   def init
     self.accept_requests  ||= Set.new()           #will set the default value only if it's nil
