@@ -1,13 +1,18 @@
 <div class="center hero-unit">
-        <h3>Student requested for Courses cs455 </h3>
-
+		
+		<h3>Student requested for Course <%=@offered_course.course.number%> </h3>
+		
         <table class="center table">
 			<tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td><td>Status</td></tr>
-       
-			 <% @student_list.each do |student| %>      
-   			<tr><td><%=student.name%></td><td><%=student.roll%></td><td>Backchod hai</td><td><%=link_to "Auto-accepted",'#' ,class: "btn btn-mini btn-primary" %></td></tr>
+       	 <% @student_list.each do |student| %>      
+   			<tr><td><%=student.name%></td><td><%=student.roll%></td><td>Backchod hai</td><td><%=link_to "Accept", {:action => "accepted", :course_id => @offered_course.id, :student_id=>student.id},{:class =>"btn btn-mini btn-primary"} %></td></tr>
       		 <%end %>
         </table>
+        <%if !@student_list.empty? %>
+       <%else%>
+        No more pending requests.
+        <%end%>        
+		
         </p>
         
 </div>

@@ -18,7 +18,8 @@ Oars::Application.routes.draw do
         get '/faculties/current_registration', :to => 'faculty#current_registration' , :as => :current_registration
         get '/faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
         get '/faculties/courses_taken', :to => 'faculty#courses_taken' , :as => :faculty_courses_taken
-        post '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
+        get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
+        get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
   end 
 
   post '/offered_courses/add', :to => 'offered_courses#add'
