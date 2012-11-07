@@ -1,25 +1,48 @@
-<%= form_tag("/offered_courses/search", :method => "get") do %>
+<%= form_tag("/offered_courses/search/", :method => "get") do %>
   <%= label_tag(:q, "Search Course:") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
 
 <h1>Offered Courses</h1>
-<div class="courses">
-  <ul class="courses">
-    <% @courses.each do |course| %>
-    <li>
-      <div class="course"> 
-        <%= link_to course.course.number, course %>
-        <%= link_to course.course.name, course %>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Course Number</th>
+      <th>Course Name</th>
+      <th>Request Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course| %>
+  <tr>
+      <th><%= link_to course.course.number, course , :remote => true %></th>
+      <th><%= link_to course.course.name, course , :remote => true %></th>
+      <th>
         <%= if course.accept_requests.include?(current_student.id) 
-            button_to "Delete Request", :action => "delete", :id => course.id 
+            button_to "Delete Request", {:action => "delete", :id =>
+        course.id, :remote => true} , {:class => "btn btn-danger"} 
         else 
-            button_to "Send Request", :action => "add", :id => course.id 
-        end %> 
-      </div>
-    </li>
-    <% end %>
-  </ul>
-</div>
+            button_to "Send Request", {:action => "add", :id =>
+            course.id, :remote => true} , {:class => "btn "} 
+        end %>
+      </th>
+    <tr>
+  <% end %>
+  </tbody>
+</table>
 
+<!-- Modal -->
+<div id="courseModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"></h3>
+  </div>
+  <div class="modal-body">
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary request">Send Request</button>
+  </div>
+</div>

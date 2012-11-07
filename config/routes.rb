@@ -1,5 +1,5 @@
 Oars::Application.routes.draw do
-
+  get  '/offered_courses/search', :to => 'offered_courses#search'
   resources :courses
   resources :offered_courses
 #  resources :registration_form do
@@ -24,6 +24,7 @@ Oars::Application.routes.draw do
   post '/offered_courses/add', :to => 'offered_courses#add'
   post '/offered_courses/delete', :to => 'offered_courses#delete'
 
+  
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
                              :sessions => "student/sessions"
