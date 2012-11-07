@@ -1,5 +1,5 @@
 class FacultyController < ApplicationController
-        
+before_filter :authenticate_faculty!        
         def instructor_home
         end
         
@@ -14,7 +14,33 @@ class FacultyController < ApplicationController
         
         def pre_registration
         end
-        
+		
+		def accepted
+			student=Student.find(params[:student_id])
+			course=OfferedCourse.find(params[:course_id])
+			regform=nil
+			
+			student.registration_forms.each do |form|
+				if form.form_type=="pre"
+					regform=form
+					break
+				end
+			end
+			if regform.nil?
+				regform=RegistrationForm.create()
+				student.registration_forms << regform
+			end
+			regform.offered_courses << course
+			
+			course.accept_requests.delete(params[:student_id])
+			course.save
+			regform.save
+			student.save
+			
+			flash[:success] = " #{student.name} is successfully pre-registered"
+			redirect_to :action => 'course_requests',:id=>params[:course_id] 
+		end
+				        
         def courses_taken
         	@courses_taken=OfferedCourse.find(:all)
         	@courses_taken.each do |course|
@@ -26,7 +52,8 @@ class FacultyController < ApplicationController
         def course_requests
                 
         @student_list=[]
-        request_set=OfferedCourse.find(params[:id]).accept_requests.to_a()
+        @offered_course=OfferedCourse.find(params[:id])
+        request_set=@offered_course.accept_requests.to_a()
         	request_set.each do |id|
                	@student_list<<Student.find(id)
             end
