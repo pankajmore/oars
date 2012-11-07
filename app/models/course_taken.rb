@@ -4,7 +4,7 @@
 #
 #  id                      :integer          not null, primary key
 #  credits                 :integer
-#  grate                   :string(255)
+#  grade                   :string(255)
 #  semester                :string(255)
 #  year                    :string(255)
 #  created_at              :datetime         not null
