@@ -7,7 +7,9 @@ namespace :db do
       Course.create!(name: name, number: number)
     end
   Student.create!({:email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" })
+  Student.create!({:email => "test@test.com", :password => "111111", :password_confirmation => "111111" }) 
   Faculty.create!({:email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" })
+  Faculty.create!({:email => "test@test.com", :password => "111111", :password_confirmation => "111111" })
   ids = Course.find( :all, :select => 'id' ).map( &:id )
   courses = Course.find( (1..20).map { ids.delete_at( ids.size * rand ) } )
   courses.each { |x| 
