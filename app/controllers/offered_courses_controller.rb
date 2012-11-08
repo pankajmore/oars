@@ -34,5 +34,4 @@ class OfferedCoursesController < ApplicationController
     flash[:success] = "Deleted your request!"
     redirect_to :action => 'index'
   end
-  
 end

@@ -13,7 +13,6 @@
 
 class OfferedCourse < ActiveRecord::Base
   attr_accessible :credit, :description, :course
-  after_initialize :init
   belongs_to :course 
   has_many :course_prereq, :class_name => 'Course'
   has_and_belongs_to_many :faculties

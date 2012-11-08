@@ -19,7 +19,7 @@
       <th><%= link_to course.course.number, course , :remote => true %></th>
       <th><%= link_to course.course.name, course , :remote => true %></th>
       <th>
-        <%= if course.accept_requests.include?(current_student.id) 
+        <%= if (course.course_requests & current_student.course_requests).any?
             button_to "Delete Request", {:action => "delete", :id =>
         course.id, :remote => true} , {:class => "btn btn-danger"} 
         else 
