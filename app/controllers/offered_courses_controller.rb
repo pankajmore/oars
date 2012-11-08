@@ -17,14 +17,18 @@ class OfferedCoursesController < ApplicationController
   def add
     id = params[:id]
     @offeredCourse = OfferedCourse.find(params[:id])
-    @offeredCourse.accept_requests << current_student.id
-    @offeredCourse.save
+    c = CourseRequest.create!()
+    c.student = current_student
+    c.offered_course = @offeredCourse
+    c.status = 'add' 
+    c.save!
     flash[:success] = "Hold tight, Request Sent!"
     redirect_to :action => 'index'
   end
   def delete
     id = params[:id]
     @offeredCourse = OfferedCourse.find(params[:id])
+    c = CourseRequest.find({:student => current_student, :offered_course => @offeredCourse})
     @offeredCourse.accept_requests.delete(current_student.id)
     @offeredCourse.save
     flash[:success] = "Deleted your request!"
