@@ -32,7 +32,8 @@ before_filter :authenticate_faculty!
 			end
 			regform.offered_courses << course
 			
-			course.accept_requests.delete(params[:student_id])
+            puts params[:student_id]
+			course.accept_requests.delete(Integer(params[:student_id]))
 			course.save
 			regform.save
 			student.save

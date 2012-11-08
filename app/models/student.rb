@@ -34,4 +34,5 @@ class Student < ActiveRecord::Base
   attr_accessible :name, :phone, :roll, :username
   belongs_to :department
   has_many :registration_forms, :dependent => :destroy
+  has_many :course_requests
 end
