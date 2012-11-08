@@ -1,0 +1,22 @@
+<div class="center hero-unit">
+                
+        <h3>Registered Students in <%=@present_course.number%> </h3>
+        <p>        
+        <%if !@past_current_student_list.empty? %>
+                <table class="center table">
+                        <tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td></tr>
+                        <% @past_current_student_list.each do |student| %>      
+                        <tr><td><%=student.name%></td><td><%=student.roll%></td><td>Good Boy</td></tr>
+                        <%end %>
+                </table>
+        <%else%>
+                No students Registered.
+        <%end%> 
+        </p>
+        
+</div>
+
+
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
+

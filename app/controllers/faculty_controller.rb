@@ -9,9 +9,6 @@ before_filter :authenticate_faculty!
         def faculty_personal_info
         end
         
-        def current_registration
-        end
-        
         def pre_registration
         end
 		
@@ -32,14 +29,11 @@ before_filter :authenticate_faculty!
 				student.registration_forms << regform
 			end
 			regform.offered_courses << @course
-			acc = @course.accept_requests
-			newacc = acc.delete(params[:student_id].to_i)
-			@course.accept_requests = newacc
-			@course.save
-			
-            puts params[:student_id]
-			course.accept_requests.delete(Integer(params[:student_id]))
-			course.save
+                        acc = CourseRequest.where(:student_id => student.id, :offered_course_id => @course.id).each do
+                                |p|  p.status = 'accepted'
+                                p.save
+                                end
+            
 			regform.save
 			student.save
 			
@@ -56,13 +50,22 @@ before_filter :authenticate_faculty!
         	end
         end
         def course_requests
-                
-        @student_list=[]
-        @offered_course=OfferedCourse.find(params[:id])
-        request_set=@offered_course.accept_requests.to_a()
-        	request_set.each do |id|
-               	@student_list<<Student.find(id)
-            end
+                @offered_course=OfferedCourse.find(params[:id])
+                @student_list=CourseRequest.where(:offered_course_id => @offered_course.id, :status => 'add').map{|p| p.student}
+      
+        end
         
+        def current_registration
+                @courses_taken=OfferedCourse.find(:all)
+                @courses_taken.each do |course|
+                        if !course.faculties.include? current_faculty
+                                @courses_taken=@courses_taken-[course]
+                        end
+                end
+        end
+        
+        def course_info
+                @present_course = OfferedCourse.find(params[:id]).course
+                @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
         end
 end
