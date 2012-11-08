@@ -2,7 +2,9 @@ Oars::Application.routes.draw do
   get  '/offered_courses/search', :to => 'offered_courses#search'
   resources :courses
   resources :offered_courses
-#  resources :registration_form do
+  resources :course_requests
+  
+  #  resources :registration_form do
  
   
   devise_for :faculties,
