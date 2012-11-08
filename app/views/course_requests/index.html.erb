@@ -17,10 +17,11 @@
       <th><span class="label label-warning"> Pending </span></th>
       <th> <%= button_to "Delete Request", {:action => "delete",
         :controller => "offered_courses", :id =>
-        course.id, :remote => true} , {:class => "btn btn-danger"} %> 
+        course.offered_course.id} , {:class => "btn btn-danger"} %> 
       </th>
       <% elsif course.status == "accepted" %>
       <th><span class="label label-success"> Accepted </span></th>
+      <!-- TODO -->
       <th> Add to Form </th>
       <% elsif course.status == "rejected" %>
       <th><span class="label label-important"> Rejected </span></th>

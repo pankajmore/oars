@@ -20,8 +20,8 @@
       <th><%= link_to course.course.name, course , :remote => true %></th>
       <th>
         <%= if (course.course_requests & current_student.course_requests).any?
-            button_to "Delete Request", {:action => "delete", :id =>
-        course.id, :remote => true} , {:class => "btn btn-danger"} 
+            button_to "Delete Request", {:remote => true, :action =>
+            "delete", :id => course.id }, {:class => "btn btn-danger"} 
         else 
             button_to "Send Request", {:action => "add", :id =>
             course.id, :remote => true} , {:class => "btn "} 
