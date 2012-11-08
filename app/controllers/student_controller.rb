@@ -13,20 +13,8 @@ class StudentController < ApplicationController
         end
         
         def pre_registration
-        	@waiting_courses=[]
-        	@accepted_courses=[]
-        	allcour=OfferedCourse.find(:all)
-        	allcour.each do |course|
-        		if course.accept_requests.include?(current_student.id)
-        			@waiting_courses << course
-        			end
-        		end
-        	current_student.registration_forms.each do |form|
-        			if form.form_type=="pre" 
-        			@accepted_courses=form.offered_courses
-        			break
-        			end
-        		end
+            @accepted_courses = CourseRequest.where(:student_id => current_student.id, :status => 'accepted').map{|p| p.offered_course}
+            @waiting_courses = CourseRequest.where(:student_id => current_student.id, :status => 'add').map{|p| p.offered_course}
         end
         
         def backlog_list

@@ -28,9 +28,7 @@ class OfferedCoursesController < ApplicationController
   def delete
     id = params[:id]
     @offeredCourse = OfferedCourse.find(params[:id])
-    c = CourseRequest.find({:student => current_student, :offered_course => @offeredCourse})
-    @offeredCourse.accept_requests.delete(current_student.id)
-    @offeredCourse.save
+    CourseRequest.where({:student_id => current_student.id, :offered_course_id => @offeredCourse.id}).destroy_all
     flash[:success] = "Deleted your request!"
     redirect_to :action => 'index'
   end
