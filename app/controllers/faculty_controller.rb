@@ -17,7 +17,8 @@ before_filter :authenticate_faculty!
 		
 		def accepted
 			student=Student.find(params[:student_id])
-			course=OfferedCourse.find(params[:course_id])
+			@course=OfferedCourse.find(params[:course_id])
+			
 			regform=nil
 			
 			student.registration_forms.each do |form|
@@ -30,7 +31,11 @@ before_filter :authenticate_faculty!
 				regform=RegistrationForm.create()
 				student.registration_forms << regform
 			end
-			regform.offered_courses << course
+			regform.offered_courses << @course
+			acc = @course.accept_requests
+			newacc = acc.delete(params[:student_id].to_i)
+			@course.accept_requests = newacc
+			@course.save
 			
             puts params[:student_id]
 			course.accept_requests.delete(Integer(params[:student_id]))
