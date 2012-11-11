@@ -10,4 +10,8 @@
 
 class Department < ActiveRecord::Base
   attr_accessible :name
+  has_one :dugc 
+  has_one :acting_dugc 
+  has_many :students
+  has_many :faculties
 end
