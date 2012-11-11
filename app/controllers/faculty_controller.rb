@@ -12,6 +12,9 @@ before_filter :authenticate_faculty!
         def pre_registration
         end
 		
+		def account
+		end
+				
 		def accepted
 
 			request=CourseRequest.find(params[:request_id])

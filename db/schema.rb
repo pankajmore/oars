@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20121111172359) do
     t.string   "grade"
     t.string   "semester"
     t.string   "year"
+    t.integer  "course_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "academic_information_id"
