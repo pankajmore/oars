@@ -40,6 +40,12 @@ before_filter :authenticate_faculty!
         		end
         	end
         end
+        def course_info
+                @present_course = OfferedCourse.find(params[:id]).course
+                @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
+        end
+
+        
         def course_requests
         @request_list=[]        
         @offered_course=OfferedCourse.find(params[:id])
@@ -51,8 +57,4 @@ before_filter :authenticate_faculty!
             end
         end
         
-        def course_info
-                @present_course = OfferedCourse.find(params[:id]).course
-                @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
-        end
 end
