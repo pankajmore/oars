@@ -3,6 +3,7 @@ Oars::Application.routes.draw do
   resources :courses
   resources :offered_courses
   resources :course_requests
+  #resources :student/pre_registration
   
   #  resources :registration_form do
  
@@ -27,7 +28,10 @@ Oars::Application.routes.draw do
   end 
 
   post '/offered_courses/add', :to => 'offered_courses#add'
+  post '/students/pre_registration/add', :to => 'student/pre_registration#add'
+
   post '/offered_courses/delete', :to => 'offered_courses#delete'
+  post '/students/pre_registration/delete', :to => 'student/pre_registration#delete'
 
   
   devise_for :students,
@@ -41,7 +45,7 @@ Oars::Application.routes.draw do
         get '/students/welcome_student', :to => 'student#welcome_student', :as => :welc_student
         get '/students/personal_info', :to => 'student#personal_info', :as => :student_personal_info
         get '/students/current_registration', :to => 'student/current_registration#current_registration', :as => :student_current_registration
-        get '/students/pre_registration', :to => 'student#pre_registration', :as => :student_pre_registration
+        get '/students/pre_registration', :to => 'student/pre_registration#index', :as => :student_pre_registration
         get '/students/add_drop', :to => 'student#add_drop', :as => :student_add_drop
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list

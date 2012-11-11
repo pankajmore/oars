@@ -11,7 +11,7 @@
 #
 
 class RegistrationForm < ActiveRecord::Base
-  attr_accessible :form_type, :is_accepted
+  attr_accessible :form_type, :is_accepted, :student_id
   after_initialize :init
   belongs_to :student
   has_and_belongs_to_many :offered_courses
