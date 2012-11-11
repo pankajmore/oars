@@ -31,7 +31,7 @@ class Faculty < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name, :pfno, :phone, :username
+  attr_accessible :name, :pfno, :phone, :username, :department_id
   has_and_belongs_to_many :offered_courses
   belongs_to :department
 end
