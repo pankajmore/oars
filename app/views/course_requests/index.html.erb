@@ -11,8 +11,8 @@
   <tbody>
   <% @course_requests.each do |course| %>
   <tr>
-      <th><%= link_to course.offered_course.course.number, course , :remote => true %></th>
-      <th><%= link_to course.offered_course.course.name, course , :remote => true %></th>
+      <th><%= link_to course.offered_course.course.number, course.offered_course , :remote => true %></th>
+      <th><%= link_to course.offered_course.course.name, course.offered_course , :remote => true %></th>
       <% if course.status == "add" %>
       <th><span class="label label-warning"> Pending </span></th>
       <th> <%= button_to "Delete Request", {:action => "delete",
@@ -21,8 +21,16 @@
       </th>
       <% elsif course.status == "accepted" %>
       <th><span class="label label-success"> Accepted </span></th>
-      <!-- TODO -->
-      <th> Add to Form </th>
+      <th> <%= button_to "Add to Form", {:action => "add",
+        :controller => "student/pre_registration", :id =>
+        course.offered_course.id, :crid => course.id} , {:class => "btn btn-primary"} %> 
+      </th>
+      <% elsif course.status == "added" %>
+      <th><span class="label label-success"> Added </span></th>
+      <th> <%= button_to "Remove from Form", {:action => "delete",
+        :controller => "student/pre_registration", :id =>
+        course.offered_course.id} , {:class => "btn btn-danger"} %> 
+      </th>
       <% elsif course.status == "rejected" %>
       <th><span class="label label-important"> Rejected </span></th>
       <th>:(</th>
