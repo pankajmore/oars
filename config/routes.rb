@@ -2,7 +2,9 @@ Oars::Application.routes.draw do
   get  '/offered_courses/search', :to => 'offered_courses#search'
   resources :courses
   resources :offered_courses
-#  resources :registration_form do
+  resources :course_requests
+  
+  #  resources :registration_form do
  
   
   devise_for :faculties,
@@ -19,7 +21,9 @@ Oars::Application.routes.draw do
         get '/faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
         get '/faculties/courses_taken', :to => 'faculty#courses_taken' , :as => :faculty_courses_taken
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
+        get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
+        get '/faculties/rejected', :to => 'faculty#rejected' , :as => :rejected
   end 
 
   post '/offered_courses/add', :to => 'offered_courses#add'

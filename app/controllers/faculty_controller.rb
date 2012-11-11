@@ -9,43 +9,28 @@ before_filter :authenticate_faculty!
         def faculty_personal_info
         end
         
-        def current_registration
-        end
-        
         def pre_registration
         end
 		
 		def accepted
-			student=Student.find(params[:student_id])
-			@course=OfferedCourse.find(params[:course_id])
-			
-			regform=nil
-			
-			student.registration_forms.each do |form|
-				if form.form_type=="pre"
-					regform=form
-					break
-				end
-			end
-			if regform.nil?
-				regform=RegistrationForm.create()
-				student.registration_forms << regform
-			end
-			regform.offered_courses << @course
-			acc = @course.accept_requests
-			newacc = acc.delete(params[:student_id].to_i)
-			@course.accept_requests = newacc
-			@course.save
-			
-            puts params[:student_id]
-			course.accept_requests.delete(Integer(params[:student_id]))
-			course.save
-			regform.save
-			student.save
-			
-			flash[:success] = " #{student.name} is successfully pre-registered"
+
+			request=CourseRequest.find(params[:request_id])
+			student=request.student
+			request.status="accepted"			
+			request.save
+            flash[:success] = " #{student.name} is successfully pre-registered"
 			redirect_to :action => 'course_requests',:id=>params[:course_id] 
 		end
+		
+		def rejected
+			request=CourseRequest.find(params[:request_id])
+			student=request.student
+			request.status="rejected"			
+			request.save
+            flash[:success] = " #{student.name} request is rejected"
+			redirect_to :action => 'course_requests',:id=>params[:course_id] 
+		end
+			
 				        
         def courses_taken
         	@courses_taken=OfferedCourse.find(:all)
@@ -55,14 +40,21 @@ before_filter :authenticate_faculty!
         		end
         	end
         end
-        def course_requests
-                
-        @student_list=[]
-        @offered_course=OfferedCourse.find(params[:id])
-        request_set=@offered_course.accept_requests.to_a()
-        	request_set.each do |id|
-               	@student_list<<Student.find(id)
-            end
-        
+        def course_info
+                @present_course = OfferedCourse.find(params[:id]).course
+                @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
         end
+
+        
+        def course_requests
+        @request_list=[]        
+        @offered_course=OfferedCourse.find(params[:id])
+        request_set=@offered_course.course_requests
+        	request_set.each do |request|
+        		if request.status=="add"
+               		@request_list<<request
+               		end
+            end
+        end
+        
 end
