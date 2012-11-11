@@ -1,15 +1,18 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
+  Department.create!({:name => "cse"})
   50.times do |n|
       name  = Faker::Name.name
       number = "CS#{n+100}"
-      Course.create!(name: name, number: number)
+      Course.create!(name: name, number: number, :department_id => 1)
     end
-  Student.create!({:name => "Ajmera", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" })
-  Student.create!({:name => "bakait chhora", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" }) 
-  Faculty.create!({:name => "Shubham", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" })
-  Faculty.create!({:name => "Cool Dude", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" })
+  Student.create!({:name => "Ajmera", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
+  Student.create!({:name => "bakait chhora", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1}) 
+  Faculty.create!({:name => "Shubham", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
+  Faculty.create!({:name => "Cool Dude", :email => "test@test.com", :password => "111111", :password_confirmation => "111111",:department_id => 1})
+  Dugc.create!({:department_id => 1, :faculty_id => 1})
+  ActingDugc.create!({:department_id => 1})
   ids = Course.find( :all, :select => 'id' ).map( &:id )
   courses = Course.find( (1..20).map { ids.delete_at( ids.size * rand ) } )
   courses.each { |x| 

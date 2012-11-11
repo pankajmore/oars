@@ -54,6 +54,7 @@ gem "rolify", ">= 3.2.0"
 gem "therubyracer", ">= 0.10.2", :group => :assets, :platform => :ruby
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem "faker", "1.0.1"
+gem "mailboxer"
 
 group :production do
    gem "pg"

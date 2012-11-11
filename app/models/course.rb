@@ -8,11 +8,13 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  offered_course_id :integer
+#  department_id     :integer
 #
 
 class Course < ActiveRecord::Base
-  attr_accessible :name, :number
+  attr_accessible :name, :number, :department_id
   has_one :offered_course
   belongs_to :offered_course
+  belongs_to :department 
   has_many :course_takens
 end

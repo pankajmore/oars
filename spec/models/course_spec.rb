@@ -8,6 +8,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  offered_course_id :integer
+#  department_id     :integer
 #
 
 require 'spec_helper'
