@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108170603) do
+ActiveRecord::Schema.define(:version => 20121111172359) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
     t.integer  "student_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "acting_dugcs", :force => true do |t|
+    t.integer  "faculty_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "course_requests", :force => true do |t|
@@ -33,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20121108170603) do
     t.string   "grade"
     t.string   "semester"
     t.string   "year"
-    t.integer  "course_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "academic_information_id"
@@ -51,6 +57,13 @@ ActiveRecord::Schema.define(:version => 20121108170603) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "dugcs", :force => true do |t|
+    t.integer  "faculty_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "faculties", :force => true do |t|
@@ -106,10 +119,11 @@ ActiveRecord::Schema.define(:version => 20121108170603) do
 
   create_table "registration_forms", :force => true do |t|
     t.string   "form_type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "student_id"
     t.boolean  "is_accepted"
+    t.boolean  "is_submitted"
   end
 
   create_table "students", :force => true do |t|
