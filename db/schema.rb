@@ -137,6 +137,11 @@ ActiveRecord::Schema.define(:version => 20121111185260) do
     t.integer  "course_id"
   end
 
+  create_table "offered_courses_faculties", :id => false, :force => true do |t|
+    t.integer "offered_course_id"
+    t.integer "faculty_id"
+  end
+
   create_table "offered_courses_registration_forms", :id => false, :force => true do |t|
     t.integer "offered_course_id"
     t.integer "registration_form_id"
