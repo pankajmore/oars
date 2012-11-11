@@ -26,13 +26,16 @@ class OfferedCoursesController < ApplicationController
     c.status = 'add' 
     c.save!
     flash[:success] = "Hold tight, Request Sent!"
-    redirect_to :action => 'index'
+    session[:return_to] = request.referer
+    redirect_to session[:return_to]
   end
+
   def delete
     id = params[:id]
     @offeredCourse = OfferedCourse.find(params[:id])
     CourseRequest.where({:student_id => current_student.id, :offered_course_id => @offeredCourse.id}).destroy_all
     flash[:success] = "Deleted your request!"
-    redirect_to :action => 'index'
+    session[:return_to] = request.referer
+    redirect_to session[:return_to]
   end
 end
