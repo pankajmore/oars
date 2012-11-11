@@ -9,13 +9,11 @@ before_filter :authenticate_faculty!
         def faculty_personal_info
         end
         
-        def current_registration
-        end
-        
         def pre_registration
         end
 		
 		def accepted
+
 			request=CourseRequest.find(params[:request_id])
 			student=request.student
 			request.status="accepted"			
@@ -51,6 +49,10 @@ before_filter :authenticate_faculty!
                		@request_list<<request
                		end
             end
+        end
         
+        def course_info
+                @present_course = OfferedCourse.find(params[:id]).course
+                @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
         end
 end
