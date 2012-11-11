@@ -1,0 +1,18 @@
+<div class="center hero-unit">
+        <h3>Student who have submitted pre-registration form </h3>
+
+        <table class="center table">
+			<tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td><td>Status</td></tr>
+       
+			<% @registration_forms.each do |regform| %>      
+   			<tr><td><%=regform.student.name%></td><td><%regform.student.roll%></td><td>Backchod hai</td><td><%=link_to "get form",{ :action => "approve_form", :regform_id => regform.id},class: "btn btn-mini btn-primary" %></td></tr>
+      		<% end%> 
+        </table>
+        </p>
+        
+</div>
+
+
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
+

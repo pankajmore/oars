@@ -1,8 +1,9 @@
 <div class="center hero-unit">
         <h3>Account</h3>
 
-<% if current_faculty==current_faculty.department.dugc %>
-You are dugc
+<% if current_faculty==current_faculty.department.dugc.faculty %>
+You are dugc <br>
+<%= link_to "Approve Student Forms", registration_forms_path, class: "btn btn-large btn-success"%>
 <% else %>
  you are only a faculty
  <%end%>

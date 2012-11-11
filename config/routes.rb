@@ -25,6 +25,9 @@ Oars::Application.routes.draw do
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
         get '/faculties/rejected', :to => 'faculty#rejected' , :as => :rejected
+        get '/faculties/registration_forms', :to => 'faculty#registration_forms' , :as => :registration_forms
+        get '/faculties/approve_form', :to => 'faculty#approve_form' , :as => :approve_form
+       
   end 
 
   post '/offered_courses/add', :to => 'offered_courses#add'

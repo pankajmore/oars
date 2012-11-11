@@ -17,7 +17,6 @@ class RegistrationForm < ActiveRecord::Base
   belongs_to :student
   has_and_belongs_to_many :offered_courses
   def init 
-      self.is_accepted = false
       self.is_submitted = false
   end
 end
