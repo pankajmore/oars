@@ -1,25 +1,17 @@
 class Student::PreRegistrationController < ApplicationController
-   
   def index
-    r = RegistrationForm.where(:student_id => current_student.id, :form_type => 'pre')
-    #@prereg_courses = nil | r[0].offerred_courses unless r.empty?
-    if r.empty?
-      @prereg_courses = nil
-    else
-      @prereg_courses = r[0].offered_courses
-    end
+    @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
+    @prereg_courses = @preform.offered_courses
+    @is_submitted = @preform.is_submitted
+    @is_accepted = @preform.is_accepted
   end
+
   def add
-    r = RegistrationForm.where(:student_id => current_student.id, :form_type => 'pre')
-    if r != [] then
-        @preform = r[0]
-    else
-        @preform = RegistrationForm.create!(:student_id => current_student.id, :form_type => 'pre')
-    end
+    @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
     id = params[:id]
-    courseRequest = CourseRequest.find(params[:crid])
-    courseRequest.status = "added"
-    courseRequest.save
+    cr = CourseRequest.find_by_student_id_and_offered_course_id(current_student.id, id)
+    cr.status = "added"
+    cr.save!
     @offeredCourse = OfferedCourse.find(params[:id])
     @preform.offered_courses << @offeredCourse
     @preform.save!
@@ -28,21 +20,33 @@ class Student::PreRegistrationController < ApplicationController
     redirect_to session[:return_to]
   end
   def delete
-    r = RegistrationForm.where(:student_id => current_student.id, :form_type => 'pre')
-    if r != [] then
-        @preform = r[0]
-    else
-        @preform = RegistrationForm.create!(:student_id => current_student.id, :form_type => 'pre')
-    end
+    @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
     id = params[:id]
-    courseRequest = CourseRequest.where(:student_id => current_student.id, :offered_course_id => id).each do |cr|
-      cr.status = "accepted"
-      cr.save
-    end
+    cr = CourseRequest.find_by_student_id_and_offered_course_id(current_student.id, id)
+    cr.status = "accepted"
+    cr.save!
     @offeredCourse = OfferedCourse.find(params[:id])
     @preform.offered_courses.delete(@offeredCourse)
     @preform.save!
     flash[:success] = "Hurray, added to Pre-Registration Form!"
+    session[:return_to] = request.referer
+    redirect_to session[:return_to]
+  end
+
+  def submit
+    @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
+    @preform.is_submitted = true
+    @preform.save!
+    flash[:success] = "Hurray, submitted you Pre-Registration Form to DUGC for approval!"
+    session[:return_to] = request.referer
+    redirect_to session[:return_to]
+  end
+
+  def withdraw
+    @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
+    @preform.is_submitted = false
+    @preform.save!
+    flash[:success] = "Withdrew your Pre-Registration Form from DUGC :("
     session[:return_to] = request.referer
     redirect_to session[:return_to]
   end

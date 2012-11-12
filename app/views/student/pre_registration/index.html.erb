@@ -22,6 +22,16 @@
                 <%end%>
                 
         </table>
-        
-        
+        <%= @is_submitted %>
+        <%= if @is_accepted then
+            "Accepted"
+            elsif @is_submitted then
+              button_to "Withdraw", {:action => "withdraw",
+            :controller=> "student/pre_registration"} , {:class =>
+            "btn btn-large btn-warning"} 
+            else 
+              button_to "Submit Form", {:action => "submit",
+            :controller=> "student/pre_registration"} , {:class =>
+            "btn btn-large btn-primary"} unless @prereg_courses.empty?
+        end %> 
 </div>

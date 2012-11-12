@@ -33,6 +33,9 @@ Oars::Application.routes.draw do
   post '/offered_courses/delete', :to => 'offered_courses#delete'
   post '/students/pre_registration/delete', :to => 'student/pre_registration#delete'
 
+  post '/students/pre_registration/submit', :to => 'student/pre_registration#submit'
+  post '/students/pre_registration/withdraw', :to => 'student/pre_registration#withdraw'
+  
   
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
