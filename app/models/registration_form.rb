@@ -13,10 +13,13 @@
 
 class RegistrationForm < ActiveRecord::Base
   attr_accessible :form_type, :is_accepted, :is_submitted, :student_id
-  after_initialize :init
+  before_save :default_values
   belongs_to :student
   has_and_belongs_to_many :offered_courses
-  def init 
-      self.is_submitted = false
+
+  def default_values
+      self.is_accepted ||= false
+      self.is_submitted ||= false
+      nil
   end
 end

@@ -23,7 +23,7 @@
       <th><span class="label label-success"> Accepted </span></th>
       <th> <%= button_to "Add to Form", {:action => "add",
         :controller => "student/pre_registration", :id =>
-        course.offered_course.id, :crid => course.id} , {:class => "btn btn-primary"} %> 
+        course.offered_course.id} , {:class => "btn btn-primary"} %> 
       </th>
       <% elsif course.status == "added" %>
       <th><span class="label label-success"> Added </span></th>
