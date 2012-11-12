@@ -11,24 +11,41 @@
       <th>Course Number</th>
       <th>Course Name</th>
       <th>Request Status</th>
+      <th>Accept/Delete</th>
     </tr>
   </thead>
   <tbody>
-  <% @courses.each do |course| %>
-    <tr>
-      <th><%= link_to course.course.number, course %></th>
-      <th><%= link_to course.course.name, course %></th>
+  <% @courses.each do |course| 
+  	request=course.course_requests & current_student.course_requests%>
+  <tr>
+      <th><%= link_to course.course.number, course , :remote => true %></th>
+      <th><%= link_to course.course.name, course , :remote => true %></th>
+      <th><% if request.empty? %>
+      		Not Requested
+      		<% elsif request[0].status=="add" %>
+      		request Pending
+      		<% elsif request[0].status=="accepted" %>
+      		Accepted
+      		<% elsif request[0].status=="rejected" %>
+      		Rejected
+      		<%end%>
+	  </th> 	
       <th>
-        <%= if course.accept_requests.include?(current_student.id) 
-            button_to "Delete Request", {:action => "delete", :id =>
-        course.id} , {:class => "btn btn-danger"} 
+      	
+        <%= if request.any?
+        		if request[0].status == "rejected"
+           		button_to "Delete Request", {:remote => true, :action =>
+            		"delete", :id => course.id }, {:class => "btn btn-danger", :disabled =>"disabled"}
+            	else
+            		button_to "Delete Request", {:remote => true, :action =>
+            		"delete", :id => course.id }, {:class => "btn btn-danger"}
+            	end
         else 
             button_to "Send Request", {:action => "add", :id =>
-            course.id} , {:class => "btn "} 
+            course.id, :remote => true} , {:class => "btn "} 
         end %>
       </th>
     <tr>
   <% end %>
   </tbody>
 </table>
-
