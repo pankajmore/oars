@@ -12,6 +12,32 @@ before_filter :authenticate_faculty!
         def pre_registration
         end
 		
+		def account
+		end
+		
+		def approve_form
+			if !(current_faculty.department.dugc.faculty==current_faculty)
+				flash[:error]="#{current_faculty.name}!! you are not authorized for this action"
+				redirect_to :action=>'instructor_home'
+				end 
+			@regform=RegistrationForm.find(params[:regform_id])
+		end
+		
+		def registration_forms
+			if !(current_faculty.department.dugc.faculty==current_faculty)
+				flash[:error]="#{current_faculty.name}!! you are not authorized for this action"
+				redirect_to :action=>'instructor_home'
+				end 
+			@registration_forms=[]
+			current_faculty.department.students.each do |student|
+				 student.registration_forms.each do |regform|
+				 	if regform.type=="pre" and regform.is_submitted==true and regform.is_accepted.nil?
+					 	@registration_forms << regform
+				 		end
+				 	end
+				end
+		end		
+		
 		def accepted
 
 			request=CourseRequest.find(params[:request_id])
@@ -27,7 +53,7 @@ before_filter :authenticate_faculty!
 			student=request.student
 			request.status="rejected"			
 			request.save
-            flash[:success] = " #{student.name} request is rejected"
+            flash[:alert] = " #{student.name} request is rejected"
 			redirect_to :action => 'course_requests',:id=>params[:course_id] 
 		end
 			
@@ -44,7 +70,6 @@ before_filter :authenticate_faculty!
                 @present_course = OfferedCourse.find(params[:id]).course
                 @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
         end
-
         
         def course_requests
         @request_list=[]        
