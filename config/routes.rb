@@ -26,8 +26,8 @@ Oars::Application.routes.draw do
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
         get '/faculties/rejected', :to => 'faculty#rejected' , :as => :rejected
-        get '/faculties/registration_forms', :to => 'faculty#registration_forms' , :as => :registration_forms
-        get '/faculties/approve_form', :to => 'faculty#approve_form' , :as => :approve_form
+        get '/faculties/registration_forms', :to => 'faculty/pre_registration#registration_forms' , :as => :registration_forms
+        get '/faculties/approve_form', :to => 'faculty/pre_registration#approve_form' , :as => :approve_form
        
   end 
 
@@ -39,7 +39,8 @@ Oars::Application.routes.draw do
 
   post '/students/pre_registration/submit', :to => 'student/pre_registration#submit'
   post '/students/pre_registration/withdraw', :to => 'student/pre_registration#withdraw'
-  
+  get '/faculties/pre_registration/reject', :to => 'faculty/pre_registration#reject'
+  get '/faculties/pre_registration/accept', :to => 'faculty/pre_registration#accept'  
   
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
