@@ -1,0 +1,29 @@
+<div class="center hero-unit">
+        <h3>Pre-registration Form</h3>
+        <h5><%=@pregform.student.name%> (<%=@pregform.student.roll%>)</h5>
+        <h6>DUGC Approval</h6>
+
+        <p>
+        
+        <table class="center table">
+                <tr class="info"><td>Course</td><td>Title</td><td>Units</td></tr>
+			
+                <% @pregform.offered_courses.each do |course| %>
+                <tr>
+                  <td><%=course.course.number%></td>
+                  <td><%=course.course.name%></td>
+                  <td><%=course.credit%></td>
+                </tr>
+                <%end%>
+                </table>
+                <%= link_to "Accept", {:action => "accept",
+            :controller=> "faculty/pre_registration", :pregform_id => @pregform.id } , {:class =>
+            "btn btn-small btn-success"} 
+            %>
+            <%= link_to "Reject", {:action => "reject",
+            :controller=> "faculty/pre_registration", :pregform_id => @pregform.id } , {:class =>
+            "btn btn-small btn-danger"}%> 
+            
+        
+      </p>  
+</div>
