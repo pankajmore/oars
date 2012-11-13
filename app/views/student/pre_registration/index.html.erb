@@ -25,6 +25,8 @@
 
         <%= if @is_accepted then
             "Accepted"
+            elsif !@is_accepted.nil? then
+            "Rejected"
             elsif @is_submitted then
               button_to "Withdraw", {:action => "withdraw",
             :controller=> "student/pre_registration"} , {:class =>
