@@ -1,2 +1,1 @@
-* Add to registration form @Pankaj
-* Pre-Registration Form controller @Pankaj
+* freeze models when form accepted @Pankaj

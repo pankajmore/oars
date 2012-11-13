@@ -3,7 +3,7 @@ class OfferedCoursesController < ApplicationController
   def index
     @courses = OfferedCourse.all
   end
-  def show()      
+  def show      
     @course = OfferedCourse.find(params[:id])
     @timings = @course.lecture_times
     

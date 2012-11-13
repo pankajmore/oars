@@ -11,13 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108170603) do
+ActiveRecord::Schema.define(:version => 20121111185260) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
     t.integer  "student_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "acting_dugcs", :force => true do |t|
+    t.integer  "faculty_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "conversations", :force => true do |t|
+    t.string   "subject",    :default => ""
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "course_requests", :force => true do |t|
@@ -45,12 +58,20 @@ ActiveRecord::Schema.define(:version => 20121108170603) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "offered_course_id"
+    t.integer  "department_id"
   end
 
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "dugcs", :force => true do |t|
+    t.integer  "faculty_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "faculties", :force => true do |t|
@@ -90,6 +111,24 @@ ActiveRecord::Schema.define(:version => 20121108170603) do
     t.integer  "offered_course_id"
   end
 
+  create_table "notifications", :force => true do |t|
+    t.string   "type"
+    t.text     "body"
+    t.string   "subject",              :default => ""
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.integer  "conversation_id"
+    t.boolean  "draft",                :default => false
+    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                              :null => false
+    t.integer  "notified_object_id"
+    t.string   "notified_object_type"
+    t.string   "notification_code"
+    t.string   "attachment"
+  end
+
+  add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
   create_table "offered_courses", :force => true do |t|
     t.string   "description"
     t.integer  "credit"
@@ -104,12 +143,27 @@ ActiveRecord::Schema.define(:version => 20121108170603) do
     t.integer "registration_form_id"
   end
 
+  create_table "receipts", :force => true do |t|
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
+    t.integer  "notification_id",                                  :null => false
+    t.boolean  "is_read",                       :default => false
+    t.boolean  "trashed",                       :default => false
+    t.boolean  "deleted",                       :default => false
+    t.string   "mailbox_type",    :limit => 25
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  add_index "receipts", ["notification_id"], :name => "index_receipts_on_notification_id"
+
   create_table "registration_forms", :force => true do |t|
     t.string   "form_type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "student_id"
     t.boolean  "is_accepted"
+    t.boolean  "is_submitted"
   end
 
   create_table "students", :force => true do |t|
