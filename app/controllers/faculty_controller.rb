@@ -52,9 +52,11 @@ before_filter :authenticate_faculty!
         request_set=@offered_course.course_requests
         	request_set.each do |request|
         		if request.status=="add"
-               		@request_list<<request
+               		@request_list << request
                		end
             end
         end
+        
+        
         
 end
