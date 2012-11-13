@@ -8,7 +8,7 @@ class Faculty::PreRegistrationController < ApplicationController
 			@registration_forms=[]
 			current_faculty.department.students.each do |student|
 				 student.registration_forms.each do |regform|
-				 	if regform.form_type=="pre" and regform.is_submitted==true and regform.is_accepted==false
+				 	if regform.form_type=="pre" and regform.is_submitted==true and regform.is_accepted.nil?
 					 	@registration_forms << regform
 				 		end
 				 	end
@@ -36,7 +36,7 @@ class Faculty::PreRegistrationController < ApplicationController
     @pregform.save!
     flash[:danger] = "Rejected pre-registration form for #{@pregform.student.name}"
    
-    redirect_to :action => "registration_forms",:controller=> "faculty"
+    redirect_to :action => "registration_forms",:controller=> "faculty/pre_registration"
   end
 
 end

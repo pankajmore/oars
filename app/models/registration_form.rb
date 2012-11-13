@@ -18,7 +18,6 @@ class RegistrationForm < ActiveRecord::Base
   has_and_belongs_to_many :offered_courses
 
   def default_values
-      self.is_accepted ||= false
       self.is_submitted ||= false
       nil
   end
