@@ -17,9 +17,11 @@
                 <table class="center table">
 			<tr class="info"><td>Course</td><td>Title</td><td>Units</td></tr>
        
-			<!-- loop over courses <%  %> -->      
-   			<tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td></tr>
-      		<!-- <% %> -->
+    <% current_student.academic_information.course_takens.each do |ct| %>
+        <% if ct.grade == "F" %>      
+            <tr><td><%= ct.course.number %></td><td><%= ct.course.name %></td><td><%= ct.credits %></td></tr>
+        <% end %> 
+    <% end %> 
         </table>
         </p>
         
