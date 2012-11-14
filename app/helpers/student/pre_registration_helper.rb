@@ -14,7 +14,7 @@ module Student::PreRegistrationHelper
             end
         end
         return nil 
-    end
+    end 
     def is_submitted?
       RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id,'pre').is_submitted
     end
