@@ -5,7 +5,7 @@ Oars::Application.routes.draw do
   resources :course_requests
   #resources :student/pre_registration
   
-  #  resources :registration_form do
+  #resources :registration_form do
  
   
   devise_for :faculties,
