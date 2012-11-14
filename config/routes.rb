@@ -4,7 +4,11 @@ Oars::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get  '/offered_courses/search', :to => 'offered_courses#search'
+<<<<<<< HEAD
   get  '/faculties/course_description', :to => 'faculties#course_description'
+=======
+  get  '/courses/search', :to => 'courses#search'
+>>>>>>> 95089c15dbf971c898b774ac07db34b253da543a
   resources :courses
   resources :offered_courses
   resources :course_requests
