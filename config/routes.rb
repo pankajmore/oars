@@ -1,4 +1,8 @@
 Oars::Application.routes.draw do
+  devise_for :admins
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   get  '/offered_courses/search', :to => 'offered_courses#search'
   resources :courses
   resources :offered_courses

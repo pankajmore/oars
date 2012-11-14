@@ -18,6 +18,23 @@ namespace :db do
   courses.each { |x| 
       offset = rand(Faculty.count)
       rand_faculty = Faculty.first(:offset => offset)
+      lt1 = rand_lecturetime
+      lt2 = rand_lecturetime 
+      lt3 = rand_lecturetime 
+      y = OfferedCourse.create()
+      y.credit = 4
+      y.course = x
+      y.faculties.push(rand_faculty)
+      y.lecture_times.push(lt1)
+      y.lecture_times.push(lt2)
+      y.lecture_times.push(lt3)
+      y.save!() 
+      }
+  # lecture times 
+  end
+end
+
+def rand_lecturetime 
       lt = LectureTime.create()
       day = rand(0..5)
       start_time = rand(8..17)
@@ -33,14 +50,7 @@ namespace :db do
       h[5] = 'saturday'
       h[6] = 'sunday'
       lt.day = h[day]
-      lt.save!()
-      y = OfferedCourse.create()
-      y.credit = 4
-      y.course = x
-      y.faculties.push(rand_faculty)
-      y.lecture_times.push(lt)
-      y.save!() 
-      }
-  # lecture times 
-  end
-end
+      return lt 
+end 
+
+

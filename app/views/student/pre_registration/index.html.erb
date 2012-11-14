@@ -17,12 +17,12 @@
                   <td><%=course.credit%></td>
                   <td><%= button_to "Remove from Form", {:action => "delete",
         :controller => "student/pre_registration", :id => 
-        course.id} , {:class => "btn btn-danger"} %></td>
+        course.id} , {:class => "btn btn-danger"} unless @is_submitted%></td>
                 </tr>
                 <%end%>
                 
         </table>
-        <%= @is_submitted %>
+
         <%= if @is_accepted then
             "Accepted"
             elsif !@is_accepted.nil? then
