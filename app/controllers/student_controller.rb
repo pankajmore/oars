@@ -1,5 +1,6 @@
 class StudentController < ApplicationController
         before_filter :authenticate_student! 
+        include StudentHelper
         def welcome_student
         end
         
@@ -22,6 +23,8 @@ class StudentController < ApplicationController
           @ss.keys.each do |no|
               semester = Hash.new
               semester[:number] = no 
+              semester[:cpi] = "%0.2f" % calc_cpi(no,current_student)
+              semester[:spi] = "%0.2f" % calc_spi(no,current_student)
               semester[:courses] = CourseTaken.where(:academic_information_id => @ai.id, :semester => no)
               @semesters << semester
           end 
@@ -34,6 +37,6 @@ class StudentController < ApplicationController
             @start_date = Date.new(2000,1,3)
             @end_date = Date.new(2000,1,7)
             @date = Date.new(2000,1,3)
-            @events  = RegistrationForm.find_by_student_id_and_form_type(current_student.id, 'pre').offered_courses.map{|c| c.lecture_times}.flatten 
+            @events  = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre').offered_courses.map{|c| c.lecture_times}.flatten 
         end 
 end

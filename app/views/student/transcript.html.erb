@@ -21,7 +21,7 @@
         </table>
         <!-- loops over number of Semester <% %> -->
         <% @semesters.each do |sem| %>
-        <p align="center">Semester <%=sem[:number]%></p> </br> <p align="right"> CPI = <%=sem[:cpi]%> SPI = spi </p>
+            <p align="center">Semester <%=sem[:number]%></p> </br> <p align="right"> CPI = <%=sem[:cpi]%> SPI = <%= sem[:spi] %></p>
         <table class="center table">
         <col width="20"><col width="60"><col width="5"><col width="5">
                 <!-- loop over courses <%  %> -->
@@ -30,7 +30,7 @@
                   <td><%= course.course.number %></td>
                   <td><%= course.course.name %></td>
                   <td><%= course.credits %></td>
-                  <td><% course.grade %></td>
+                  <td><%= course.grade %></td>
                 </tr>
                 <!--end loop <% %> -->
                 <% end %>
