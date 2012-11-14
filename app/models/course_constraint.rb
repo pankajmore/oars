@@ -11,7 +11,7 @@
 #
 
 class CourseConstraint < ActiveRecord::Base
-  attr_accessible :course_id, :template_course_id
+  attr_accessible :course_id, :template_course_id, :name 
   belongs_to :template_course 
   has_many :courses 
 end
