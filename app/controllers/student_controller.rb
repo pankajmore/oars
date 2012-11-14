@@ -37,6 +37,6 @@ class StudentController < ApplicationController
             @start_date = Date.new(2000,1,3)
             @end_date = Date.new(2000,1,7)
             @date = Date.new(2000,1,3)
-            @events  = RegistrationForm.find_by_student_id_and_form_type(current_student.id, 'pre').offered_courses.map{|c| c.lecture_times}.flatten 
+            @events  = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre').offered_courses.map{|c| c.lecture_times}.flatten 
         end 
 end
