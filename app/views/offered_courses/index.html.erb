@@ -35,14 +35,16 @@
         <%= if request.any?
         		if request[0].status == "rejected"
            		button_to "Delete Request", {:remote => true, :action =>
-            		"delete", :id => course.id }, {:class => "btn btn-danger", :disabled =>"disabled"}
+            		"delete", :id => course.id }, {:id =>
+        		course.id, :class => "btn btn-danger", :disabled =>"disabled"}
             	else
             		button_to "Delete Request", {:remote => true, :action =>
-            		"delete", :id => course.id }, {:class => "btn btn-danger"}
+            		"delete", :id => course.id }, {:id =>
+        		course.id, :class => "btn btn-danger"}
             	end
         else 
             button_to "Send Request", {:action => "add", :id =>
-            course.id, :remote => true} , {:class => "btn "} 
+            course.id, :remote => true} , {:id => course.id, :class => "btn "} 
         end %>
       </th>
     <tr>

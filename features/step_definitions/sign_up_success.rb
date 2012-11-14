@@ -1,6 +1,5 @@
-require "webrat"
 Given /^a user visits the signup page$/ do
-  visit student_sign_up
+  visit student_sign_up_path
 end
 
 Given /^the user enters data$/ do
@@ -10,16 +9,15 @@ Given /^the user enters data$/ do
   fill_in "Password confirmation",    with: "foobar"
   fill_in "Name", with: "Example name"
   fill_in "Phone",    with: "1234567890"
-  fill_in "Roll no",    with: "11111"
-  click_button "Sign in"
+  click_button "Sign up"
 end
 
 Then /^he should get updated in database$/ do
-  students.find("username","example")
+  not Student.find_by_email("example@example.com").nil?
 end
 
 Then /^he should see his profile page$/ do
-  page.should have_selector('title', text: @user.name)
+  page.should have_link('Personal Information')
 end
 
 Then /^he should see a signout button$/ do

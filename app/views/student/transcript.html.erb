@@ -1,6 +1,6 @@
-<div class="center hero-unit">
+<div class="hero-unit">
         
-        <div class="center btn-group">
+        <div class="btn-group">
                 <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">Academic Information
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
@@ -11,26 +11,29 @@
                 </ul>
         </div>
         
-        <h4>Your Transcript</h4>
+        <h4 align="center">Your Transcript</h4>
         <!-- set the column width as per convinence -->
         <p>
-        <table class="center table">
+        <table class="center table table-striped">
         <col width="60"><col width="80"><col width="5"><col width="5">
         <tr class="info"><td>Course</td><td>  Title </td><td>Units</td><td>Grade</td></tr>
         </table>
         <!-- loops over number of Semester <% %> -->
-        <% @variable_semester.each do |sem| %>
-        Semester <%=sem.number%> </br> <p align="right"> CPI = <%=sem.cpi%> SPI = <%=sem.spi%> </p>
+        <% @semesters.each do |sem| %>
+        <p align="center">Semester <%=sem[:number]%></p> </br> <p align="right"> CPI = <%=sem[:cpi]%> SPI = spi </p>
         <table class="center table">
         <col width="20"><col width="60"><col width="5"><col width="5">
                 <!-- loop over courses <%  %> -->
-                <% sem.course.each do |course| %>
-                <tr><td>course.number</td><td>course.name</td><td>course.credit</td><td>course.grade</td></tr>
+                <% sem[:courses].each do |course| %>
+                <tr>
+                  <td><%= course.course.number %></td>
+                  <td><%= course.course.name %></td>
+                  <td><%= course.credits %></td>
+                  <td><% course.grade %></td>
+                </tr>
                 <!--end loop <% %> -->
                 <% end %>
         </table>
         <% end %>
         </p>
 </div>
-
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
