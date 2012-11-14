@@ -35,8 +35,7 @@ before_filter :authenticate_faculty!
             flash[:alert] = " #{student.name} request is rejected"
 			redirect_to :action => 'course_requests',:id=>params[:course_id] 
 		end
-			
-				        
+        
         def courses_taken
         	@courses_taken=OfferedCourse.find(:all)
         	@courses_taken.each do |course|
@@ -45,6 +44,7 @@ before_filter :authenticate_faculty!
         		end
         	end
         end
+        
         def course_info
                 @present_course = OfferedCourse.find(params[:id]).course
                 @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
