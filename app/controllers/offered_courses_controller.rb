@@ -12,6 +12,7 @@ class OfferedCoursesController < ApplicationController
     end
     
   end
+  
   def search
     search = params[:q]
     search_condition = "%" + search + "%"
