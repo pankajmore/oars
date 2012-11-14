@@ -4,11 +4,8 @@ Oars::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get  '/offered_courses/search', :to => 'offered_courses#search'
-<<<<<<< HEAD
-  get  '/faculties/course_description', :to => 'faculties#course_description'
-=======
+  get  '/faculties/course_description', :to => 'faculty#course_description'
   get  '/courses/search', :to => 'courses#search'
->>>>>>> 95089c15dbf971c898b774ac07db34b253da543a
   resources :courses
   resources :offered_courses
   resources :course_requests
@@ -35,6 +32,7 @@ Oars::Application.routes.draw do
         get '/faculties/course_description', :to => 'faculty#course_description' , :as => :faculty_course_description
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
+        get '/faculties/update_description', :to => 'faculty#update_description' , :as => :update_description
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
         get '/faculties/rejected', :to => 'faculty#rejected' , :as => :rejected
         get '/faculties/registration_forms', :to => 'faculty/pre_registration#registration_forms' , :as => :registration_forms
