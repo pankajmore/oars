@@ -13,7 +13,7 @@
 
 class Course < ActiveRecord::Base
   attr_accessible :name, :number, :department_id
-  has_one :offered_course
+  has_one :offered, :class_name => :offered_course
   belongs_to :offered_course
   belongs_to :department 
   has_many :course_takens

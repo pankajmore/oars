@@ -14,8 +14,8 @@
   <tbody>
   <% @courses.each do |course| %>
     <tr>
-      <th><%= link_to course.number, course %></th>
-      <th><%= link_to course.name, course %></th>
+        <th><%= link_to course.number, course, :remote => true %></th>
+        <th><%= link_to course.name, course, :remote => true%></th>
     <tr>
   <% end %>
   </tbody>

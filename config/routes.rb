@@ -4,6 +4,7 @@ Oars::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get  '/offered_courses/search', :to => 'offered_courses#search'
+  get  '/courses/search', :to => 'courses#search'
   resources :courses
   resources :offered_courses
   resources :course_requests

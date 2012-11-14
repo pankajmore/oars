@@ -1,12 +1,5 @@
 var body = "Instructors : <%= @course.faculties.map{|p| p.name}.join(', ') %> </br> Timings : <% @timings.each do |timer| %> day : <%= timer.day %>; time : <%= timer.start_time.strftime('%H:%M:%S') %> - <%= timer.end_time.strftime('%H:%M:%S') %></br> <% end %> Description: <%= @course.description %>"
 $(".modal-header h3").html("<%= @course.course.number + " : " + @course.course.name %>")
 $(".modal-body").html(body)
-<% if (@course.course_requests & current_student.course_requests).any? %>
-    $(".modal-footer .request").html("Delete Request")
-    $(".modal-footer .request").removeClass("btn-primary").addClass("btn-danger") 
-<% else %>
-    $(".modal-footer .request").html("Send Request")
-    $(".modal-footer .request").removeClass("btn-danger").addClass("btn-primary")
-<% end %>
 
 $("#courseModal").modal()
