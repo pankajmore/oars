@@ -61,8 +61,8 @@ Oars::Application.routes.draw do
         get '/students/pre_registration', :to => 'student/pre_registration#index', :as => :student_pre_registration
         get '/students/add_drop', :to => 'student#add_drop', :as => :student_add_drop
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
+        get '/students/time_table', :to => 'student#time_table', :as => :student_time_table
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
-      	get '/students/time-table', :to => 'student#time-table', :as => :student_time_table
       	
   end
 
