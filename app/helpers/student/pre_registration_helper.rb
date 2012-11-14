@@ -4,14 +4,15 @@ module Student::PreRegistrationHelper
             r.lecture_times.each do |l|
                 course_to_add.lecture_times.each do |c|
                     if l.day == c.day
-                        if l.start_time >= c.start_time and l.start_time <= c.end_time 
+                        if l.start_time >= c.start_time and l.start_time < c.end_time 
                             return r 
-                        elsif c.start_time >= l.start_time and c.start_time <= l.end_time 
+                        elsif c.start_time >= l.start_time and c.start_time < l.end_time 
                             return r
                         end 
                     end 
                 end
             end
         end
+        return nil 
     end 
 end

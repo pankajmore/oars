@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121111185260) do
+ActiveRecord::Schema.define(:version => 20121114130745) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20121111185260) do
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "course_constraints", :force => true do |t|
+    t.integer  "template_course_id"
+    t.integer  "course_id"
+    t.integer  "bucket"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "course_requests", :force => true do |t|
@@ -188,6 +196,12 @@ ActiveRecord::Schema.define(:version => 20121111185260) do
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true
   add_index "students", ["reset_password_token"], :name => "index_students_on_reset_password_token", :unique => true
+
+  create_table "template_courses", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
