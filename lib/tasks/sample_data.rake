@@ -7,14 +7,28 @@ namespace :db do
       number = "CS#{n+100}"
       Course.create!(name: name, number: number, :department_id => 1)
     end
-  Student.create!({:name => "Ajmera", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
-  Student.create!({:name => "bakait chhora", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1}) 
+  a = AcademicInformation.create!()
+  a.student = Student.create!({:name => "Ajmera", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
+  a.save
+  a = AcademicInformation.create!()
+  a.student = Student.create!({:name => "bakait chhora", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1}) 
+  a.save
   Faculty.create!({:name => "Shubham", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
   Faculty.create!({:name => "Cool Dude", :email => "test@test.com", :password => "111111", :password_confirmation => "111111",:department_id => 1})
+
   Dugc.create!({:department_id => 1, :faculty_id => 1})
   ActingDugc.create!({:department_id => 1})
   ids = Course.find( :all, :select => 'id' ).map( &:id )
   courses = Course.find( (1..20).map { ids.delete_at( ids.size * rand ) } )
+  AcademicInformation.all.each do |a|
+      ['1','2','3','4','5','6'].each do |s|
+          5.times do 
+            rand_taken = rand_course_taken(a,s)
+            a.course_takens.push(rand_taken)
+          end 
+      end 
+  end 
+
   courses.each { |x| 
       offset = rand(Faculty.count)
       rand_faculty = Faculty.first(:offset => offset)
@@ -52,5 +66,22 @@ def rand_lecturetime
       lt.day = h[day]
       return lt 
 end 
+
+def rand_course_taken(academic_information,semester) 
+    lt = CourseTaken.create()
+    offset = rand(Course.count)
+    rand_course = Course.first(:offset => offset)
+    lt.course = rand_course
+    lt.academic_information = academic_information
+    lt.credits = [2,4].sample 
+    lt.grade = ['A','B','C','D','F'].sample
+    lt.semester = semester 
+    lt.save 
+    return lt 
+end 
+
+    
+
+
 
 

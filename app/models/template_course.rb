@@ -11,4 +11,5 @@
 class TemplateCourse < ActiveRecord::Base
   attr_accessible :student_id
   has_many :course_constraints
+  belongs_to :student
 end
