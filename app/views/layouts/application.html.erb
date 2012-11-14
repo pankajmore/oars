@@ -3,6 +3,7 @@
   <head>
     <title>OARS: <%= yield(:title) %></title>
     <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= stylesheet_link_tag("weekly") %> 
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
@@ -25,7 +26,6 @@
         </div>
         <div class="modal-footer">
           <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          <button class="btn btn-primary request">Send Request</button>
         </div>
       </div>
       <%= render 'layouts/footer' %>

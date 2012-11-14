@@ -4,9 +4,9 @@ module Student::PreRegistrationHelper
             r.lecture_times.each do |l|
                 course_to_add.lecture_times.each do |c|
                     if l.day == c.day
-                        if l.start_time >= c.start_time and l.start_time < c.end_time 
+                        if l.starts_at >= c.starts_at and l.starts_at < c.ends_at 
                             return r 
-                        elsif c.start_time >= l.start_time and c.start_time < l.end_time 
+                        elsif c.starts_at >= l.starts_at and c.starts_at < l.ends_at 
                             return r
                         end 
                     end 
@@ -15,7 +15,6 @@ module Student::PreRegistrationHelper
         end
         return nil 
     end 
-
     def is_submitted?
       RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id,'pre').is_submitted
     end

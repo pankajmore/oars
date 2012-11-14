@@ -1,7 +1,8 @@
-<div class="center hero-unit">
-        <h3>Always keep your Personal Information Updated! :)</h3>
-<div class="center btn-group">
-                <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">Academic Information
+<div class="hero-unit">
+    <h3 align="center">Always keep your Personal Information Updated! :)</h3>
+            <div class="center btn-toolbar">
+            <div class="center btn-group">
+                <button class="btn btn-large btn-primary dropdown-toggle" align="left" data-toggle="dropdown">Academic Information
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                         <li><%= link_to "Transcript", student_transcript_path   %></li>
@@ -9,7 +10,8 @@
                         <li class="divider"></li>
                         <li><%= link_to "Student Information", student_personal_info_path   %></li>
                 </ul>
-              </div>
+            </div>
+            </div>
 
         <p>
         <table class="table">
@@ -20,13 +22,8 @@
         </table>
         </p>
         
-        <p>
+        <p align="left">
                 <%= link_to "Update Info", edit_student_registration_path, class: "btn btn-link btn-large btn-danger" %>
         </p>
         
 </div>
-
-
-
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
-

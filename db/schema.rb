@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114130745) do
+ActiveRecord::Schema.define(:version => 20121114223554) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(:version => 20121114130745) do
   create_table "course_constraints", :force => true do |t|
     t.integer  "template_course_id"
     t.integer  "course_id"
-    t.integer  "bucket"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "name"
   end
 
   create_table "course_requests", :force => true do |t|
@@ -81,11 +81,15 @@ ActiveRecord::Schema.define(:version => 20121114130745) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "number"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.integer  "offered_course_id"
     t.integer  "department_id"
+    t.integer  "course_constraints_id"
   end
+
+  add_index "courses", ["course_constraints_id"], :name => "course_constraints_index"
+  add_index "courses", ["number"], :name => "course_number_index", :unique => true
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -130,8 +134,8 @@ ActiveRecord::Schema.define(:version => 20121114130745) do
 
   create_table "lecture_times", :force => true do |t|
     t.string   "day"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "offered_course_id"
@@ -210,15 +214,16 @@ ActiveRecord::Schema.define(:version => 20121114130745) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "department_id"
+    t.integer  "template_course_id"
   end
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true
   add_index "students", ["reset_password_token"], :name => "index_students_on_reset_password_token", :unique => true
 
   create_table "template_courses", :force => true do |t|
-    t.integer  "student_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "users", :force => true do |t|

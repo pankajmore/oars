@@ -35,6 +35,8 @@ class Student < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :department_id
   attr_accessible :name, :phone, :roll, :username
   belongs_to :department
+  belongs_to :template_course
   has_many :registration_forms, :dependent => :destroy
   has_many :course_requests
+  has_one :academic_information
 end

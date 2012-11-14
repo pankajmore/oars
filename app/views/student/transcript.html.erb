@@ -1,6 +1,6 @@
-<div class="center hero-unit">
-        
-        <div class="center btn-group">
+<div class="hero-unit">
+            <div class="center btn-toolbar">
+        <div class="btn-group">
                 <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">Academic Information
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
@@ -10,27 +10,31 @@
                         <li><%= link_to "Student Information", student_personal_info_path   %></li>
                 </ul>
         </div>
+    </div>
         
-        <h4>Your Transcript</h4>
+        <h4 align="center">Your Transcript</h4>
         <!-- set the column width as per convinence -->
         <p>
-            <table class="center table">
-            <col width="60"><col width="80"><col width="5"><col width="5">
-			<tr class="info"><td>Course</td><td>  Title </td><td>Units</td><td>Grade</td></tr>
-			</table>
-			<!-- loops over number of Semester <% %> -->
-			2012-13 Semester I </br> <p align="right"> CPI = 10 SPI = 10 </p>
-       		<table class="center table">
-       		<col width="20"><col width="60"><col width="5"><col width="5">
-						<!-- loop over courses <%  %> -->      
-   			<tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td><td>A*</td></tr>
-      		<!--end loop <% %> -->
-      		<!--end loop <% %> -->
+        <table class="center table table-striped">
+        <col width="60"><col width="80"><col width="5"><col width="5">
+        <tr class="info"><td>Course</td><td>  Title </td><td>Units</td><td>Grade</td></tr>
         </table>
+        <!-- loops over number of Semester <% %> -->
+        <% @semesters.each do |sem| %>
+            <p align="center">Semester <%=sem[:number]%></p> </br> <p align="right"> CPI = <%=sem[:cpi]%> SPI = <%= sem[:spi] %></p>
+        <table class="center table">
+        <col width="20"><col width="60"><col width="5"><col width="5">
+                <!-- loop over courses <%  %> -->
+                <% sem[:courses].each do |course| %>
+                <tr>
+                  <td><%= course.course.number %></td>
+                  <td><%= course.course.name %></td>
+                  <td><%= course.credits %></td>
+                  <td><%= course.grade %></td>
+                </tr>
+                <!--end loop <% %> -->
+                <% end %>
+        </table>
+        <% end %>
         </p>
 </div>
-
-
-
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
-

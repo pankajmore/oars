@@ -1,12 +1,12 @@
 <div class="center hero-unit">
         <%if !@courses_taken.empty?%>
-        <h3>Your Courses this semester </h3>
+        <h3>Your Courses Next semester </h3>
 		<p>
 		
         <table class="center table">
-			<tr class="info"><td>Course</td><td>Title</td><td>Credit</td><td>Get Student List</td></tr>
-       		<% @courses_taken.each do |course| %>      
-   			<tr><td><%= course.course.number %></td><td><%=course.course.name%></td><td><%=course.credit%></td><td><%=link_to "Get Student List",{ :action => "course_requests", :id => course.id}, {:class => "btn btn-mini btn-primary"}%></td></tr>
+        <tr class="info"><td>Course</td><td>Title</td><td>Credit</td><td>Get Student List</td></tr>
+                <% @courses_taken.each do |course| %>      
+   			<tr><td><%= course.course.number %></td><td><%= link_to course.course.name, { :action => "course_description", :id => course.id} %></td><td><%=course.credit%></td><td><%=link_to "Get Student List",{ :action => "course_requests", :id => course.id}, {:class => "btn btn-mini btn-primary"}%></td></tr>
       		<% end %>
       	</table>
       	</p> 

@@ -9,9 +9,10 @@ class OfferedCoursesController < ApplicationController
     
     respond_to do |format|
       format.js
-    end
+  end
     
   end
+  
   def search
     search = params[:q]
     search_condition = "%" + search + "%"

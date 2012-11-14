@@ -1,5 +1,5 @@
 <div class="center hero-unit">
-        
+        <div class="btn-toolbar">        
         <div class="center btn-group">
                 <button class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown">Academic Information
                 <span class="caret"></span></button>
@@ -10,6 +10,7 @@
                         <li><%= link_to "Student Information", student_personal_info_path   %></li>
                 </ul>
         </div>
+    </div>
         
         <h4>List of Backlogs</h4>
         
@@ -17,9 +18,11 @@
                 <table class="center table">
 			<tr class="info"><td>Course</td><td>Title</td><td>Units</td></tr>
        
-			<!-- loop over courses <%  %> -->      
-   			<tr><td>cs455</td><td>Introduction to software engineering</td><td>4</td></tr>
-      		<!-- <% %> -->
+    <% current_student.academic_information.course_takens.each do |ct| %>
+        <% if ct.grade == "F" %>      
+            <tr><td><%= ct.course.number %></td><td><%= ct.course.name %></td><td><%= ct.credits %></td></tr>
+        <% end %> 
+    <% end %> 
         </table>
         </p>
         
