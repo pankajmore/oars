@@ -1,4 +1,5 @@
 class Student::PreRegistrationController < ApplicationController
+  helper Student::PreRegistrationHelper
   def index
     @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
     @prereg_courses = @preform.offered_courses
@@ -9,13 +10,18 @@ class Student::PreRegistrationController < ApplicationController
   def add
     @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
     id = params[:id]
-    cr = CourseRequest.find_by_student_id_and_offered_course_id(current_student.id, id)
-    cr.status = "added"
-    cr.save!
     @offeredCourse = OfferedCourse.find(params[:id])
-    @preform.offered_courses << @offeredCourse
-    @preform.save!
-    flash[:success] = "Hurray, added to Pre-Registration Form!"
+    cl = view_context.clash(@offeredCourse,@preform)
+    if cl.nil?
+        cr = CourseRequest.find_by_student_id_and_offered_course_id(current_student.id, id)
+        cr.status = "added"
+        cr.save!
+        @preform.offered_courses << @offeredCourse
+        @preform.save!
+        flash[:success] = "Hurray, added to Pre-Registration Form!"
+    else 
+        flash[:failure] = "Timetable clash with #{cl.course.name}"
+    end 
     session[:return_to] = request.referer
     redirect_to session[:return_to]
   end
