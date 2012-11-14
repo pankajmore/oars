@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114215958) do
+ActiveRecord::Schema.define(:version => 20121114221945) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(:version => 20121114215958) do
     t.integer  "offered_course_id"
     t.integer  "department_id"
   end
+
+  add_index "courses", ["number"], :name => "course_number_index", :unique => true
 
   create_table "departments", :force => true do |t|
     t.string   "name"
