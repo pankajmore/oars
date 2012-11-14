@@ -12,7 +12,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20121114130745) do
->>>>>>> 4334015efa2abaf7ceb53168ebb736c55e47cb96
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
