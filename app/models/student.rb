@@ -37,4 +37,5 @@ class Student < ActiveRecord::Base
   belongs_to :department
   has_many :registration_forms, :dependent => :destroy
   has_many :course_requests
+  has_one :academic_information
 end
