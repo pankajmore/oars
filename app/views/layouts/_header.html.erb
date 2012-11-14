@@ -6,11 +6,11 @@
             <ul class="nav pull-right">
                 <% if student_signed_in? %>
                                 <li><%= link_to "Personal Information", student_personal_info_path %></li>
-                                <li><%= link_to "Course Requests",    course_requests_path %></li>
-                                <li><%= link_to "Offered Course",   offered_courses_path %></li>
+                                <li><%= link_to "Courses", courses_path %><li>
+                                <li><%= link_to "Course Requests", course_requests_path unless is_submitted? %><li>
+                                <li><%= link_to "Offered Course",offered_courses_path unless is_submitted? %> </li>
                                 <li><%= link_to "Registration",student_current_registration_path %></li>
                                 <li><%= link_to "Time-Table",student_time_table_path%></li>
-                                <li><%= link_to "Add-Drop",    student_add_drop_path%></li>
                                 <li><%= link_to "Log Out",    student_sign_out_path %></li>
                 <% end %>
 

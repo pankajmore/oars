@@ -55,6 +55,7 @@ gem "therubyracer", ">= 0.10.2", :group => :assets, :platform => :ruby
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem "faker", "1.0.1"
 gem "mailboxer"
+gem "rails_admin"
 
 group :production do
    gem "pg"
