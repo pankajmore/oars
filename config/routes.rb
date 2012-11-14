@@ -4,9 +4,11 @@ Oars::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get  '/offered_courses/search', :to => 'offered_courses#search'
+  get  '/faculties/course_description', :to => 'faculties#course_description'
   resources :courses
   resources :offered_courses
   resources :course_requests
+#   resources :faculties
   #resources :student/pre_registration
   
   #resources :registration_form do
@@ -26,6 +28,7 @@ Oars::Application.routes.draw do
         get '/faculties/current_registration', :to => 'faculty#current_registration' , :as => :current_registration
         get '/faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
         get '/faculties/courses_taken', :to => 'faculty#courses_taken' , :as => :faculty_courses_taken
+        get '/faculties/course_description', :to => 'faculty#course_description' , :as => :faculty_course_description
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
