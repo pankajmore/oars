@@ -1,8 +1,8 @@
 <div class="center hero-unit">
         <p>
-        Here add or modify course Template <%=@template.id%>
+        Here add or modify Course Constraint id <%=@constraint.id%> name <%=@constraint.name%>
          <table class="center table">
-                <tr class="info"><td>Constraint ID</td><td>name</td><td>Course</td><td>modify Constraint</td><td>Delete Constraint</td></tr>
+                <tr class="info"><td>Course</td><td>name</td><td>Course</td><td></td><td>Remove Course</td></tr>
 			
                 <% @template.course_constraints.each do |constraint| %>
                 <tr>
@@ -11,7 +11,7 @@
                   <td><%= link_to "Modify Constraint", {:action => "modify_constraint",
         :controller => "courses", :constraint_id => constraint.id} , {:class => "btn btn-small btn-primary"}%></td>
                   <td><%=link_to "Delete Constraint", {:action => "delete_constraint",
-        :controller => "courses", :constraint_id => constraint.id} , {:class => "btn btn-small btn-danger"}%></td>
+        :controller => "courses", :id => constraint.id} , {:class => "btn btn-small btn-danger"}%></td>
                 </tr>
                 <%end%>
                 
@@ -19,12 +19,14 @@
     <br><br>
     Add new Constraint <br>    
         
- <%= form_tag("/courses/add_constraint/", :method => "get" ) do %>
+ <%= form_tag("/courses/add_constraint_course/", :method => "get" ) do %>
   
   <%= label_tag(:name, "Constraint Name:") %>
   <%= text_field_tag(:name) %>
    <br>
    <%= hidden_field_tag(:template_id,@template.id) %>
+   <%= hidden_field_tag(:constraint_id,@constraint.id) %>
+   
    <%= submit_tag("Add Constraint") %>
 <% end %>
 

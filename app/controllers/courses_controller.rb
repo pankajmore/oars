@@ -20,15 +20,18 @@ class CoursesController < ApplicationController
   end
   
   def add_constraint
-  bucket=params[:bucket]
-  
-  course=Course.find_by_number(params[:course_num])
-  if course.nil? or !bucket.integer? then
-  	flash[:error]="Invalid course number #{params[:course_num]} or bucket #{bucket}"
+  name=[:name]
+  if name.blank? then
+  	flash[:error]="Give a proper name dont't leave black"
   	redirect_to :action => 'modify_template', :template_id =>params[:template_id]
    	return
   	end
-  redirect_to :action => 'modify_template', :template_id =>params[:template_id]
+  	constrint=CourseConstraint.create(:name=>name)
+  redirect_to :action => 'modify_constraint', :template_id =>params[:template_id], :constraint_id => constraint.id
+  end
+  
+  def add_constraint_course
+  
   end
   
   def modify_constraint
