@@ -76,6 +76,9 @@ before_filter :authenticate_faculty!
             end
         end
         
+        def current_sem
+          
+        end
         
         
 end
