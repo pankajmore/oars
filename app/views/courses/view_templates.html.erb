@@ -1,0 +1,25 @@
+<div class="center hero-unit">
+        <h3></h3>
+  <%= form_tag("/courses/add_template/", :method => "get") do %>
+  
+  <%= submit_tag("Add Template") %>
+<% end %>
+
+        <p>
+        Here are the existing Course Templates!!
+         <table class="center table">
+                <tr class="info"><td>Templates</td><td>Apply to Students</td><td>Modify</td></tr>
+			
+                <% @templates.each do |template| %>
+                <tr>
+                  <td><%=template.id%></td>
+                  <td><%= link_to "Apply Template", {:action => "apply_template",
+        :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-success"}%></td>
+                  <td><%= link_to "Modify Templetes", {:action => "modify_template",
+        :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-primary"}%></td>
+                </tr>
+                <%end%>
+                
+        </table>
+
+</div>

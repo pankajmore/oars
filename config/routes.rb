@@ -4,7 +4,7 @@ Oars::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get  '/offered_courses/search', :to => 'offered_courses#search'
-  resources :courses
+  #resources :courses
   resources :offered_courses
   resources :course_requests
   #resources :student/pre_registration
@@ -34,7 +34,7 @@ Oars::Application.routes.draw do
         get '/faculties/approve_form', :to => 'faculty/pre_registration#approve_form' , :as => :approve_form
        
   end 
-
+  
   post '/offered_courses/add', :to => 'offered_courses#add'
   post '/students/pre_registration/add', :to => 'student/pre_registration#add'
 
@@ -43,9 +43,19 @@ Oars::Application.routes.draw do
 
   post '/students/pre_registration/submit', :to => 'student/pre_registration#submit'
   post '/students/pre_registration/withdraw', :to => 'student/pre_registration#withdraw'
+  
   get '/faculties/pre_registration/reject', :to => 'faculty/pre_registration#reject'
   get '/faculties/pre_registration/accept', :to => 'faculty/pre_registration#accept'  
   
+  get '/courses/get_constraints', :to => 'courses#get_constraints' , :as => :get_constraints
+  get '/courses/view_courses_constraint',:to => 'courses#view_courses_constraint', :as => :view_courses_constraint
+  get 'courses/view_templates', :to => 'courses#view_templates', :as => :view_templates
+  get 'courses/apply_template', :to => 'courses#apply_template', :as => :apply_template
+  get 'courses/modify_template', :to => 'courses#modify_template', :as => :modify_template
+  get 'courses/add_template', :to => 'courses#add_template', :as => :add_template
+  get 'courses/add_constraint', :to => 'courses#add_constraint', :as => :add_constraint
+  get 'courses/modify_constraint', :to => 'courses#modify_constraint', :as => :modify_constraint
+  get 'courses/delete_constraint', :to => 'courses#delete_constraint', :as => :delete_constraint
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
                              :sessions => "student/sessions"
