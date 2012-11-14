@@ -26,7 +26,7 @@
 .full_day_row .week_event a{color:#000;}
 .full_day_row .week_event:hover{background:#E097B3;}
 .full_header_row{width:1800px;height:54px;background:#A8CFDA;}
-.full_grid{background-color:#FFEDCA;background-image:url(../images/grid.png);width:1800px;}
+.full_grid{background-color:#FFEDCA;background-image:url(/assets/grid.png);width:1800px;}
 .full_day_row .click_hour{height:57px;width:55px;border-right:1px solid #cfe6ec;padding:17px 1px 0px 18px;float:left;}
 .full_day_row .click_hour a{color:#000;}
 .full_day_row .click_hour:hover{background:#C7F980;}

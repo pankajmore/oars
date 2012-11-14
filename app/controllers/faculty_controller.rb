@@ -58,7 +58,7 @@ before_filter :authenticate_faculty!
         end
         def course_description
                 @course_described = OfferedCourse.find(params[:id])
-        end      
+        end
         
         def course_info
                 @present_course = OfferedCourse.find(params[:id]).course
