@@ -1,10 +1,9 @@
-# require "webrat"
 Given /^a user visits the signin page$/ do
-  visit student_sign_in
+  visit student_sign_in_path
 end
 
 Given /^the user is registered$/ do
-  @user = students.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+  @user = Student.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
 end
 
 Given /^the user submits correct username and password$/ do
@@ -14,7 +13,7 @@ Given /^the user submits correct username and password$/ do
 end
 
 Then /^he should see his profile page$/ do
-  page.should have_selector('title', text: @user.name)
+  page.should have_link('Personal Information')
 end
 
 Then /^he should see a logout button$/ do
