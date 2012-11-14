@@ -52,7 +52,7 @@ before_filter :authenticate_faculty!
                 
                 courseDesMod = OfferedCourse.find(params[:name])
                 courseDesMod.description = desc
-                flash[:success] = "Course Description Updated..."
+                flash[:success] = "Course Description Updated."
                 session[:return_to] = request.referer
                 redirect_to session[:return_to]
         end
