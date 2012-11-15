@@ -41,7 +41,14 @@ Oars::Application.routes.draw do
         get '/faculties/approve_form', :to => 'faculty/pre_registration#approve_form' , :as => :approve_form
        
   end 
+
+
+  get 'students/messages', :to => 'student#view_messages', :as => :student_messages
+  get 'faculties/send_message', :to => 'faculty#send_message'
+
+
   
+
   post '/offered_courses/add', :to => 'offered_courses#add'
   post '/students/pre_registration/add', :to => 'student/pre_registration#add'
 

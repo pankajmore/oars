@@ -64,7 +64,17 @@ before_filter :authenticate_faculty!
                 @present_course = OfferedCourse.find(params[:id]).course
                 @past_current_student_list = CourseTaken.where(:course_id => @present_course.id).map{|p| p.student}
         end
-        
+
+        def send_message
+          s = Student.find(params[:student_id])
+          f = Faculty.find(current_faculty.id)
+          f.send_message(s, "Addition details required", "Meet")
+          flash[:success] = "Sent a Meet message to the student!!"
+          
+          session[:return_to] = request.referer
+          redirect_to session[:return_to]
+        end
+
         def course_requests
         @request_list=[]        
         @offered_course=OfferedCourse.find(params[:id])

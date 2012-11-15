@@ -1,0 +1,26 @@
+<div id="messages">
+<h2> Messages </h2>
+<div class="accordion" id="accordion2">
+  
+  <% @conversations.each do |c| 
+       receipts = c.receipts
+       receipts.each do |receipt|
+        message = receipt.message %>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">      
+        <p> Message from  <%=   c.originator.name %>, <%= c.originator.email %> </p>
+      </a>
+    </div>
+  <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <div class="well well-large">
+        <p> Subject : <%=   message.subject %> </p> 
+        <p> <%=   message.body  %> 
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <% end %>
+  <% end %>
