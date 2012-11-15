@@ -9,8 +9,10 @@ You are dugc <br>
 <%= email_field_tag(:q) %>
 <%= submit_tag("Transfer Role") %>
 <% end %>
+<%end%>
 <%= link_to "Approve Student Forms", registration_forms_path, class: "btn btn-large btn-success"%><br>To modify/introduce constraints<br>
 <%= link_to "Course Constraints", view_templates_path, class: "btn btn-large btn-primary"%> 
+
 <% else %>
  you are only a faculty
 <% end %>
