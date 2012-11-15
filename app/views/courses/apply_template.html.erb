@@ -1,28 +1,26 @@
 <div class="center hero-unit">
         <h3>Apply <%=@template.name%> template to students</h3>
-  <%= form_tag("/courses/add_template/", :method => "get") do %>
-  	<%= label_tag(:name, "Template Name:") %>
-  	<%= text_field_tag(:name) %><br>
-  <%= submit_tag("Add Template") %>
+  <%= form_tag("/courses/add_template_students/", :method => "get") do %>
+  	<%= label_tag(:batch, "Batch:") %>
+  	<%= text_field_tag(:batch) %><br>
+  	<%= hidden_field_tag(:template_id,@template.id) %>
+  <%= submit_tag("Add Batch") %>
 <% end %>
 
         <p>
-        Here are the existing Course Templates!!
+        <h5>Here are the existing students added to <%=@template.name%> template!!</h5>
          <table class="center table">
-                <tr class="info"><td>TemplateName</td><td>Apply to Students</td><td>Modify</td><td>Delete</td></tr>
+                <tr class="info"><td>Roll Number</td><td>Name</td></tr>
 			
-                <% @templates.each do |template| %>
+                <% @template.students.each do |student| %>
                 <tr>
-                  <td><%=template.name%></td>
-                  <td><%= link_to "Apply Template", {:action => "apply_template",
-        :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-success"}%></td>
-                  <td><%= link_to "Modify Templete", {:action => "modify_template",
-        :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-primary"}%></td>
-                  <td><%= link_to "Delete Templete", {:action => "delete_template",
-        :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-danger"}%></td>
-                </tr>
+                  <td><%=student.roll%></td>
+                  <td><%=student.name%></td>
+                  
                 <%end%>
-                
-        </table>
+                </table>
+                <br><br><br>
+<td><%= link_to "Done Adding Students", {:action => "view_templates",:controller => "courses"} , {:class => "btn btn-small btn-primary"}%></td>
+        
 
 </div>

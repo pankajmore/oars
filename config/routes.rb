@@ -72,6 +72,7 @@ Oars::Application.routes.draw do
   get 'courses/modify_constraint', :to => 'courses#modify_constraint', :as => :modify_constraint
   get 'courses/delete_constraint', :to => 'courses#delete_constraint', :as => :delete_constraint
   get 'courses/delete_template', :to => 'courses#delete_template', :as => :delete_template
+  get 'courses/add_template_students', :to => 'courses#add_template_students', :as => :add_template_students
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
                              :sessions => "student/sessions"
@@ -88,7 +89,7 @@ Oars::Application.routes.draw do
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/time_table', :to => 'student#time_table', :as => :student_time_table
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
-      	
+      	get '/students/view_semester_template',:to => 'student#view_semester_template', :as => :view_semester_template
   end
 
   root :to => "profile#login"
