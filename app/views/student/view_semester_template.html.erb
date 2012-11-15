@@ -1,12 +1,14 @@
 <div class="center hero-unit">
      <h3>Here is your next Semester template</h3>
         <p>
+        <% if @template.nil? %>
+        Your next semester has not been prepared
+        <%else%>
         <h5>Here are the existing students added to <%=@template.name%> template!!</h5>
+        
          <table class="center table">
                 <tr class="info"><td>Type</td><td>Courses</td></tr>
-				<% if @template.nil? %>
-				Your next semester has not been prepared
-				<%else%>
+   
                 <% @template.course_constraints.each do |constraint| %>
                 <tr>
                   <td><%=constraint.name%></td>
@@ -14,9 +16,11 @@
                   	<%=course.number+' '+course.name %>
                   <%end%>
                   </td>
-                  
-                <%end%>
+                  </tr>
+                  <%end%>
+                
                 </table>
+        <%end%>
                 
 
 </div>
