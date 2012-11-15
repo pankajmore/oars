@@ -1,6 +1,6 @@
 Given /^a user visits the courses page and click on toggle button$/ do
   click_link "Offered Course"
-  find_button("1")
+  find_button("1").click
 end
 
 Then /^navigate to pre-registration and course should be added$/ do
