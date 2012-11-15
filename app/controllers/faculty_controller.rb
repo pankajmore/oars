@@ -1,5 +1,6 @@
 class FacultyController < ApplicationController
 before_filter :authenticate_faculty!        
+include FacultiesHelper
         def instructor_home
         end
         
