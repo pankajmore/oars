@@ -61,7 +61,20 @@ include FacultiesHelper
             redirect_to session[:return_to]
         end
 
-
+        def update_description
+                #@course_described = OfferedCourse.find(params[:id])
+                
+                desc = params[:q]
+                
+                courseDesMod = OfferedCourse.find(params[:name])
+                courseDesMod.description = desc
+                flash[:success] = "Course Description Updated."
+                #session[:return_to] = request.referer
+                redirect_to faculty_courses_taken_path
+        end
+        def course_description
+                @course_described = OfferedCourse.find(params[:id])
+        end
         
         def courses_taken
         	@courses_taken=OfferedCourse.find(:all)
@@ -99,9 +112,13 @@ include FacultiesHelper
         end
         
 		def submit_grade
-		params[:grade]
-		Course.find(params[:course_id])
-		Student.find(params[:student_id])
+		grade=params[:grade]
+		semester=params[:semester]
+		year=params[:year]
+		course=Course.find(params[:course_id])
+		student=Student.find(params[:student_id])
+		submit_grader(student,course,grade,semester,year)
+		flash[:success]="Grade successfully submitted for #{student.name} "
 		redirect_to :action => 'course_taking', :id=>params[:course_id]
 		end
 		        

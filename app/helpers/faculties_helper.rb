@@ -1,5 +1,5 @@
 module FacultiesHelper
-    def submit_grade(student,course,grade,semester,year)
+    def submit_grader(student,course,grade,semester,year)
         cd = student.current_registration_form.course_doings.find{|c| c.course==course}
         ac = student.academic_information
         ct = CourseTaken.create()
