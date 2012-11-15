@@ -42,6 +42,13 @@ namespace :db do
       y.lecture_times.push(lt1)
       y.lecture_times.push(lt2)
       y.lecture_times.push(lt3)
+      [1,1,2].sample.times do 
+        begin 
+            offset = rand(Course.count)
+            rand_course = Course.first(:offset => offset)
+        end while rand_course == x 
+        y.course_prereqs.push(rand_course)
+      end 
       y.save!() 
       }
   # lecture times 
