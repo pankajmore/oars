@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(:version => 20121115062351) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "departments", ["name"], :name => "department_name_index", :unique => true
+
   create_table "dugcs", :force => true do |t|
     t.integer  "faculty_id"
     t.integer  "department_id"
@@ -233,6 +235,7 @@ ActiveRecord::Schema.define(:version => 20121115062351) do
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true
   add_index "students", ["reset_password_token"], :name => "index_students_on_reset_password_token", :unique => true
+  add_index "students", ["roll"], :name => "roll_number_index", :unique => true
 
   create_table "template_courses", :force => true do |t|
     t.datetime "created_at", :null => false

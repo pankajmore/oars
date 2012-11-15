@@ -1,0 +1,31 @@
+<div class="center hero-unit">
+        <p>
+        <h5>Here add or modify Course Constraint <%=@constraint.name%> </h5>
+         <table class="center table">
+                <tr class="info"><td>name</td><td>Course</td><td>Remove Course</td></tr>
+			
+                <% @constraint.courses.each do |course| %>
+                <tr>
+                  <td><%=course.number%></td>
+                  <td><%=course.name %></td>
+                  <td><%=link_to "Remove Course", {:action => "remove_course",
+        :controller => "courses", :course_id => course.id, :constraint_id => @constraint.id,:template_id => @template.id} , {:class => "btn btn-small btn-danger"}%></td>
+                </tr>
+                <%end%>
+                
+        </table>
+    <br><br>
+    Add new Course to this constraint <br>    
+        
+ <%= form_tag("/courses/add_constraint_course/", :method => "get" ) do %>
+  
+  <%= label_tag(:course_num, "Course Number:") %>
+  <%= text_field_tag(:course_num) %>
+   <br>
+   <%= hidden_field_tag(:template_id,@template.id) %>
+   <%= hidden_field_tag(:constraint_id,@constraint.id) %>
+   
+   <%= submit_tag("Add Course") %>
+<% end %>
+<%=link_to "Done Adding Courses",{:action => "modify_template",:controller => "courses", :template_id => @template.id} , {:class => "btn btn-small btn-primary"}%>
+</div>
