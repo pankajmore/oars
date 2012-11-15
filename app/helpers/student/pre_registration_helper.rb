@@ -19,8 +19,8 @@ module Student::PreRegistrationHelper
       RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id,'pre').is_submitted
     end
     def satisfy_template(regform,template)
-        cs = regform.offered_courses.map{|oc| oc.courses}
-        template.each do |cnt|
+        cs = regform.offered_courses.map{|oc| oc.course}
+        template.course_constraints.each do |cnt|
             if (cnt.courses & cs).empty?
                 return false 
             end 

@@ -1,0 +1,30 @@
+<%= form_tag("/views/faculties/search/", :method => "get") do %>
+  <%= label_tag(:q, "Search Faculty:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h1>Students</h1>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @faculties.each do |faculty| %>
+  
+  <tr>
+      <th><%= faculty.name %></th>
+      <th><%= faculty.department.name %></th>
+      <th><%= faculty.phone %>
+	  </th> 	
+      <th>
+      	
+  
+    <tr>
+  <% end %>
+  </tbody>
+</table>

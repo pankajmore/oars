@@ -42,7 +42,7 @@ class Student::PreRegistrationController < ApplicationController
   def submit
     @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
     template = current_student.template_course
-    if template.nil? or satisfy_template(@preform,template)
+    if template.nil? or view_context.satisfy_template(@preform,template)
         @preform.is_submitted = true
         @preform.save!
         flash[:success] = "Hurray, submitted you Pre-Registration Form to DUGC for approval!"
