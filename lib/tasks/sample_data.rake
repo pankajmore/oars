@@ -9,13 +9,13 @@ namespace :db do
     end
   a = AcademicInformation.create!()
   b = CurrentRegistrationForm.create!()
-  a.student = Student.create!({:name => "Ajmera", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
+  a.student = Student.create!({:name => "Ajmera", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1, :roll => 'Y9321'})
   b.student = a.student 
   a.save
   b.save 
   a = AcademicInformation.create!()
   b = CurrentRegistrationForm.create!()
-  a.student = Student.create!({:name => "bakait chhora", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1}) 
+  a.student = Student.create!({:name => "bakait chhora", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1, :roll => 'Y9123'}) 
   b.student = a.student 
   a.save
   b.save 
