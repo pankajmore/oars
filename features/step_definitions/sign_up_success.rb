@@ -15,12 +15,3 @@ end
 Then /^he should get updated in database$/ do
   not Student.find_by_email("example@example.com").nil?
 end
-
-Then /^he should see his profile page$/ do
-  page.should have_link('Personal Information')
-end
-
-Then /^he should see a signout button$/ do
-  page.should have_link('Log Out', href: '/students/sign_out')
-end
-
