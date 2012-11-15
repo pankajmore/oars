@@ -35,6 +35,7 @@ Oars::Application.routes.draw do
         get '/faculties/course_description', :to => 'faculty#course_description' , :as => :faculty_course_description
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
         get '/faculties/course_taking', :to => 'faculty#course_taking' , :as => :course_taking_list
+        get '/faculties/submit_grade', :to => 'faculty#submit_grade' , :as => :submit_grade 
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/update_description', :to => 'faculty#update_description' , :as => :update_description
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
@@ -76,6 +77,7 @@ Oars::Application.routes.draw do
   get 'courses/modify_constraint', :to => 'courses#modify_constraint', :as => :modify_constraint
   get 'courses/delete_constraint', :to => 'courses#delete_constraint', :as => :delete_constraint
   get 'courses/delete_template', :to => 'courses#delete_template', :as => :delete_template
+  get 'courses/add_template_students', :to => 'courses#add_template_students', :as => :add_template_students
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
                              :sessions => "student/sessions"
@@ -92,7 +94,7 @@ Oars::Application.routes.draw do
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
         get '/students/time_table', :to => 'student#time_table', :as => :student_time_table
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
-      	
+      	get '/students/view_semester_template',:to => 'student#view_semester_template', :as => :view_semester_template
   end
 
   root :to => "profile#login"

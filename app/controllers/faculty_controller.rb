@@ -97,6 +97,13 @@ before_filter :authenticate_faculty!
             end
         end
         
+		def submit_grade
+		params[:grade]
+		Course.find(params[:course_id])
+		Student.find(params[:student_id])
+		redirect_to :action => 'course_taking', :id=>params[:course_id]
+		end
+		        
         def current_sem
             courses = []
             @courses_taken = [] 

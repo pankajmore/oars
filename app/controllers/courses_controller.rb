@@ -17,6 +17,19 @@ class CoursesController < ApplicationController
   end
   
   def apply_template
+  @template=TemplateCourse.find(params[:template_id])
+  end
+
+  def add_template_students
+  roll_like="%"+params[:batch]+"%"
+  @students=Student.find(:all,:conditions => ['roll LIKE ? and department_id == ?',roll_like, current_faculty.department_id])
+  
+  @template=TemplateCourse.find(params[:template_id])
+  @students.each do |student|
+  @template.students << student	
+  end
+  @template.save!
+  redirect_to :action => 'apply_template', :template_id => @template.id 
   end
   
   def add_constraint
@@ -48,10 +61,10 @@ class CoursesController < ApplicationController
 
   def add_constraint_course
   course=Course.find_by_number(params[:course_num])
+  constraint=CourseConstraint.find(params[:constraint_id])	
   if course.nil? then
   	flash[:error]="not a valid course number #{params[:course_num]} "
   else
-  	constraint=CourseConstraint.find(params[:constraint_id])
   	constraint.courses+=[course]
   	constraint.save!
   	flash[:success]="Course #{course.name} add to the constraint"
