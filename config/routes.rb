@@ -4,10 +4,13 @@ Oars::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get  '/offered_courses/search', :to => 'offered_courses#search'
+
+  get  '/faculties/course_description', :to => 'faculty#course_description'
   get  '/courses/search', :to => 'courses#search'
   resources :courses
   resources :offered_courses
   resources :course_requests
+#   resources :faculties
   #resources :student/pre_registration
 
   #resources :registration_form do
@@ -27,8 +30,10 @@ Oars::Application.routes.draw do
         get '/faculties/current_sem', :to => 'faculty#current_sem#' , :as => :current_registration
         get '/faculties/Pre_registration', :to => 'faculty#pre_registration' , :as => :faculty_pre_registration
         get '/faculties/courses_taken', :to => 'faculty#courses_taken' , :as => :faculty_courses_taken
+        get '/faculties/course_description', :to => 'faculty#course_description' , :as => :faculty_course_description
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
+        get '/faculties/update_description', :to => 'faculty#update_description' , :as => :update_description
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
         get '/faculties/rejected', :to => 'faculty#rejected' , :as => :rejected
         get '/faculties/registration_forms', :to => 'faculty/pre_registration#registration_forms' , :as => :registration_forms
@@ -36,8 +41,12 @@ Oars::Application.routes.draw do
        
   end 
 
+
   get 'students/messages', :to => 'student#view_messages', :as => :student_messages
   get 'faculties/send_message', :to => 'faculty#send_message'
+
+
+  
 
   post '/offered_courses/add', :to => 'offered_courses#add'
   post '/students/pre_registration/add', :to => 'student/pre_registration#add'
@@ -47,9 +56,19 @@ Oars::Application.routes.draw do
 
   post '/students/pre_registration/submit', :to => 'student/pre_registration#submit'
   post '/students/pre_registration/withdraw', :to => 'student/pre_registration#withdraw'
+  
   get '/faculties/pre_registration/reject', :to => 'faculty/pre_registration#reject'
   get '/faculties/pre_registration/accept', :to => 'faculty/pre_registration#accept'  
   
+  get '/courses/get_constraints', :to => 'courses#get_constraints' , :as => :get_constraints
+  get '/courses/view_courses_constraint',:to => 'courses#view_courses_constraint', :as => :view_courses_constraint
+  get 'courses/view_templates', :to => 'courses#view_templates', :as => :view_templates
+  get 'courses/apply_template', :to => 'courses#apply_template', :as => :apply_template
+  get 'courses/modify_template', :to => 'courses#modify_template', :as => :modify_template
+  get 'courses/add_template', :to => 'courses#add_template', :as => :add_template
+  get 'courses/add_constraint', :to => 'courses#add_constraint', :as => :add_constraint
+  get 'courses/modify_constraint', :to => 'courses#modify_constraint', :as => :modify_constraint
+  get 'courses/delete_constraint', :to => 'courses#delete_constraint', :as => :delete_constraint
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
                              :sessions => "student/sessions"
@@ -64,8 +83,8 @@ Oars::Application.routes.draw do
         get '/students/pre_registration', :to => 'student/pre_registration#index', :as => :student_pre_registration
         get '/students/add_drop', :to => 'student#add_drop', :as => :student_add_drop
         get '/students/transcript', :to => 'student#transcript', :as => :student_transcript
+        get '/students/time_table', :to => 'student#time_table', :as => :student_time_table
         get '/students/backlog_list', :to => 'student#backlog_list', :as => :student_backlog_list
-      	get '/students/time-table', :to => 'student#time-table', :as => :student_time_table
       	
   end
 

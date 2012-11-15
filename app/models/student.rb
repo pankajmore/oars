@@ -20,6 +20,7 @@
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
 #  department_id          :integer
+#  template_course_id     :integer
 #
 
 class Student < ActiveRecord::Base
@@ -35,6 +36,7 @@ class Student < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :department_id
   attr_accessible :name, :phone, :roll, :username
   belongs_to :department
+  belongs_to :template_course
   has_many :registration_forms, :dependent => :destroy
   has_many :course_requests
   has_one :academic_information

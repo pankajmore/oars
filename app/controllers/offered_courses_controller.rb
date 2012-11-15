@@ -1,5 +1,7 @@
 class OfferedCoursesController < ApplicationController
   before_filter :authenticate_student! 
+  include OfferedCoursesHelper
+
   def index
     @courses = OfferedCourse.all
   end
@@ -9,7 +11,7 @@ class OfferedCoursesController < ApplicationController
     
     respond_to do |format|
       format.js
-    end
+  end
     
   end
   
@@ -21,12 +23,16 @@ class OfferedCoursesController < ApplicationController
   def add
     id = params[:id]
     @offeredCourse = OfferedCourse.find(params[:id])
-    c = CourseRequest.create!()
-    c.student = current_student
-    c.offered_course = @offeredCourse
-    c.status = 'add' 
-    c.save!
-    flash[:success] = "Hold tight, Request Sent!"
+    if satisfy_prereqs(@offeredCourse,current_student) 
+        c = CourseRequest.create!()
+        c.student = current_student
+        c.offered_course = @offeredCourse
+        c.status = 'add' 
+        c.save!
+        flash[:success] = "Hold tight, Request Sent!"
+    else 
+        flash[:failure] = "Pre Requisites not satisfied."
+    end 
     session[:return_to] = request.referer
     redirect_to session[:return_to]
   end

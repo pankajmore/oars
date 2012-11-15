@@ -42,6 +42,13 @@ namespace :db do
       y.lecture_times.push(lt1)
       y.lecture_times.push(lt2)
       y.lecture_times.push(lt3)
+      [1,1,2].sample.times do 
+        begin 
+            offset = rand(Course.count)
+            rand_course = Course.first(:offset => offset)
+        end while rand_course == x 
+        y.course_prereqs.push(rand_course)
+      end 
       y.save!() 
       }
   # lecture times 
@@ -50,20 +57,23 @@ end
 
 def rand_lecturetime 
       lt = LectureTime.create()
-      day = rand(0..5)
+      day = rand(2..6)
       start_time = rand(8..17)
       end_time = start_time + [1,2].sample
-      lt.start_time = Time.parse("#{start_time}:00")
-      lt.end_time = Time.parse("#{end_time}:00")
+      #lt.starts_at = Time.parse("#{start_time}:00")
+      #lt.ends_at = Time.parse("#{end_time}:00")
       h = Hash.new()
-      h[0] = 'monday'
-      h[1] = 'tuesday'
-      h[2] = 'wednesday'
-      h[3] = 'thursday'
-      h[4] = 'friday'
-      h[5] = 'saturday'
-      h[6] = 'sunday'
+      h[0] = 'saturday'
+      h[1] = 'sunday'
+      h[2] = 'monday'
+      h[3] = 'tuesday'
+      h[4] = 'wednesday'
+      h[5] = 'thursday'
+      h[6] = 'friday'
       lt.day = h[day]
+      lt.starts_at = Time.utc(2000,1,day+1,start_time,0)
+      lt.ends_at = Time.utc(2000,1,day+1,end_time,0)
+      lt.save
       return lt 
 end 
 

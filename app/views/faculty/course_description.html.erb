@@ -1,0 +1,12 @@
+<h2 align="center">Description for <%= @course_described.course.number %> <%= @course_described.course.name %></h2>
+
+<%= form_tag("/faculties/update_description", :method => "get"  ) do %>
+  <%= label_tag(:q, "Course Description:") %>
+  <%= text_area_tag(:q) %>
+  
+  <%= hidden_field_tag(:name, @course_described.id) %>
+  </br>
+  <%= submit_tag("Update") %>
+<% end %>
+
+<%= link_to "Back", :back %>
