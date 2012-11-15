@@ -19,4 +19,5 @@ class Course < ActiveRecord::Base
   belongs_to :department 
   belongs_to :course_constraint 
   has_many :course_takens
+  has_many :course_doings
 end

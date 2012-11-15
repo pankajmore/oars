@@ -36,4 +36,5 @@ class Faculty < ActiveRecord::Base
   attr_accessible :name, :pfno, :phone, :username, :department_id
   has_and_belongs_to_many :offered_courses
   belongs_to :department
+  has_many :course_doings 
 end

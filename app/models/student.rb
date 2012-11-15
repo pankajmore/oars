@@ -40,4 +40,5 @@ class Student < ActiveRecord::Base
   has_many :registration_forms, :dependent => :destroy
   has_many :course_requests
   has_one :academic_information
+  has_one :current_registration_form
 end

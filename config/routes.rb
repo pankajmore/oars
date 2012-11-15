@@ -7,7 +7,7 @@ Oars::Application.routes.draw do
 
   get  '/faculties/course_description', :to => 'faculty#course_description'
   get  '/courses/search', :to => 'courses#search'
-  resources :courses
+  #resources :courses
   resources :offered_courses
   resources :course_requests
   resources :student
@@ -34,6 +34,7 @@ Oars::Application.routes.draw do
         get '/faculties/courses_taken', :to => 'faculty#courses_taken' , :as => :faculty_courses_taken
         get '/faculties/course_description', :to => 'faculty#course_description' , :as => :faculty_course_description
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
+        get '/faculties/course_taking', :to => 'faculty#course_taking' , :as => :course_taking_list
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/update_description', :to => 'faculty#update_description' , :as => :update_description
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
@@ -61,16 +62,18 @@ Oars::Application.routes.draw do
   
   get '/faculties/pre_registration/reject', :to => 'faculty/pre_registration#reject'
   get '/faculties/pre_registration/accept', :to => 'faculty/pre_registration#accept'  
-  
-  get '/courses/get_constraints', :to => 'courses#get_constraints' , :as => :get_constraints
+    
   get '/courses/view_courses_constraint',:to => 'courses#view_courses_constraint', :as => :view_courses_constraint
   get 'courses/view_templates', :to => 'courses#view_templates', :as => :view_templates
   get 'courses/apply_template', :to => 'courses#apply_template', :as => :apply_template
   get 'courses/modify_template', :to => 'courses#modify_template', :as => :modify_template
   get 'courses/add_template', :to => 'courses#add_template', :as => :add_template
   get 'courses/add_constraint', :to => 'courses#add_constraint', :as => :add_constraint
+  get 'courses/add_constraint_course', :to => 'courses#add_constraint_course', :as => :add_constraint_course
+  get 'courses/remove_course', :to => 'courses#remove_course', :as => :remove_constraint_course
   get 'courses/modify_constraint', :to => 'courses#modify_constraint', :as => :modify_constraint
   get 'courses/delete_constraint', :to => 'courses#delete_constraint', :as => :delete_constraint
+  get 'courses/delete_template', :to => 'courses#delete_template', :as => :delete_template
   devise_for :students,
              :controllers => { :registrations => "student/registrations",
                              :sessions => "student/sessions"

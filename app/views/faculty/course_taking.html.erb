@@ -1,0 +1,24 @@
+<div class="center hero-unit">
+		
+		<h3>Student for Course <%=@course.number%> </h3>
+		
+        <table class="center table">
+            <tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td></tr>
+       	 <% @forms_list.each do |request| %>      
+             <tr><td><%=request.student.name%></td><td><%=request.student.roll%>
+             </td><td>Taking</td>
+      		 <%end %>
+        </table>
+        <%if !@forms_list.empty? %>
+       <%else%>
+        No more pending requests.
+        <%end%>        
+		
+        </p>
+        
+</div>
+
+
+
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://iitk.ac.in/' %>
+

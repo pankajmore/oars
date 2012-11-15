@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115053705) do
+ActiveRecord::Schema.define(:version => 20121115062351) do
 
   create_table "academic_informations", :force => true do |t|
     t.float    "cpi"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(:version => 20121115053705) do
     t.string   "name"
   end
 
+  create_table "course_doings", :force => true do |t|
+    t.integer  "current_registration_form_id"
+    t.integer  "course_id"
+    t.integer  "credits"
+    t.integer  "faculty_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "course_requests", :force => true do |t|
     t.integer  "student_id"
     t.integer  "offered_course_id"
@@ -90,11 +99,19 @@ ActiveRecord::Schema.define(:version => 20121115053705) do
   add_index "courses", ["course_constraint_id"], :name => "course_constraints_index"
   add_index "courses", ["number"], :name => "course_number_index", :unique => true
 
+  create_table "current_registration_forms", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "departments", ["name"], :name => "department_name_index", :unique => true
 
   create_table "dugcs", :force => true do |t|
     t.integer  "faculty_id"
@@ -165,7 +182,6 @@ ActiveRecord::Schema.define(:version => 20121115053705) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "course_id"
-    t.string   "status"
   end
 
   create_table "offered_courses_registration_forms", :id => false, :force => true do |t|
@@ -219,6 +235,7 @@ ActiveRecord::Schema.define(:version => 20121115053705) do
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true
   add_index "students", ["reset_password_token"], :name => "index_students_on_reset_password_token", :unique => true
+  add_index "students", ["roll"], :name => "roll_number_index", :unique => true
 
   create_table "template_courses", :force => true do |t|
     t.datetime "created_at", :null => false
