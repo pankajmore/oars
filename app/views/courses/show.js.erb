@@ -1,4 +1,4 @@
-var body = "<% if @course.offered.nil? %> Not Offered this semester <% else %> Offered this semester <% end %>"
+var body = "<% if @course.offered.nil? %> Not Offered next semester <% else %> Offered next semester <% end %>"
 $(".modal-header h3").html("<%= @course.number + " : " + @course.name %>")
 $(".modal-body").html(body)
 $("#courseModal").modal()

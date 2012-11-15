@@ -2,7 +2,7 @@ class Student::CurrentRegistrationController < ApplicationController
   
   def current_registration
   #student_id = params[:q]
-  @currentRegistration=RegistrationForm.find(:all,:conditions =>["form_type==? and student_id==?","pre",current_student.id])[0]
+  @currentRegistration=current_student.current_registration_form
   #@courses=@currentRegistration.offered_courses
   end
 end 

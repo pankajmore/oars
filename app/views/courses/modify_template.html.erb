@@ -1,33 +1,32 @@
 <div class="center hero-unit">
         <p>
-        Here add or modify course Template <%=@template.id%>
+        <h5>Here add or modify course Template <%=@template.name%></h5>
          <table class="center table">
-                <tr class="info"><td>Constraint</td><td>bucket</td><td>Course</td><td>modify constraint</td><td>delete constraint</td></tr>
+                <tr class="info"><td>Constraint Name</td><td>modify Constraint</td><td>Delete Constraint</td></tr>
 			
                 <% @template.course_constraints.each do |constraint| %>
                 <tr>
-                  <td><%=constraint.id%></td>
-                  <td><%=constraint.bucket %></td>
-                  <td><%=constraint.course.number+ ' ' + constraint.course.name%></td>
+                  <td><%=constraint.name %></td>
                   <td><%= link_to "Modify Constraint", {:action => "modify_constraint",
-        :controller => "courses", :id => constraint.id} , {:class => "btn btn-small btn-primary"}%></td>
+        :controller => "courses", :constraint_id => constraint.id, :template_id => @template.id} , {:class => "btn btn-small btn-primary"}%></td>
                   <td><%=link_to "Delete Constraint", {:action => "delete_constraint",
-        :controller => "courses", :id => constraint.id} , {:class => "btn btn-small btn-danger"}%></td>
+        :controller => "courses", :constraint_id => constraint.id, :template_id => @template.id} , {:class => "btn btn-small btn-danger"}%></td>
                 </tr>
                 <%end%>
                 
         </table>
     <br><br>
-    Add new Constraint <br>    
+    <h3>Add new Constraint</h3> <br>    
         
  <%= form_tag("/courses/add_constraint/", :method => "get" ) do %>
-  <%= label_tag(:bucket, "bucket:") %>
-  <%= text_field_tag(:bucket) %>
-  <%= label_tag(:course_num, "Course Number:") %>
-  <%= text_field_tag(:course_num) %>
+  
+  <%= label_tag(:name, "Constraint Name:") %>
+  <%= text_field_tag(:name) %>
    <br>
    <%= hidden_field_tag(:template_id,@template.id) %>
    <%= submit_tag("Add Constraint") %>
 <% end %>
+<%=link_to "Done Adding Constraints", {:action => "view_templates",
+        :controller => "courses"}, {:class => "btn btn-small btn-primary"}%></td>
 
 </div>

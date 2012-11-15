@@ -20,7 +20,9 @@
   <tr>
       <th><%= link_to course.course.number, course , :remote => true %></th>
       <th><%= link_to course.course.name, course , :remote => true %></th>
-      <th><% if request.empty? %>
+      <th>  <% if request.empty? and not satisfy_prereqs(course,current_student) %>
+            Prereqs not satisfied  
+            <% elsif request.empty? %>
       		Not Requested
       		<% elsif request[0].status=="add" %>
       		request Pending

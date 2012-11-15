@@ -1,5 +1,5 @@
 <div class="center hero-unit">
-        <h3>Add a new Template</h3>
+        <h3>Apply <%=@template.name%> template to students</h3>
   <%= form_tag("/courses/add_template/", :method => "get") do %>
   	<%= label_tag(:name, "Template Name:") %>
   	<%= text_field_tag(:name) %><br>
