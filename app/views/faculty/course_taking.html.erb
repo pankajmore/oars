@@ -3,10 +3,15 @@
 		<h3>Student for Course <%=@course.number%> </h3>
 		
         <table class="center table">
-            <tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td></tr>
+            <tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td><td>Submit Grade</td></tr>
        	 <% @forms_list.each do |request| %>      
-             <tr><td><%=request.student.name%></td><td><%=request.student.roll%>
-             </td><td>Taking</td>
+             <tr><td><%=request.student.name%></td><td><%=request.student.roll%></td>
+             <td>Taking</td>
+             <td><%= form_tag "/courses/search", method: "get", class: "form-search" do %>
+  <%= select_tag(:grade,options_for_select([['A', 1], ['B', 2],['C', 3],['D', 4],['F', 5]])) %>
+  <%= hidden_field_tag(:course,@course.number)%>
+  <%= submit_tag "Search", class: "btn" %>
+  </td>
       		 <%end %>
         </table>
         <%if !@forms_list.empty? %>
