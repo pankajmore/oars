@@ -99,9 +99,13 @@ include FacultiesHelper
         end
         
 		def submit_grade
-		params[:grade]
-		Course.find(params[:course_id])
-		Student.find(params[:student_id])
+		grade=params[:grade]
+		semester=params[:semester]
+		year=params[:year]
+		course=Course.find(params[:course_id])
+		student=Student.find(params[:student_id])
+		submit_grader(student,course,grade,semester,year)
+		flash[:success]="Grade successfully submitted for #{student.name} "
 		redirect_to :action => 'course_taking', :id=>params[:course_id]
 		end
 		        
