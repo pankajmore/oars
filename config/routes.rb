@@ -10,6 +10,8 @@ Oars::Application.routes.draw do
   resources :courses
   resources :offered_courses
   resources :course_requests
+  resources :student
+  resources :faculty
 #   resources :faculties
   #resources :student/pre_registration
 
