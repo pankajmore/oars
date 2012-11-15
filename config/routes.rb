@@ -7,7 +7,6 @@ Oars::Application.routes.draw do
 
   get  '/faculties/course_description', :to => 'faculty#course_description'
   get  '/courses/search', :to => 'courses#search'
-  #resources :courses
   resources :offered_courses
   resources :course_requests
   resources :student
@@ -158,4 +157,6 @@ Oars::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+resources :courses
+  
 end
