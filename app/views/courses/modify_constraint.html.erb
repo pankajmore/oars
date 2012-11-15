@@ -2,32 +2,30 @@
         <p>
         Here add or modify Course Constraint id <%=@constraint.id%> name <%=@constraint.name%>
          <table class="center table">
-                <tr class="info"><td>Course</td><td>name</td><td>Course</td><td></td><td>Remove Course</td></tr>
+                <tr class="info"><td>name</td><td>Course</td><td></td><td>Remove Course</td></tr>
 			
-                <% @template.course_constraints.each do |constraint| %>
+                <% @constraint.courses.each do |course| %>
                 <tr>
-                  <td><%=constraint.id%></td>
-                  <td><%=constraint.name %></td>
-                  <td><%= link_to "Modify Constraint", {:action => "modify_constraint",
-        :controller => "courses", :constraint_id => constraint.id} , {:class => "btn btn-small btn-primary"}%></td>
-                  <td><%=link_to "Delete Constraint", {:action => "delete_constraint",
-        :controller => "courses", :id => constraint.id} , {:class => "btn btn-small btn-danger"}%></td>
+                  <td><%=course.number%></td>
+                  <td><%=course.name %></td>
+                  <td><%=link_to "Remove Course", {:action => "remove_course",
+        :controller => "courses", :course_id => course.id, :constraint_id => @constraint.id,:template_id => @template.id} , {:class => "btn btn-small btn-danger"}%></td>
                 </tr>
                 <%end%>
                 
         </table>
     <br><br>
-    Add new Constraint <br>    
+    Add new Course to this constraint <br>    
         
  <%= form_tag("/courses/add_constraint_course/", :method => "get" ) do %>
   
-  <%= label_tag(:name, "Constraint Name:") %>
-  <%= text_field_tag(:name) %>
+  <%= label_tag(:course_num, "Course Number:") %>
+  <%= text_field_tag(:course_num) %>
    <br>
    <%= hidden_field_tag(:template_id,@template.id) %>
    <%= hidden_field_tag(:constraint_id,@constraint.id) %>
    
-   <%= submit_tag("Add Constraint") %>
+   <%= submit_tag("Add Course") %>
 <% end %>
 
 </div>

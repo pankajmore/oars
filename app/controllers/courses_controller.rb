@@ -20,13 +20,13 @@ class CoursesController < ApplicationController
   end
   
   def add_constraint
-  name=[:name]
+  name=params[:name]
   if name.blank? then
   	flash[:error]="Give a proper name dont't leave black"
   	redirect_to :action => 'modify_template', :template_id =>params[:template_id]
    	return
   	end
-  	constrint=CourseConstraint.create(:name=>name)
+  	constraint=CourseConstraint.create(:name=>name)
   redirect_to :action => 'modify_constraint', :template_id =>params[:template_id], :constraint_id => constraint.id
   end
   
@@ -35,10 +35,26 @@ class CoursesController < ApplicationController
   end
   
   def modify_constraint
-  
+  @constraint=CourseConstraint.find(params[:constraint_id])
+  @template=TemplateCourse.find(params[:template_id])
   end
   
   def delete_constraint
+  constraint=CourseConstraint.find(params[:constraint_id])
+  constraint.courses-[Course.find([:course_id])]
+  constraint.save!  
+  redirect_to :action => 'modify_constraint', :template_id =>params[:template_id] , :constraint_id => params[:constraint_id] 
+  end
+
+  def add_constraint_course
+  
+  end
+  
+  def remove_course
+  constraint=CourseConstraint.find(params[:constraint_id])
+  constraint.courses-[Course.find([:course_id])]
+  constraint.save!  
+  redirect_to :action => 'modify_constraint', :template_id =>params[:template_id] , :constraint_id => params[:constraint_id] 
   
   end
   

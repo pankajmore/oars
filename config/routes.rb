@@ -7,7 +7,7 @@ Oars::Application.routes.draw do
 
   get  '/faculties/course_description', :to => 'faculty#course_description'
   get  '/courses/search', :to => 'courses#search'
-  resources :courses
+  #resources :courses
   resources :offered_courses
   resources :course_requests
 #   resources :faculties
@@ -60,6 +60,8 @@ Oars::Application.routes.draw do
   get 'courses/modify_template', :to => 'courses#modify_template', :as => :modify_template
   get 'courses/add_template', :to => 'courses#add_template', :as => :add_template
   get 'courses/add_constraint', :to => 'courses#add_constraint', :as => :add_constraint
+  get 'courses/add_constraint_course', :to => 'courses#add_constraint_course', :as => :add_constraint_course
+  get 'courses/remove_course', :to => 'courses#remove_course', :as => :remove_constraint_course
   get 'courses/modify_constraint', :to => 'courses#modify_constraint', :as => :modify_constraint
   get 'courses/delete_constraint', :to => 'courses#delete_constraint', :as => :delete_constraint
   devise_for :students,

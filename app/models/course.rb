@@ -15,6 +15,7 @@ class Course < ActiveRecord::Base
   attr_accessible :name, :number, :department_id
   has_one :offered, :class_name => 'OfferedCourse'
   belongs_to :offered_course
-  belongs_to :department 
+  belongs_to :department
+  belongs_to :course_constraint 
   has_many :course_takens
 end
