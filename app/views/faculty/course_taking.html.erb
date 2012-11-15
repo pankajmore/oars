@@ -3,15 +3,24 @@
 		<h3>Student for Course <%=@course.number%> </h3>
 		
         <table class="center table">
-            <tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td></tr>
+            <tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td><td>Submit Grade</td></tr>
        	 <% @forms_list.each do |request| %>      
-             <tr><td><%=request.student.name%></td><td><%=request.student.roll%>
-             </td><td>Taking</td>
-      		 <%end %>
+             <tr><td><%=request.student.name%></td><td><%=request.student.roll%></td>
+             <td>Taking</td>
+             <td><%= form_tag( "/faculties/submit_grade", :method => "get") do %>
+  		<%= select_tag(:grade,options_for_select([['A', 'A'], ['B', 'B'],['C', 'C'],['D', 'D'],['F', 'F']])) %>
+		  <%= hidden_field_tag(:semester, '7')%>	
+		  <%= hidden_field_tag(:year, '2012')%>
+  		<%= hidden_field_tag(:course_id,@course.id)%>
+  		<%= hidden_field_tag(:student_id,request.student.id)%>
+  		<%= submit_tag( "Submit")%>
+  		<% end %>
+  </td>
+   		<%end %>
         </table>
-        <%if !@forms_list.empty? %>
-       <%else%>
-        No more pending requests.
+        <%if @forms_list.empty? %>
+        
+              No more pending requests for grade submission.
         <%end%>        
 		
         </p>

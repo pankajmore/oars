@@ -5,8 +5,7 @@
         <table class="center table">
 			<tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td><td>Accept</td><td>Reject</td><td>Meet</td></tr>
        	 <% @request_list.each do |request| %>      
-   			<tr><td><%=request.student.name%></td><td><%=request.student.roll%></td><td>Backchod
-   			hai</td><td><%=link_to "Accept", {:action =>
+   			<tr><td><%=request.student.name%></td><td><%=request.student.roll%></td><td>Info-student</td><td><%=link_to "Accept", {:action =>
    			"accepted", :course_id => @offered_course.id,
    			:request_id=>request.id},{:class =>"btn
    			btn-mini btn-primary"}

@@ -1,0 +1,2 @@
+module Views::FacultiesHelper
+end
