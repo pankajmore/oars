@@ -9,6 +9,8 @@
              <td>Taking</td>
              <td><%= form_tag "/faculties/submit_grades", method: "get" do %>
   <%= select_tag(:grade,options_for_select([['A', 'A'], ['B', 'B'],['C', 'C'],['D', 'D'],['F', 'F']])) %>
+  <%= hidden_field_tag(:semester, '7'%>
+  <%= hidden_field_tag(:year, '2012'%>
   <%= hidden_field_tag(:course_id,@course.id)%>
   <%= hidden_field_tag(:student_id,request)%>
   <%= submit_tag "Submit", class: "btn" %>
