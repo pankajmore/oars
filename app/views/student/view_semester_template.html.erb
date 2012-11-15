@@ -4,7 +4,9 @@
         <h5>Here are the existing students added to <%=@template.name%> template!!</h5>
          <table class="center table">
                 <tr class="info"><td>Type</td><td>Courses</td></tr>
-			
+				<% if @template.nil? %>
+				Your next semester has not been prepared
+				<%else%>
                 <% @template.course_constraints.each do |constraint| %>
                 <tr>
                   <td><%=constraint.name%></td>
