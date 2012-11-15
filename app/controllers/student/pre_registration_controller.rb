@@ -41,9 +41,15 @@ class Student::PreRegistrationController < ApplicationController
 
   def submit
     @preform = RegistrationForm.find_or_create_by_student_id_and_form_type(current_student.id, 'pre')
-    @preform.is_submitted = true
-    @preform.save!
-    flash[:success] = "Hurray, submitted you Pre-Registration Form to DUGC for approval!"
+    template = current_student.template_course
+    if template.nil? or satisfy_template(@preform,template)
+        @preform.is_submitted = true
+        @preform.save!
+        flash[:success] = "Hurray, submitted you Pre-Registration Form to DUGC for approval!"
+    else 
+        flash[:failure] = "Template Not Satisfied"
+    end 
+
     session[:return_to] = request.referer
     redirect_to session[:return_to]
   end
@@ -57,3 +63,4 @@ class Student::PreRegistrationController < ApplicationController
     redirect_to session[:return_to]
   end
 end
+

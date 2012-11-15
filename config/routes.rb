@@ -42,6 +42,8 @@ Oars::Application.routes.draw do
         get '/faculties/rejected', :to => 'faculty#rejected' , :as => :rejected
         get '/faculties/registration_forms', :to => 'faculty/pre_registration#registration_forms' , :as => :registration_forms
         get '/faculties/approve_form', :to => 'faculty/pre_registration#approve_form' , :as => :approve_form
+        post '/faculties/transfer_role', :to => 'faculty#transfer_role' , :as => :transfer_role
+        post '/faculties/revoke_role', :to => 'faculty#revoke_role' , :as => :revoke_role
        
   end 
 
