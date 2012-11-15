@@ -2,16 +2,7 @@ class StudentController < ApplicationController
         before_filter :authenticate_student! 
         include StudentHelper
 
-  def index
-    @students = Student.all
-  end
-  def show
-    search = params[:q]
-    search_condition = "%" + search + "%"
-    @students = Student.find(:all, :conditions => ['name LIKE ? or roll LIKE ?', search_condition, search_condition])   
-  end
-  
-  
+
 
   
         def welcome_student

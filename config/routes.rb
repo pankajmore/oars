@@ -7,11 +7,18 @@ Oars::Application.routes.draw do
 
   get  '/faculties/course_description', :to => 'faculty#course_description'
   get  '/courses/search', :to => 'courses#search'
-  #resources :courses
+  resources :courses
   resources :offered_courses
   resources :course_requests
+
   resources :student
   resources :faculty
+
+  get '/views/students/' , :to => 'views/students#index', :as => :vst
+  get '/views/students/search/', :to => 'views/students#search', :as=> :vsst
+  get '/views/faculties/' , :to => 'views/faculties#index', :as => :vft
+  get '/views/faculties/search/', :to => 'views/faculties#search', :as=>:vsft
+  
 #   resources :faculties
   #resources :student/pre_registration
 
@@ -97,6 +104,7 @@ Oars::Application.routes.draw do
 
   get 'profile/login'
   get 'profile/contact', :to => 'profile#contact', :as => :contact
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
