@@ -4,8 +4,8 @@
 #
 #  id                :integer          not null, primary key
 #  day               :string(255)
-#  start_time        :time
-#  end_time          :time
+#  starts_at         :datetime
+#  ends_at           :datetime
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  offered_course_id :integer

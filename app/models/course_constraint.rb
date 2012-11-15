@@ -4,10 +4,9 @@
 #
 #  id                 :integer          not null, primary key
 #  template_course_id :integer
-#  course_id          :integer
-#  bucket             :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  name               :string(255)
 #
 
 class CourseConstraint < ActiveRecord::Base
