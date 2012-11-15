@@ -1,8 +1,8 @@
 <div class="center hero-unit">
         <p>
-        Here add or modify Course Constraint id <%=@constraint.id%> name <%=@constraint.name%>
+        <h5>Here add or modify Course Constraint <%=@constraint.name%> </h5>
          <table class="center table">
-                <tr class="info"><td>name</td><td>Course</td><td></td><td>Remove Course</td></tr>
+                <tr class="info"><td>name</td><td>Course</td><td>Remove Course</td></tr>
 			
                 <% @constraint.courses.each do |course| %>
                 <tr>
@@ -27,5 +27,5 @@
    
    <%= submit_tag("Add Course") %>
 <% end %>
-
+<%=link_to "Done Adding Courses",{:action => "modify_template",:controller => "courses", :template_id => @template.id} , {:class => "btn btn-small btn-primary"}%>
 </div>

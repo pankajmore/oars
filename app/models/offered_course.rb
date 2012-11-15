@@ -14,7 +14,7 @@
 class OfferedCourse < ActiveRecord::Base
   attr_accessible :credit, :description, :course
   belongs_to :course 
-  has_many :course_prereq, :class_name => 'Course'
+  has_many :course_prereqs, :foreign_key => 'offered_course_id', :class_name => 'Course'
   has_and_belongs_to_many :faculties
   has_and_belongs_to_many :registration_forms
   has_many :lecture_times

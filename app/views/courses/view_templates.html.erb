@@ -1,22 +1,25 @@
 <div class="center hero-unit">
-        <h3></h3>
+        <h3>Add a new Template</h3>
   <%= form_tag("/courses/add_template/", :method => "get") do %>
-  
+  	<%= label_tag(:name, "Template Name:") %>
+  	<%= text_field_tag(:name) %><br>
   <%= submit_tag("Add Template") %>
 <% end %>
 
         <p>
         Here are the existing Course Templates!!
          <table class="center table">
-                <tr class="info"><td>Templates</td><td>Apply to Students</td><td>Modify</td></tr>
+                <tr class="info"><td>TemplateName</td><td>Apply to Students</td><td>Modify</td><td>Delete</td></tr>
 			
                 <% @templates.each do |template| %>
                 <tr>
-                  <td><%=template.id%></td>
+                  <td><%=template.name%></td>
                   <td><%= link_to "Apply Template", {:action => "apply_template",
         :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-success"}%></td>
-                  <td><%= link_to "Modify Templetes", {:action => "modify_template",
+                  <td><%= link_to "Modify Templete", {:action => "modify_template",
         :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-primary"}%></td>
+                  <td><%= link_to "Delete Templete", {:action => "delete_template",
+        :controller => "courses", :template_id => template.id} , {:class => "btn btn-small btn-danger"}%></td>
                 </tr>
                 <%end%>
                 

@@ -2,20 +2,21 @@
 #
 # Table name: courses
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)
-#  number            :string(255)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  offered_course_id :integer
-#  department_id     :integer
+#  id                    :integer          not null, primary key
+#  name                  :string(255)
+#  number                :string(255)
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  offered_course_id     :integer
+#  department_id         :integer
+#  course_constraints_id :integer
 #
 
 class Course < ActiveRecord::Base
   attr_accessible :name, :number, :department_id
   has_one :offered, :class_name => 'OfferedCourse'
   belongs_to :offered_course
-  belongs_to :department
+  belongs_to :department 
   belongs_to :course_constraint 
   has_many :course_takens
 end
