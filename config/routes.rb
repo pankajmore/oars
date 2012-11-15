@@ -52,9 +52,7 @@ Oars::Application.routes.draw do
   
   get '/faculties/pre_registration/reject', :to => 'faculty/pre_registration#reject'
   get '/faculties/pre_registration/accept', :to => 'faculty/pre_registration#accept'  
-  
-  get '/courses/get_constraints', :to => 'courses#get_constraints' , :as => :get_constraints
-  
+    
   get '/courses/view_courses_constraint',:to => 'courses#view_courses_constraint', :as => :view_courses_constraint
   get 'courses/view_templates', :to => 'courses#view_templates', :as => :view_templates
   get 'courses/apply_template', :to => 'courses#apply_template', :as => :apply_template

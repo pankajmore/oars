@@ -96,8 +96,4 @@ class CoursesController < ApplicationController
   def view_courses_constraint
   @constraints =  CourseConstraint.joins(:course).find(:all,:conditions =>['courses.department_id==?',current_faculty.department_id] )
   end
-  
-  def get_constraints
-  
-  end
 end
