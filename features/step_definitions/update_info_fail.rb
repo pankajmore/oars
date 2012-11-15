@@ -1,21 +1,18 @@
 Given /^the user visits the update personal information page$/ do
-  visit personal_info
+  visit student_personal_info_path
 end
 
 Given /^the user clicks on update link$/ do
-  click_link "Update_info"
+  click_link "Update Info"
 end
 
 When /^he submits his invalid password$/ do
   fill_in "Name" , with: "Not Name"
   fill_in "Password" , with: "notpassword"
-end
-
-Then /^he should see an error message$/ do
-  page.should have_selector('div.alert.alert-error')
+  click_button "Update"
 end
 
 Then /^nothing should be updated$/ do
-  student.find("name","Not Name")
+  not Student.find_by_name("Not Name")
 end
 

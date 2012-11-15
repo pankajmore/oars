@@ -1,17 +1,3 @@
-Given /^a user visits the signin page$/ do
-        visit student_sign_in
-end
-
-Given /^the user is registered$/ do
-        @user = students.create(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
-end
-
-Given /^the user submits correct username and password$/ do
-        fill_in "Email",    with: @user.email
-        fill_in "Password", with: @user.password 
-        click_button "Sign in"
-end
-
 Given /^the user visits Registration page and clicks on Pre Registration button$/ do
         visit current_registration
         click_button "Pre Registration"
