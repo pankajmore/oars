@@ -46,7 +46,7 @@ Oars::Application.routes.draw do
   get 'faculties/send_message', :to => 'faculty#send_message'
 
 
-  
+  post 'fauclties/transfer_role/', :to => 'faculty#transfer_role'
 
   post '/offered_courses/add', :to => 'offered_courses#add'
   post '/students/pre_registration/add', :to => 'student/pre_registration#add'

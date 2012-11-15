@@ -12,28 +12,32 @@ before_filter :authenticate_faculty!
         def pre_registration
         end
 		
-        def account
-        end
+		def account
+		end
 		
 		
 		
-        def accepted
+		def accepted
 
-                request=CourseRequest.find(params[:request_id])
-                student=request.student
-                request.status="accepted"			
-                request.save
-                flash[:success] = " #{student.name} is successfully pre-registered"
-                redirect_to :action => 'course_requests',:id=>params[:course_id] 
-        end
+			request=CourseRequest.find(params[:request_id])
+			student=request.student
+			request.status="accepted"			
+			request.save
+            flash[:success] = " #{student.name} is successfully pre-registered"
+			redirect_to :action => 'course_requests',:id=>params[:course_id] 
+		end
 		
-        def rejected
-                request=CourseRequest.find(params[:request_id])
-                student=request.student
-                request.status="rejected"			
-                request.save
-                flash[:alert] = " #{student.name} request is rejected"
-                redirect_to :action => 'course_requests',:id=>params[:course_id] 
+		def rejected
+			request=CourseRequest.find(params[:request_id])
+			student=request.student
+			request.status="rejected"			
+			request.save
+            flash[:alert] = " #{student.name} request is rejected"
+			redirect_to :action => 'course_requests',:id=>params[:course_id] 
+		end
+
+
+        def transfer_role
         end
         
         def courses_taken
@@ -43,21 +47,6 @@ before_filter :authenticate_faculty!
         			@courses_taken=@courses_taken-[course]
         		end
         	end
-        end
-        
-        def update_description
-                #@course_described = OfferedCourse.find(params[:id])
-                
-                desc = params[:q]
-                
-                courseDesMod = OfferedCourse.find(params[:name])
-                courseDesMod.description = desc
-                flash[:success] = "Course Description Updated."
-                session[:return_to] = request.referer
-                redirect_to session[:return_to]
-        end
-        def course_description
-                @course_described = OfferedCourse.find(params[:id])
         end
         
         def course_info
