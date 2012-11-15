@@ -30,10 +30,7 @@ class CoursesController < ApplicationController
   redirect_to :action => 'modify_constraint', :template_id =>params[:template_id], :constraint_id => constraint.id
   end
   
-  def add_constraint_course
-  
-  end
-  
+
   def modify_constraint
   @constraint=CourseConstraint.find(params[:constraint_id])
   @template=TemplateCourse.find(params[:template_id])
@@ -41,18 +38,26 @@ class CoursesController < ApplicationController
   
   def delete_constraint
   constraint=CourseConstraint.find(params[:constraint_id])
-  constraint.courses-[Course.find([:course_id])]
-  constraint.save!  
+  constraint.destroy!  
   redirect_to :action => 'modify_constraint', :template_id =>params[:template_id] , :constraint_id => params[:constraint_id] 
   end
 
   def add_constraint_course
-  
+  course=Course.find_by_number(params[:course_num])
+  if course.nil? then
+  	flash[:error]="not a valid course number #{params[:course_num]} "
+  else
+  	constraint=CourseConstraint.find(params[:course_num])
+  	constraint.courses+[course]
+  	constraint.save!
+  	flash[:success]="Course #{course.name} add to the constraint"
+  end
+  redirect_to :action => 'modify_constraint', :template_id =>params[:template_id] , :constraint_id => params[:constraint_id] 
   end
   
   def remove_course
   constraint=CourseConstraint.find(params[:constraint_id])
-  constraint.courses-[Course.find([:course_id])]
+  constraint.courses-[Course.find(params[:course_id])]
   constraint.save!  
   redirect_to :action => 'modify_constraint', :template_id =>params[:template_id] , :constraint_id => params[:constraint_id] 
   
