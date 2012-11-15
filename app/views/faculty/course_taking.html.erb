@@ -7,16 +7,18 @@
        	 <% @forms_list.each do |request| %>      
              <tr><td><%=request.student.name%></td><td><%=request.student.roll%></td>
              <td>Taking</td>
-             <td><%= form_tag "/courses/search", method: "get", class: "form-search" do %>
-  <%= select_tag(:grade,options_for_select([['A', 1], ['B', 2],['C', 3],['D', 4],['F', 5]])) %>
-  <%= hidden_field_tag(:course,@course.number)%>
-  <%= submit_tag "Search", class: "btn" %>
+             <td><%= form_tag "/faculties/submit_grades", method: "get" do %>
+  <%= select_tag(:grade,options_for_select([['A', 'A'], ['B', 'B'],['C', 'C'],['D', 'D'],['F', 'F']])) %>
+  <%= hidden_field_tag(:course_id,@course.id)%>
+  <%= hidden_field_tag(:student_id,request)%>
+  <%= submit_tag "Submit", class: "btn" %>
+  <%end%>
   </td>
       		 <%end %>
         </table>
         <%if !@forms_list.empty? %>
        <%else%>
-        No more pending requests.
+        No more pending requests for grade submission.
         <%end%>        
 		
         </p>

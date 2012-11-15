@@ -33,6 +33,7 @@ Oars::Application.routes.draw do
         get '/faculties/course_description', :to => 'faculty#course_description' , :as => :faculty_course_description
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
         get '/faculties/course_taking', :to => 'faculty#course_taking' , :as => :course_taking_list
+        get '/faculties/submit_grade', :to => 'faculty#submit_grade' , :as => :submit_grade 
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/update_description', :to => 'faculty#update_description' , :as => :update_description
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
