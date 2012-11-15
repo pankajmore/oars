@@ -4,6 +4,7 @@
 
         <p>
         <div align="right" class="btn-group">
+        <%= link_to "Semester Template", view_semester_template_path, class: "btn btn-large btn-success"  %>
                 <%= link_to "Pre Registration", student_pre_registration_path, class: "btn btn-large btn-success"  %>
         </div>
         <%if(!@currentRegistration.nil? ) %>

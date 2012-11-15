@@ -19,7 +19,12 @@ class StudentController < ApplicationController
         
         def backlog_list
         end
-
+		
+		def view_semester_template
+		@template = current_student.template_course
+		
+		end	
+		
         def view_messages
           alfa = Student.find(current_student.id)
           #alfa gets the last conversation (chronologically, the first in the inbox)

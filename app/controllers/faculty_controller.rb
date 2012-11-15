@@ -1,5 +1,6 @@
 class FacultyController < ApplicationController
 before_filter :authenticate_faculty!        
+include FacultiesHelper
         def instructor_home
         end
         
@@ -38,7 +39,29 @@ before_filter :authenticate_faculty!
 
 
         def transfer_role
+            email = params[:q]
+            faculty = Faculty.find_by_email(email)
+            if faculty.nil?
+                flash[:failure] = "No such faculty exists"
+            else 
+                acting = current_faculty.department.acting_dugc
+                acting.faculty = faculty
+                acting.save 
+                flash[:success] = "Successfully roll changed"
+            end 
+            session[:return_to] = request.referer
+            redirect_to session[:return_to]
         end
+
+        def revoke_role 
+            acting = current_faculty.department.acting_dugc
+            acting.faculty = nil 
+            acting.save 
+            session[:return_to] = request.referer
+            redirect_to session[:return_to]
+        end
+
+
         
         def courses_taken
         	@courses_taken=OfferedCourse.find(:all)
@@ -75,6 +98,13 @@ before_filter :authenticate_faculty!
             end
         end
         
+		def submit_grade
+		params[:grade]
+		Course.find(params[:course_id])
+		Student.find(params[:student_id])
+		redirect_to :action => 'course_taking', :id=>params[:course_id]
+		end
+		        
         def current_sem
             courses = []
             @courses_taken = [] 

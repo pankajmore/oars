@@ -1,8 +1,3 @@
-# require "webrat"
-Given /^a user visits the signin page$/ do
-  visit student_sign_in_path
-end
-
 When /^he submits invalid username or password$/ do
   click_button "Sign in"
 end

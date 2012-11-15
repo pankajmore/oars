@@ -3,16 +3,24 @@
 
 <% if current_faculty==current_faculty.department.dugc.faculty %>
 You are dugc <br>
-<% if current_faculty.department.acting_dugc.nil? %>
-<%= form_tag("/faculties/transfer_role/" , :method => "post") do %>
-<%= label_tag(:q, "Faculty Email :") %>
-<%= email_field_tag(:q) %>
-<%= submit_tag("Transfer Role") %>
-<% end %>
+<% if current_faculty.department.acting_dugc.faculty.nil? %>
+    <%= form_tag("/faculties/transfer_role/" , :method => "post") do %>
+    <%= label_tag(:q, "Faculty Email :") %>
+    <%= email_field_tag(:q) %>
+    <%= submit_tag("Transfer Role") %>
+    <% end %>
+<% else  %>
+    <%= form_tag("/faculties/revoke_role/" , :method => "post") do %>
+    <%= submit_tag("Revoke Role") %> 
+    <% end %>
+<% end %> 
+<% end %> 
+<% if current_faculty==current_faculty.department.dugc.faculty or current_faculty==current_faculty.department.acting_dugc.faculty %>
 <%= link_to "Approve Student Forms", registration_forms_path, class: "btn btn-large btn-success"%><br>To modify/introduce constraints<br>
 <%= link_to "Course Constraints", view_templates_path, class: "btn btn-large btn-primary"%> 
 <% else %>
  you are only a faculty
 <% end %>
+
 </div>
 
