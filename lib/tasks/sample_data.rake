@@ -8,18 +8,23 @@ namespace :db do
       Course.create!(name: name, number: number, :department_id => 1)
     end
   a = AcademicInformation.create!()
+  b = CurrentRegistrationForm.create!()
   a.student = Student.create!({:name => "Ajmera", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
+  b.student = a.student 
   a.save
+  b.save 
   a = AcademicInformation.create!()
+  b = CurrentRegistrationForm.create!()
   a.student = Student.create!({:name => "bakait chhora", :email => "test@test.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1}) 
+  b.student = a.student 
   a.save
+  b.save 
   Faculty.create!({:name => "Shubham", :email => "foo@bar.com", :password => "111111", :password_confirmation => "111111" , :department_id => 1})
   Faculty.create!({:name => "Cool Dude", :email => "test@test.com", :password => "111111", :password_confirmation => "111111",:department_id => 1})
 
   Dugc.create!({:department_id => 1, :faculty_id => 1})
   ActingDugc.create!({:department_id => 1})
   ids = Course.find( :all, :select => 'id' ).map( &:id )
-  courses = Course.find( (1..20).map { ids.delete_at( ids.size * rand ) } )
   AcademicInformation.all.each do |a|
       ['1','2','3','4','5','6'].each do |s|
           5.times do 
@@ -29,6 +34,23 @@ namespace :db do
       end 
   end 
 
+  CurrentRegistrationForm.all.each do |c|
+      5.times do 
+        offset = rand(Course.count)
+        rand_course = Course.first(:offset => offset)
+        cd = CourseDoing.create!()
+        cd.current_registration_form = c 
+        cd.course = rand_course 
+        cd.credits = 4
+        offset = rand(Faculty.count)
+        rand_faculty = Faculty.first(:offset => offset)
+        cd.faculty = rand_faculty 
+        cd.save! 
+      end 
+  end 
+
+  # lecture times 
+  courses = Course.find( (1..20).map { ids.delete_at( ids.size * rand ) } )
   courses.each { |x| 
       offset = rand(Faculty.count)
       rand_faculty = Faculty.first(:offset => offset)
@@ -51,7 +73,7 @@ namespace :db do
       end 
       y.save!() 
       }
-  # lecture times 
+    
   end
 end
 
