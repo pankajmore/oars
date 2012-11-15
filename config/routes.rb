@@ -32,6 +32,7 @@ Oars::Application.routes.draw do
         get '/faculties/courses_taken', :to => 'faculty#courses_taken' , :as => :faculty_courses_taken
         get '/faculties/course_description', :to => 'faculty#course_description' , :as => :faculty_course_description
         get '/faculties/course_requests', :to => 'faculty#course_requests' , :as => :course_list
+        get '/faculties/course_taking', :to => 'faculty#course_taking' , :as => :course_taking_list
         get '/faculties/course_info', :to => 'faculty#course_info' , :as => :course_info
         get '/faculties/update_description', :to => 'faculty#update_description' , :as => :update_description
         get '/faculties/accepted', :to => 'faculty#accepted' , :as => :accepted
@@ -40,7 +41,14 @@ Oars::Application.routes.draw do
         get '/faculties/approve_form', :to => 'faculty/pre_registration#approve_form' , :as => :approve_form
        
   end 
+
+
+  get 'students/messages', :to => 'student#view_messages', :as => :student_messages
+  get 'faculties/send_message', :to => 'faculty#send_message'
+
+
   
+
   post '/offered_courses/add', :to => 'offered_courses#add'
   post '/students/pre_registration/add', :to => 'student/pre_registration#add'
 

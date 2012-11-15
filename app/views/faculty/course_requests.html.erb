@@ -3,9 +3,24 @@
 		<h3>Student requested for Course <%=@offered_course.course.number%> </h3>
 		
         <table class="center table">
-			<tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td><td>Accept</td><td>Reject</td></tr>
+			<tr class="info"><td>Student Name</td><td>Roll Number</td><td>Info</td><td>Accept</td><td>Reject</td><td>Meet</td></tr>
        	 <% @request_list.each do |request| %>      
-   			<tr><td><%=request.student.name%></td><td><%=request.student.roll%></td><td>Backchod hai</td><td><%=link_to "Accept", {:action => "accepted", :course_id => @offered_course.id, :request_id=>request.id},{:class =>"btn btn-mini btn-primary"} %></td><td><%=link_to "Reject", {:action => "rejected", :course_id => @offered_course.id, :request_id=>request.id},{:class =>"btn btn-mini btn-danger"} %></td></tr>
+   			<tr><td><%=request.student.name%></td><td><%=request.student.roll%></td><td>Backchod
+   			hai</td><td><%=link_to "Accept", {:action =>
+   			"accepted", :course_id => @offered_course.id,
+   			:request_id=>request.id},{:class =>"btn
+   			btn-mini btn-primary"}
+   			%></td><td><%=link_to "Reject", {:action =>
+   			"rejected", :course_id => @offered_course.id,
+   			:request_id=>request.id},{:class =>"btn
+   			btn-mini btn-danger"} %></td>
+                        <td>
+                          <%=link_to "Meet", {:action =>
+                          "send_message", :student_id =>
+                          request.student.id }, {:class => "btn
+                          btn-mini btn-primary" } %>
+                        </td>
+                        </tr>
       		 <%end %>
         </table>
         <%if !@request_list.empty? %>
