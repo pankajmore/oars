@@ -61,7 +61,20 @@ include FacultiesHelper
             redirect_to session[:return_to]
         end
 
-
+        def update_description
+                #@course_described = OfferedCourse.find(params[:id])
+                
+                desc = params[:q]
+                
+                courseDesMod = OfferedCourse.find(params[:name])
+                courseDesMod.description = desc
+                flash[:success] = "Course Description Updated."
+                #session[:return_to] = request.referer
+                redirect_to faculty_courses_taken_path
+        end
+        def course_description
+                @course_described = OfferedCourse.find(params[:id])
+        end
         
         def courses_taken
         	@courses_taken=OfferedCourse.find(:all)
