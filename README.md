@@ -1,261 +1,208 @@
-== Welcome to Rails
+Introduction
+============
 
-Rails is a web-application framework that includes everything needed to create
-database-backed web applications according to the Model-View-Control pattern.
+Launguage and Framework Considerations
+--------------------------------------
 
-This pattern splits the view (also called the presentation) into "dumb"
-templates that are primarily responsible for inserting pre-built data in between
-HTML tags. The model contains the "smart" domain objects (such as Account,
-Product, Person, Post) that holds all the business logic and knows how to
-persist themselves to a database. The controller handles the incoming requests
-(such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
+We chose Ruby on Rails as the underlying web framework for our project.
+After working with it for the project , it seems to be much better than
+other frameworks that we had previously tried. Following are the
+important features that stand out in our mind:
 
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
+-   Being one of the most popular frameworks , it has a huge ecosystem
+    of users and developers and support of a lot of low level detail are
+    already taken care of. Lot of code is bolierplate in a web
+    application. Compared to other frameworks , it seems that in rails
+    least amount of boilerplate needs to be written manually.This leads
+    to huge increase in productivity.
 
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails. You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
+-   The idea of Convention over Configuration leads to better design
+    patterns and less time spent in configuring various details.
 
+-   DRY : It provides good support of writing modular, reusable code at
+    model , views and controller layer. The facilty of writing partial
+    views was very useful in combatting duplicate code in presentation
+    logic.
 
-== Getting Started
+-   RESTful : One of the best practices that rails uses by default is
+    restful architecture for models and controllers. It makes it easier
+    to integrate with other ecosystems and no effort needs to be spent
+    on building a restful api for the system in future.
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+-   TDD : Rails by default fully embraces Test Driven Developement, all
+    the controllers have test specs auto generated. There are very well
+    supported and extensive libraries for both blackbox and whitebox
+    based testing.
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+-   Agile : From personal experience , ruby and rails are both sutable
+    for agile methodologies. The framework and its design decisons feel
+    quite natural and don’t get in the way. No time is wasted in
+    fighting the framework as in many other competeing frameworks.
 
-3. Go to http://localhost:3000/ and you'll see:
-       "Welcome aboard: You're riding Ruby on Rails!"
+We choose git for version control and github for source code hosting.
+Github also provides wiki and issues to handle various project details
+and management issues. The repository can be cloned from \cite{github}.
 
-4. Follow the guidelines to start developing your application. You can find
-the following resources handy:
+Heroku is PaaS platform for hosting web applications. A major benefit of
+using rails and heroku was the ease of deployement and continuous
+integration facilities available in the ecosystem. A prototype is hosted
+at \cite{heroku}
 
-* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
-* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
+Main Models
+-----------
 
+Student:
+:   Student Model has all the basic information about the student
+    including his personal information. It maintains relationship with
+    department, academic information, registration form and template
+    models to capture the properties related to a student.
 
-== Debugging Rails
+Faculty
+:   Faculty Model does the same task as the student model but for
+    faculty. It has relationship with offered courses and departmennt.
+    We have allowed a faculty to take as amny courses and a course can
+    be taken by more than one faculty.
 
-Sometimes your application goes wrong. Fortunately there are a lot of tools that
-will help you debug it and get it back on the rails.
+Department
+:   Department model is used just to keep track of existing departments.
+    It is linked to all the models which have the concept of department.
 
-First area to check is the application log files. Have "tail -f" commands
-running on the server.log and development.log. Rails will automatically display
-debugging and runtime information to these files. Debugging info will also be
-shown in the browser on requests from 127.0.0.1.
+Academic Information
+:   Academic information model keeps track of past performances of a
+    student. It is used to generate the transcript and calculate
+    performace index (cpi,spi etc). When an instructor submits the grade
+    the information is moved to this model.
 
-You can also log your own messages directly into the log file from your code
-using the Ruby logger class from inside your controllers. Example:
+Course
+:   Course model consist of all the courses that are offered till now in
+    the history of the institute.
 
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
+Offered Course
+:   Offered courses are the actual courses that are offered next
+    semester. So a student can request courses to take in next semester
+    only for these courses. Offered courses are linked to courses to
+    preserve one to one relationship between them.
 
-The result will be a message in your log file along the lines of:
+Lecture Time
+:   Lecture time captures the weekly schedule of the offered courses. It
+    enables us to automatically detect timetable clashes and also
+    generate timetable for the offered courses taken by the student.
 
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
+Registration Form
+:   Registration form keeps track of the pre-registration. A student can
+    add or delete courses to this form and then submit it to DUGC for
+    verification. It is also used to see what all courses the student is
+    taking this semester so to enable a faculty to submit grades for the
+    students.
 
-More information on how to use the logger is at http://www.ruby-doc.org/core/
+Template
+:   Template is used by any priviledged person to create a semester
+    template constraint for a student or a group of students. We can
+    create compulsory as well as bucket courses to be taken by a student
+    in a particular semester and this constraint will be checked when
+    the student submits his pre registration form.
 
-Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
-several books available online as well:
+Features:
+---------
 
-* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
-* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
+The various features implemented in the software are listed below:
 
-These two books will bring you up to speed on the Ruby language and also on
-programming in general.
+Basic Sign-up and Sign-in
+:   There is a sign up and sign in facility for both student and faculty
+    which tracks there profile and creates sessions for secure browsing.
 
+Pre-Registration
+:   In pre-registration section we have implemented course (offered
+    course) request which can be accepted or rejected by the faculties
+    who are taking the courses. The course can only be requested if
+    pre-requsites are satisfied. Faculty can send meet message to
+    student keeping the request on hold. Once the courses are accepted
+    they can be added to pre-registration. If there is any time-conflict
+    with already added courses then the course cannot be added. If the
+    form does not satisfy the semester template applied to him his form
+    can’t be submmited. After the submission of the form it can be
+    withdrawn before dugc accepts.
 
-== Debugger
+Time-Table
+:   Time table can be seen once any course is added to the form. It
+    automatically alerts if any clashibg course is added to
+    pre-registration form.
 
-Debugger support is available through the debugger command when you start your
-Mongrel or WEBrick server with --debugger. This means that you can break out of
-execution at any point in the code, investigate and change the model, and then,
-resume execution! You need to install ruby-debug to run the server in debugging
-mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
+Course Constraints & Templates
+:   This facility provides dugc to create or modify course templates.
+    Each template contains several course constraint which contains
+    courses compulsory for student to take. One constraint can contain
+    more than one course which means that the student has to do one
+    course out of the given courses.
 
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.all
-      debugger
-    end
-  end
+Grade Submission & Transcript
+:   Grades can be submitted by any faculties taking that course. Once
+    the grades are submitted they are reflected in the transcript
+    provided to the student.
 
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
+Transfer Role
+:   Dugc can tranfer his role to any other faculty. This power can be
+    revoked by dugc once the requirement is complete. During this period
+    dugc’s facilities are accessible to both the faculty.
 
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8
-          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
-       #<Post:0x14a6620
-          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
+Software Testing and Agile Software Development
+===============================================
 
-...and even better, you can examine how your runtime objects actually work:
+We developed our OARS using iterartive and incremental development based
+on the developed test cases prior to the development of actual code. We
+designed automated test cases for every unit (class) that needs to be
+added for our functionalities, than the developed code was tested upon
+the test cases, if the test cases passes we would combine the new unit
+with our previous model and continue with the same process for futher
+development, else we would rectify our problem and iterate the whole
+preocess again. The test cases were written. We wrote our test cases
+using *Cucumber* which is a tool to run test cases in ruby, written in
+*BDD* Behavior Driven Development style. Each test case consist of a
+feature and multiple scenarios, where feature defines the testing area
+and scenarios defines the multiple paths which the test case could take.
+The whole test-case consists of two files:
 
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
+-   *Feature File*: This is a normal file written with BDD style (close
+    to Natural Language) which contains basically three commands
+    *Given*,*When* and *Then* which defines the complete scenario.
 
-Finally, when you're ready to resume execution, you can enter "cont".
+-   *Step Defination*: This file contains the actual code that needs to
+    be run while going through the steps mentioned in the feature file.
+    The steps in the feature file act as a regular expression in the
+    feature definations and the code written in the function defination
+    gets executed while cucumber parses to the feature file. Basically
+    what it does is that it visits throuhout the application checking
+    the correctness in terms of the view(output) of the application, by
+    browsing though the *HTML* code, filling input values and navigating
+    from one location to another in the application. The step
+    definitions are written in Ruby. This gives much flexibility on how
+    the test steps are executed. It can use an already exisiting step
+    definitions for a given step if you need the same step for checking
+    some other functionality.
 
+These type of tests should be run during the implementation phase as
+well as later on when the site is fully functional. Even if the test was
+created during the implementation phase, it should still be run every
+time with every new release that goes out. It can even be used as a part
+of a stand-alone test set for the site. This helps in reducing our
+effort by huge amount as fas as testing is considered. We wrote feature
+files to test accross all our units, which carried out steps to navigate
+through our system through the outside views, i.e. they basically tested
+our units through *Black Box Testing*. Then we wrote test cases for
+integration testing i.e. to check whether the units are interacting
+properly or not. For special cases like cpi,spi calculation: we wrote
+special test cases (on function level) to verify their functionality.
+This whole testing and code process helped us in saving time and
+debugging our code. Also, it helped in removing the manual testing of
+our software which needs to be done in any case.\
+Maintaining any software and test automation will definitly benefit from
+good development process.So we used git as our version control system.
+It will enable us in maintaining the current version of the automation
+and also in tracking the changes done to it and also to revert back to
+an earlier state if we get stuck into a problem.
 
-== Console
+9
 
-The console is a Ruby shell, which allows you to interact with your
-application's domain model. Here you'll have all parts of the application
-configured, just like it is when the application is running. You can inspect
-domain models, change values, and save to the database. Starting the script
-without arguments will launch it in the development environment.
+https://github.com/pankajmore/oars
 
-To start the console, run <tt>rails console</tt> from the application
-directory.
-
-Options:
-
-* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
-  made to the database.
-* Passing an environment name as an argument will load the corresponding
-  environment. Example: <tt>rails console production</tt>.
-
-To reload your controllers and models after launching the console run
-<tt>reload!</tt>
-
-More information about irb can be found at:
-link:http://www.rubycentral.org/pickaxe/irb.html
-
-
-== dbconsole
-
-You can go to the command line of your database directly through <tt>rails
-dbconsole</tt>. You would be connected to the database with the credentials
-defined in database.yml. Starting the script without arguments will connect you
-to the development database. Passing an argument will connect you to a different
-database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
-PostgreSQL and SQLite 3.
-
-== Description of Contents
-
-The default directory structure of a generated Ruby on Rails application:
-
-  |-- app
-  |   |-- assets
-  |       |-- images
-  |       |-- javascripts
-  |       `-- stylesheets
-  |   |-- controllers
-  |   |-- helpers
-  |   |-- mailers
-  |   |-- models
-  |   `-- views
-  |       `-- layouts
-  |-- config
-  |   |-- environments
-  |   |-- initializers
-  |   `-- locales
-  |-- db
-  |-- doc
-  |-- lib
-  |   `-- tasks
-  |-- log
-  |-- public
-  |-- script
-  |-- test
-  |   |-- fixtures
-  |   |-- functional
-  |   |-- integration
-  |   |-- performance
-  |   `-- unit
-  |-- tmp
-  |   |-- cache
-  |   |-- pids
-  |   |-- sessions
-  |   `-- sockets
-  `-- vendor
-      |-- assets
-          `-- stylesheets
-      `-- plugins
-
-app
-  Holds all the code that's specific to this particular application.
-
-app/assets
-  Contains subdirectories for images, stylesheets, and JavaScript files.
-
-app/controllers
-  Holds controllers that should be named like weblogs_controller.rb for
-  automated URL mapping. All controllers should descend from
-  ApplicationController which itself descends from ActionController::Base.
-
-app/models
-  Holds models that should be named like post.rb. Models descend from
-  ActiveRecord::Base by default.
-
-app/views
-  Holds the template files for the view that should be named like
-  weblogs/index.html.erb for the WeblogsController#index action. All views use
-  eRuby syntax by default.
-
-app/views/layouts
-  Holds the template files for layouts to be used with views. This models the
-  common header/footer method of wrapping views. In your views, define a layout
-  using the <tt>layout :default</tt> and create a file named default.html.erb.
-  Inside default.html.erb, call <% yield %> to render the view using this
-  layout.
-
-app/helpers
-  Holds view helpers that should be named like weblogs_helper.rb. These are
-  generated for you automatically when using generators for controllers.
-  Helpers can be used to wrap functionality for your views into methods.
-
-config
-  Configuration files for the Rails environment, the routing map, the database,
-  and other dependencies.
-
-db
-  Contains the database schema in schema.rb. db/migrate contains all the
-  sequence of Migrations for your schema.
-
-doc
-  This directory is where your application documentation will be stored when
-  generated using <tt>rake doc:app</tt>
-
-lib
-  Application specific libraries. Basically, any kind of custom code that
-  doesn't belong under controllers, models, or helpers. This directory is in
-  the load path.
-
-public
-  The directory available for the web server. Also contains the dispatchers and the
-  default HTML files. This should be set as the DOCUMENT_ROOT of your web
-  server.
-
-script
-  Helper scripts for automation and generation.
-
-test
-  Unit and functional tests along with fixtures. When using the rails generate
-  command, template test files will be generated for you and placed in this
-  directory.
-
-vendor
-  External libraries that the application depends on. Also includes the plugins
-  subdirectory. If the app has frozen rails, those gems also go here, under
-  vendor/rails/. This directory is in the load path.
+oars.herokuapp.com
