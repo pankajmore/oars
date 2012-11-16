@@ -13,15 +13,46 @@
 
 \subsection{Main Models}
 \begin{description}
-\item[Student]
+\item[Student:]
+Student Model has all the basic information about the student including his
+personal information. It maintains relationship with department, academic
+information, registration form and template models to capture the properties
+related to a student.
 \item[Faculty]
+Faculty Model does the same task as the student model but for faculty. It has
+relationship with offered courses and departmennt. We have allowed a faculty
+to take as amny courses and a course can be taken by more than one faculty.
 \item[Department]
+Department model is used just to keep track of existing departments. It is
+linked to all the models which have the concept of department.
 \item[Academic Information]
+Academic information model keeps track of past performances of a student. It
+is used to generate the transcript and calculate performace index (cpi,spi
+etc). When an instructor submits the grade the information is moved to this
+model.
 \item[Course]
+Course model consist of all the courses that are offered till now in the
+history of the institute.
 \item[Offered Course]
+Offered courses are the actual courses that are offered next semester. So a
+student can request courses to take in next semester only for these
+courses. Offered courses are linked to courses to preserve one to one
+relationship between them.
 \item[Lecture Time]
+Lecture time captures the weekly schedule of the offered courses. It enables
+us to automatically detect timetable clashes and also generate timetable
+for the offered courses taken by the student.
 \item[Registration Form]
+Registration form keeps track of the pre-registration. A student can add or
+delete courses to this form and then submit it to DUGC for verification. It is
+also used to see what all courses the student is taking this semester so to
+enable a faculty to submit grades for the students.
 \item[Template]
+Template is used by any priviledged person to create a semester template
+constraint for a student or a group of students. We can create compulsory as
+well as bucket courses to be taken by a student in a particular semester and
+this constraint will be checked when the student submits his pre registration
+form.
 \end{description}
 
 \end{document}
