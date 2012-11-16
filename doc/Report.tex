@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \title{OARS}
-\author{Satvik Chauhan}
+\author{Satvik Chauhan, Rahul Ajmera}
 \date{{\small \today}}
 
 \begin{document}
@@ -54,35 +54,13 @@ well as bucket courses to be taken by a student in a particular semester and
 this constraint will be checked when the student submits his pre registration
 form.
 \end{description}
-% Gaurav's part start
-\subsection{Features:}
-The various features implemented in the software are listed below:
-\begin{description}
-\item[Basic Sign-up and Sign-in]
-There is a sign up and sign in facility for both student and faculty which
-tracks there profile and creates sessions for secure browsing.
-\item[Pre-Registration]
- In pre-registration section we have implemented course(offered course) request
- which can be accepted or rejected by the faculties who are taking the courses.
- The course can only be requested if pre-requsites are satisfied. Faculty can send
- meet message to student keeping the request on hold.
- Once the courses are accepted they can be added to pre-registration. If there is any 
- time-conflict with already added courses then the course cannot be added.
- If the form does not satisfy the semester template applied to him his form can't be submmited.
- After the submission of the form it can be withdrawn before dugc accepts.
- \item[Time-Table]
- Time table can be seen once any course is added to the form. It automatically alerts if any 
- clashibg course is added to pre-registration form.
- \item[Course Constraints \& Templates]
- This facility provides dugc to create or modify course templates. Each template contains 
- several course constraint which contains courses compulsory for student to take. One constraint
- can contain more than one course which means that the student has to one course out of the given courses
- \item[Grade Submission \& Transcript]
- Grades can be submitted by any faculties taking that
- course. Once the grades are submitted they are reflected in the transcript provided to the student.
- \item[Transfer Role]
-Dugc can tranfer his role to any other faculty. This power can be revoked by dugc once the requirement
-is complete. During this period dugc's facilities are accessible to both the faculty.
-% Gaurav's part end
-\end{description}
+
+\section{Agile Software Development}
+We developed our OARS using iterartive and incremental development based on the developed test cases prior to the development of actual code. We designed automated test cases for every unit (class) that needs to be added for our functionalities, than the developed code was tested upon the test cases, if the test cases passes we would combine the new unit with our previous model and continue with the same process for futher development, else we would rectify our problem and iterate the whole preocess again. The test cases were written. We wrote our test cases using \emph{Cucumber} which is a tool to run test cases in ruby, written in \emph{BDD}  Behavior Driven Development style. Each test case consist of a feature and multiple scenarios, where feature defines the testing area and scenarios defines the multiple paths which the test case could take. The whole test-case consists of two files:
+\begin{itemize}
+\item \emph{Feature File}: This is a normal file written with BDD style (close to Natural Language) which contains basically three commands \emph{Given},\emph{When} and \emph{Then} which defines the complete scenario.
+\item \emph{Step Defination}: This file contains the actual code that needs to be run while going through the steps mentioned in the feature file. The steps in the feature file act as a regular expression in the feature definations and the code written in the function defination gets executed while cucumber parses to the feature file. Basically what it does is that it visits throuhout the application checking the correctness in terms of the view(output) of the application, by browsing though the \emph{HTML} code, filling input values and navigating from one location to another in the application. The step definitions are written in Ruby. This gives much flexibility on how the test steps are executed. It can use an already exisiting step definitions for a given step if you need the same step for checking some other functionality.
+\end{itemize} 
+These type of tests should be run during the implementation phase as well as later on when the site is fully functional. Even if the test was created during the implementation phase, it should still be run every time with every new release that goes out. It can even be used as a part of a stand-alone test set for the site. This helps in reducing our effort by huge amount as fas as testing is considered. We wrote feature files to test accross all our units, which carried out steps to navigate through our system through the outside views, i.e. they basically tested our units through \emph{Black Box Testing}. Then we wrote test cases for integration testing i.e. to check whether the units are interacting properly or not. For special cases like cpi,spi calculation: we wrote special test cases (on function level) to verify their functionality. This whole testing and code process helped us in saving time and debugging our code. Also, it helped in removing the manual testing of our software which needs to be done in any case.\\
+Maintaining any software and test automation will definitly benefit from good development process.So we used git as our version control system. It will enable us in maintaining the current version of the automation and also in tracking the changes done to it and also to revert back to an earlier state if we get stuck into a problem.
 \end{document}
