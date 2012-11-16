@@ -10,7 +10,50 @@
 \maketitle
 \section{Introduction}
 
+\subsection{Launguage and Framework Considerations}
 
+We chose Ruby on Rails as the underlying web framework for our
+project. After working with it for the project , it seems to be much
+better than other frameworks that we had previously tried. Following
+are the important features that stand out in our mind:
+\begin{itemize}
+\item Being one of the most popular frameworks , it has a huge
+  ecosystem of users and developers and support of a lot of low level
+  detail are already taken care of. Lot of code is bolierplate in a
+  web application. Compared to other frameworks , it seems that in
+  rails least amount of boilerplate needs to be written manually.This
+  leads to huge increase in productivity.
+\item The idea of Convention over Configuration leads to better design
+  patterns and less time spent in configuring various details.
+\item DRY : It provides good support of writing modular, reusable code
+  at model , views and controller layer. The facilty of writing
+  partial views was very useful in combatting duplicate code in
+  presentation logic. 
+\item RESTful : One of the best practices that rails uses by default
+  is restful architecture for models and controllers. It makes it
+  easier to integrate with other ecosystems and no effort needs to be
+  spent on building a restful api for the system in future.
+\item TDD : Rails by default fully embraces Test Driven Developement,
+  all the controllers have test specs auto generated. There are very
+  well supported and extensive libraries for both blackbox and
+  whitebox based testing.
+\item Agile : From personal experience , ruby and rails are both
+  sutable for agile methodologies. The framework and its design
+  decisons feel quite natural and don't get in the way. No time is
+  wasted in fighting the framework as in many other competeing
+  frameworks.
+\end{itemize}
+
+We choose git for version control and github for source code hosting.
+Github also provides wiki and issues to handle various project details
+and management issues. The repository can be cloned from \cite{github}.
+
+Heroku is PaaS platform for hosting web applications. A major benefit
+of using rails and heroku was the ease of deployement and continuous
+integration facilities available in the ecosystem. A prototype is
+hosted at \cite{heroku}
+
+ 
 \subsection{Main Models}
 \begin{description}
 \item[Student:]
@@ -55,4 +98,14 @@ this constraint will be checked when the student submits his pre registration
 form.
 \end{description}
 
+
+\begin{thebibliography}{9}
+
+\bibitem{github}
+  https://github.com/pankajmore/oars
+
+\bibitem{heroku}
+  oars.herokuapp.com
+
+\end{thebibliography}
 \end{document}
